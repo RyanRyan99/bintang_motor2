@@ -24,18 +24,21 @@ class _MainPageState extends State<MainPage> {
             child: Column(
             children: <Widget>[
               Container(
-                padding: const EdgeInsets.only(top: 40, right: 270),
+                padding: const EdgeInsets.only(top: 35, right: 270, bottom: 5),
                 child: Text("LOGO"),
               ),
-              new Expanded(
-                  child: new Column(
-                    children: <Widget>[
-                      new Icon(Icons.notifications),
-                    ],
+              new Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 270),
+                    child: new Column(
+                      children: <Widget>[
+                        new Icon(Icons.notifications,color: Colors.white,),
+                      ],
+                    ),
                   )
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20,bottom: 70, right: 15, left: 20),
+                padding: const EdgeInsets.only(bottom: 10, right: 15, left: 20),
                 child: Row(
                   children: <Widget>[
                     Container(
@@ -47,6 +50,7 @@ class _MainPageState extends State<MainPage> {
                           )
                       ),
                     ),
+
                     new Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -79,7 +83,7 @@ class _MainPageState extends State<MainPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: <Widget>[
-                        Icon(Icons.assignment,color: Colors.black),
+                        Icon(Icons.dns,color: Colors.black),
                         Text("EXAMPLE",style: TextStyle(fontSize: 9),),
                       ],
                     ),
@@ -88,7 +92,7 @@ class _MainPageState extends State<MainPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: <Widget>[
-                        Icon(Icons.notifications, color: Colors.black,),
+                        Icon(Icons.remove_red_eye, color: Colors.black,),
                         Text("SAMPLE", style: TextStyle(fontSize: 9),),
                       ],
                     ),
@@ -97,7 +101,7 @@ class _MainPageState extends State<MainPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: <Widget>[
-                        Icon(Icons.access_alarm, color: Colors.black,),
+                        Icon(Icons.attach_money, color: Colors.black,),
                         Text("SAMPLE", style: TextStyle(fontSize: 9),),
                       ],
                     ),
@@ -108,7 +112,7 @@ class _MainPageState extends State<MainPage> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10.0),
-              boxShadow: <BoxShadow>[BoxShadow(blurRadius: 10)]
+              boxShadow: <BoxShadow>[BoxShadow(blurRadius: 5)]
             ),
           ),
         ],
