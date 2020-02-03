@@ -1,4 +1,5 @@
 import 'package:bintang_motor/mainpage.dart';
+import 'package:bintang_motor/navigator_menu.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: MainPage(),
+      home: NavigatorPage(),
     );
   }
 }

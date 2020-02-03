@@ -1,4 +1,14 @@
+import 'package:bintang_motor/customer/customer.dart';
+import 'package:bintang_motor/navigator_menu.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+
+void main(){
+  runApp(new MaterialApp(
+    home: new NavigatorPage(),
+  ));
+}
 
 class MainPage extends StatefulWidget {
   @override
@@ -8,111 +18,155 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
+    var ScreenSize = MediaQuery.of(context).size;
     return Scaffold(
-      body: new Stack(
+      body: Stack(
         children: <Widget>[
-          //CONTAINER UNTUK BACKGROUND ATAS
           Container(
-            height: 230.0,
+            height: 230,
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/background.png"),fit: BoxFit.cover
+                image: AssetImage("assets/background.png"),
+                fit: BoxFit.cover,
               ),
             ),
-            //UNTUK FOTO PROFILE DAN LOGO
-            child: Column(
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.only(top: 35, right: 270, bottom: 5),
-                child: Text("LOGO"),
-              ),
-              new Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 270),
-                    child: new Column(
-                      children: <Widget>[
-                        new Icon(Icons.notifications,color: Colors.white,),
-                      ],
-                    ),
-                  )
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10, right: 15, left: 20),
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      width: 60.0, height: 60.0,
-                      decoration: BoxDecoration(
-                          shape:BoxShape.circle,
-                          image: DecorationImage(
-                              image: new AssetImage("assets/picture.jpg"),fit: BoxFit.cover
-                          )
+            child: new Stack(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 40, left: 30),
+                  child: Container(
+                    child: Text("Logo", style: TextStyle(color: Colors.white),),
+                  ),
+                ),
+               Container(
+                 padding: EdgeInsets.only(top: 40, left: 300),
+                 child: Icon(Icons.notifications, color: Colors.white,),
+               ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 80, left: 20),
+                  child: Container(
+                    width: 60.0,height: 60.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage("assets/profile.jpg"),
+                        fit: BoxFit.cover,
                       ),
                     ),
-
-                    new Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: new Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              new Text("Hai, Selamat Datang", style: new TextStyle(fontSize: 12.0, color: Colors.white),),
-                              new Text("Biber", style: new TextStyle(fontSize: 18.0,color: Colors.white),)
-                            ],
-                          ),
-                        )
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 90, left: 90),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        new Text("Hai, Selamat Datang",
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.white,
+                          ),
+                        ),
+                        new Text("Bruce Wayne",
+                          style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.white
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 150, left: 20),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        new Text("Sales Point :",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.0
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 150, left: 90),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        new Text("120.000",
+                          style: TextStyle(
+                              color: Colors.yellow,
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-          ),
-          //CONTAINER UNTUK BOX
           Container(
-            margin: EdgeInsets.only(top: 190,bottom: 410, left: 20, right: 20),
-            padding: EdgeInsets.all(5.0),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.dns,color: Colors.black),
-                        Text("EXAMPLE",style: TextStyle(fontSize: 9),),
-                      ],
-                    ),
+            height: 70,
+            margin: EdgeInsets.only(top: 190.0, left: 20, right: 20),
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 35.0),
+                  child: Column(
+                    children: <Widget>[
+                      new IconButton(
+                          icon: Icon(Icons.dns,color: Colors.red, size: 30,),
+                          onPressed: (){
+                            Navigator.of(context).push(new MaterialPageRoute(
+                                builder: (BuildContext context) => new Customer()
+                            )
+                            );
+                          },
+                      ),
+                      new Text("Customer", style: TextStyle(fontSize: 11, color: Colors.red),)
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.remove_red_eye, color: Colors.black,),
-                        Text("SAMPLE", style: TextStyle(fontSize: 9),),
-                      ],
-                    ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 55.0),
+                  child: Column(
+                    children: <Widget>[
+                      new IconButton(
+                        icon: Icon(Icons.remove_red_eye,color: Colors.red, size: 30,),
+                        onPressed: null,
+                      ),
+                      new Text("Notifikasi", style: TextStyle(fontSize: 11, color: Colors.red),)
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.attach_money, color: Colors.black,),
-                        Text("SAMPLE", style: TextStyle(fontSize: 9),),
-                      ],
-                    ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 55.0),
+                  child: Column(
+                    children: <Widget>[
+                      new IconButton(
+                        icon: Icon(Icons.attach_money,color: Colors.red, size: 30,),
+                        onPressed: null,
+                      ),
+                      new Text("Price List", style: TextStyle(fontSize: 11,color: Colors.red),)
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10.0),
-              boxShadow: <BoxShadow>[BoxShadow(blurRadius: 5)]
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8.0),
+                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 5.0)]
             ),
           ),
         ],
@@ -120,24 +174,3 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
