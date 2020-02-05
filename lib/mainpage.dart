@@ -1,5 +1,11 @@
 import 'package:bintang_motor/customer/customer.dart';
+import 'package:bintang_motor/information/cek_bpkb.dart';
+import 'package:bintang_motor/information/cek_stnk.dart';
+import 'package:bintang_motor/information/daftar_produk.dart';
+import 'package:bintang_motor/information/news.dart';
 import 'package:bintang_motor/navigator_menu.dart';
+import 'package:bintang_motor/pricelist/pricelist.dart';
+import 'package:bintang_motor/statistik/statistik.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,155 +24,376 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    var ScreenSize = MediaQuery.of(context).size;
+    final data = MediaQuery.of(context);
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Container(
-            height: 230,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/background.png"),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: new Stack(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 40, left: 30),
-                  child: Container(
-                    child: Text("Logo", style: TextStyle(color: Colors.white),),
-                  ),
+      body: SingleChildScrollView(
+        child: new Stack(
+          children: <Widget>[
+            Container(
+              height: 230,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/background.png"),
+                  fit: BoxFit.cover,
                 ),
-               Container(
-                 padding: EdgeInsets.only(top: 40, left: 300),
-                 child: Icon(Icons.notifications, color: Colors.white,),
-               ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 80, left: 20),
-                  child: Container(
-                    width: 60.0,height: 60.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage("assets/profile.jpg"),
-                        fit: BoxFit.cover,
+              ),
+              child: new Stack(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40, left: 30),
+                    child: Container(
+                      child: Text("Logo", style: TextStyle(color: Colors.white),),
+                    ),
+                  ),
+                 Container(
+                   padding: EdgeInsets.only(top: 40, left: 300),
+                   child: Icon(Icons.notifications, color: Colors.white,),
+                 ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 80, left: 20),
+                    child: Container(
+                      width: 60.0,height: 60.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: AssetImage("assets/profile.jpg"),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 90, left: 90),
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        new Text("Hai, Selamat Datang",
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 90, left: 90),
+                    child: Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          new Text("Hai, Selamat Datang",
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                            ),
                           ),
-                        ),
-                        new Text("Bruce Wayne",
-                          style: TextStyle(
-                              fontSize: 24,
-                              color: Colors.white
+                          new Text("Bruce Wayne",
+                            style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.white
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 150, left: 20),
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        new Text("Sales Point :",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.0
+                  Padding(
+                    padding: const EdgeInsets.only(top: 150, left: 20),
+                    child: Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          new Text("Sales Point :",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12.0
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 150, left: 90),
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        new Text("120.000",
-                          style: TextStyle(
-                              color: Colors.yellow,
-                              fontSize: 12.0,
-                              fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 150, left: 90),
+                    child: Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          new Text("120.000",
+                            style: TextStyle(
+                                color: Colors.yellow,
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
+                ],
+              ),
+            ),
+            Container(
+              height: 70,
+              margin: EdgeInsets.only(top: 190.0, left: 20, right: 20),
+              child: Row(
+                children: <Widget>[
+                  _BoxLogo()
+                ],
+              ),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                  boxShadow: <BoxShadow>[BoxShadow(blurRadius: 5.0)]
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 270.0, left: 13.5),
+              child: Container(
+                child: Row(
+                  children: <Widget>[
+                    _CardButton()
+                  ],
                 ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 390),
+              child: Container(
+                height: 220,
+                width: double.infinity,
+                color: Colors.black12,
+                child: new Stack(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 18),
+                      child: new Text("Info dan Promo", style: TextStyle(fontWeight: FontWeight.bold),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 25),
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: <Widget>[
+                          new Container(
+                            child: Row(
+                              children: <Widget>[
+                                _CardInfo()
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+  //Untuk Container Logo
+  Widget _BoxLogo(){
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(left: 35.0),
+            child: Column(
+              children: <Widget>[
+                new IconButton(
+                  icon: Icon(Icons.dns,color: Colors.red, size: 30,),
+                  onPressed: (){
+                    Navigator.of(context).push(new MaterialPageRoute(
+                        builder: (BuildContext context) => new Customer()
+                    )
+                    );
+                  },
+                ),
+                new Text("Customer", style: TextStyle(fontSize: 11, color: Colors.red),)
               ],
             ),
           ),
-          Container(
-            height: 70,
-            margin: EdgeInsets.only(top: 190.0, left: 20, right: 20),
-            child: Row(
+          Padding(
+            padding: const EdgeInsets.only(left: 55.0),
+            child: Column(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 35.0),
-                  child: Column(
-                    children: <Widget>[
-                      new IconButton(
-                          icon: Icon(Icons.dns,color: Colors.red, size: 30,),
-                          onPressed: (){
-                            Navigator.of(context).push(new MaterialPageRoute(
-                                builder: (BuildContext context) => new Customer()
-                            )
-                            );
-                          },
-                      ),
-                      new Text("Customer", style: TextStyle(fontSize: 11, color: Colors.red),)
-                    ],
-                  ),
+                new IconButton(
+                  icon: Icon(Icons.remove_red_eye,color: Colors.red, size: 30,),
+                  onPressed: (){
+                    Navigator.of(context).push(new MaterialPageRoute(
+                        builder: (BuildContext context) => new Statistik()
+                    )
+                    );
+                  },
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 55.0),
-                  child: Column(
-                    children: <Widget>[
-                      new IconButton(
-                        icon: Icon(Icons.remove_red_eye,color: Colors.red, size: 30,),
-                        onPressed: null,
-                      ),
-                      new Text("Notifikasi", style: TextStyle(fontSize: 11, color: Colors.red),)
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 55.0),
-                  child: Column(
-                    children: <Widget>[
-                      new IconButton(
-                        icon: Icon(Icons.attach_money,color: Colors.red, size: 30,),
-                        onPressed: null,
-                      ),
-                      new Text("Price List", style: TextStyle(fontSize: 11,color: Colors.red),)
-                    ],
-                  ),
-                ),
+                new Text("Statistik", style: TextStyle(fontSize: 11, color: Colors.red),)
               ],
             ),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 5.0)]
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 55.0),
+            child: Column(
+              children: <Widget>[
+                new IconButton(
+                  icon: Icon(Icons.attach_money,color: Colors.red, size: 30,),
+                  onPressed: (){
+                    Navigator.of(context).push(new MaterialPageRoute(
+                        builder: (BuildContext context) => new PriceList()
+                    )
+                    );
+                  },
+                ),
+                new Text("Price List", style: TextStyle(fontSize: 11,color: Colors.red),)
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  //Untuk Card Button Icon
+  Widget _CardButton(){
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              new InkWell(
+                onTap: (){
+                  Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (BuildContext context) => new CheckStnk()
+                  )
+                  );
+                },
+                child: Card(
+                  color: Colors.red,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: <Widget>[
+                        new Icon(Icons.library_books, size: 50, color: Colors.white,),
+                        new Text("STNK",style: TextStyle(color: Colors.white),),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            children: <Widget>[
+              new InkWell(
+                onTap: (){
+                  Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (BuildContext context) => new CheckBpkb()
+                  )
+                  );
+                },
+                child: Card(
+                  color: Colors.red,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: <Widget>[
+                        new Icon(Icons.collections_bookmark, size: 50, color: Colors.white,),
+                        new Text("BPKB",style: TextStyle(color: Colors.white),),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            children: <Widget>[
+              new InkWell(
+                onTap: (){
+                  Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (BuildContext context) => new ListProduct()
+                  )
+                  );
+                },
+                child: Card(
+                  color: Colors.red,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: <Widget>[
+                        new Icon(Icons.motorcycle, size: 50, color: Colors.white,),
+                        new Text("PRODUK",style: TextStyle(color: Colors.white),),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            children: <Widget>[
+              new InkWell(
+                onTap: (){
+                  Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (BuildContext context) => new News()
+                  )
+                  );
+                },
+                child: Card(
+                  color: Colors.red,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: <Widget>[
+                        new Icon(Icons.list, size: 50, color: Colors.white,),
+                        new Text("NEWS",style: TextStyle(color: Colors.white),),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+  //Untuk Card Info Dan Promo
+  Widget _CardInfo(){
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Card(
+            child: Container(
+              height: 180, width: 180,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/Sample2.jpg"),
+                      fit: BoxFit.cover
+                  )
+              ),
+            ),
+          ),
+          Card(
+            child: Container(
+              height: 180, width: 180,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/Sample.jpg"),
+                      fit: BoxFit.cover
+                  )
+              ),
+            ),
+          ),
+          Card(
+            child: Container(
+              height: 180, width: 180,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/Sample2.jpg"),
+                      fit: BoxFit.cover
+                  )
+              ),
+            ),
+          ),
+          Card(
+            child: Container(
+              height: 180, width: 180,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/Sample.jpg"),
+                      fit: BoxFit.cover
+                  )
+              ),
             ),
           ),
         ],
@@ -174,3 +401,4 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
+

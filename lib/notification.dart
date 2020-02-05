@@ -22,30 +22,7 @@ class _NotifikasiState extends State<Notifikasi> {
             ),
             child: new Stack(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0, left: 20.0),
-                  child: Container(
-                    height: 60.0,
-                    width: 60.0,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/Logo.png")
-                      )
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 105, left: 20),
-                  child: Container(
-                    child: Text("Notifikasi",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
-                      ),
-                    ),
-                  ),
-                )
+                _Logo()
               ],
             ),
           ),
@@ -53,4 +30,35 @@ class _NotifikasiState extends State<Notifikasi> {
       ),
     );
   }
+  Widget _Logo(){
+    return Stack(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(top: 20.0, left: 20.0),
+          child: Container(
+            height: 60.0,
+            width: 60.0,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/Logo.png")
+                )
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 105, left: 20),
+          child: Container(
+            child: Text("Notifikasi",
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
 }
+
