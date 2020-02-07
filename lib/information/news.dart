@@ -12,6 +12,18 @@ class _NewsState extends State<News> {
       body: new Stack(
         children: <Widget>[
           Container(
+            child: Container(
+              color: Colors.white70,
+            ),
+            width: double.infinity,
+            decoration: new BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/background2.png"),
+                    fit: BoxFit.cover
+                )
+            ),
+          ),
+          Container(
             height: 130.0,
             width: double.infinity,
             decoration: BoxDecoration(

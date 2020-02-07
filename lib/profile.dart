@@ -9,41 +9,60 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: new Stack(
-          children: <Widget>[
-            Container(
-              height: 130,
-              width: double.infinity,
-              decoration: BoxDecoration(
+      body: new Stack(
+        children: <Widget>[
+          Container(
+            child: Container(
+              color: Colors.white70,
+            ),
+            width: double.infinity,
+            decoration: new BoxDecoration(
                 image: DecorationImage(
-                    image:AssetImage("assets/background.png"),
-                    fit: BoxFit.cover,
+                    image: AssetImage("assets/background2.png"),
+                    fit: BoxFit.cover
                 )
-              ),
+            ),
+          ),
+          Container(
+            height: 130,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image:AssetImage("assets/background.png"),
+                  fit: BoxFit.cover,
+              )
+            ),
+            child: new Stack(
+              children: <Widget>[
+                _Logo()
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 130.0),
+            child: SingleChildScrollView(
               child: new Stack(
                 children: <Widget>[
-                  _Logo()
+                  Padding(
+                    padding: const EdgeInsets.only(top: 160, left: 20, right: 20),
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          _TextName()
+                        ],
+                      ),
+
+                    ),
+                  ),
+                  _ProfileHeader(),
+                  _TextField(),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 300, left: 20, right: 20),
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    _TextName()
-                  ],
-                ),
-              ),
-            ),
-            _ProfileHeader(),
-            _TextField(),
-
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -81,7 +100,7 @@ class _ProfileState extends State<Profile> {
     return Stack(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 145.0, left: 40.0),
+          padding: const EdgeInsets.only(top: 20.0, left: 40.0),
           child: Container(
             width: 110,
             height: 110,
@@ -95,7 +114,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 170.0, left: 180),
+          padding: const EdgeInsets.only(top: 50.0, left: 180),
           child: new Container(
             child: Text("Bruce Wayne",
               style: TextStyle(
@@ -106,13 +125,13 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 200, left: 180),
+          padding: const EdgeInsets.only(top: 75, left: 180),
           child: Container(
             child: Icon(Icons.location_on, size: 30, color: Colors.black38,),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 205, left: 210),
+          padding: const EdgeInsets.only(top: 80, left: 210),
           child: Container(
             child: Text("Cibinong",
               style: TextStyle(
@@ -123,7 +142,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 270.0,),
+          padding: const EdgeInsets.only(top: 140.0,),
           child: Container(
             child: new Container(
               margin: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -147,7 +166,7 @@ class _ProfileState extends State<Profile> {
     return Stack(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 265,left: 80),
+          padding: const EdgeInsets.only(top: 125,left: 80),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.black12,
@@ -163,7 +182,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 314,left: 80),
+          padding: const EdgeInsets.only(top: 175,left: 80),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.black12,
@@ -179,7 +198,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 362,left: 80),
+          padding: const EdgeInsets.only(top: 222,left: 80),
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
@@ -195,7 +214,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 410,left: 80),
+          padding: const EdgeInsets.only(top: 270,left: 80),
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
@@ -211,7 +230,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 458,left: 80),
+          padding: const EdgeInsets.only(top: 318,left: 80),
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
@@ -227,7 +246,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 530, left: 240),
+          padding: const EdgeInsets.only(top: 390, left: 240),
           child: Container(
             child: RaisedButton(
               splashColor: Colors.white,

@@ -9,109 +9,129 @@ class _CheckStnkState extends State<CheckStnk> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: new Stack(
-          children: <Widget>[
-            Container(
-              height: 130.0,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/background.png"),
-                    fit: BoxFit.cover,
-                  )
-              ),
+      body: new Stack(
+        children: <Widget>[
+          Container(
+            child: Container(
+              color: Colors.white70,
+            ),
+            width: double.infinity,
+            decoration: new BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/background2.png"),
+                    fit: BoxFit.cover
+                )
+            ),
+          ),
+          Container(
+            height: 130.0,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/background.png"),
+                  fit: BoxFit.cover,
+                )
+            ),
+            child: new Stack(
+              children: <Widget>[
+                _Logo()
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 130),
+            child: SingleChildScrollView(
               child: new Stack(
                 children: <Widget>[
-                  _Logo()
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 10),
+                    child: Container(
+                      child: Text("Masukan No.Mesin:",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 7, left: 90),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.black12,
+                      ),
+                      height: 40,
+                      margin: EdgeInsets.only(left: 50, right: 50, bottom: 50),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2, left: 310),
+                    child: Container(
+                      height: 50,
+                      child: InkWell(
+                        onTap: (){print("CL");},
+                        child: Card(
+                          color: Colors.red,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Icon(Icons.search, size: 35, color: Colors.white,)
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
+                    child: Container(
+                      height: 400.0,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5.0),
+                          boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          _HeaderCard(),
+                          _IsiCard()
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 460, left: 10),
+                    child: Container(
+                      child: RaisedButton(
+                        splashColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                        ),
+                        color: Colors.red,
+                        onPressed: (){print("c");},
+                        child: Text("Hubungi Konsumen",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  _TextField()
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 160, left: 10),
-              child: Container(
-                child: Text("Masukan No.Mesin:",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 97, left: 90),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.black12,
-                ),
-                height: 40,
-                margin: EdgeInsets.all(50),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 142, left: 310),
-              child: Container(
-                height: 50,
-                child: InkWell(
-                  onTap: (){print("CL");},
-                  child: Card(
-                    color: Colors.red,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Icon(Icons.search, size: 35, color: Colors.white,)
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 200, left: 10, right: 10),
-              child: Container(
-                height: 400.0,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5.0),
-                    boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
-                ),
-                child: Column(
-                  children: <Widget>[
-                    _HeaderCard(),
-                    _IsiCard()
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 600, left: 10),
-              child: Container(
-                child: RaisedButton(
-                  splashColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)
-                  ),
-                  color: Colors.red,
-                  onPressed: (){print("c");},
-                  child: Text("Hubungi Konsumen",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            _TextField()
-          ],
-        ),
+          ),
+
+        ],
       ),
     );
   }
@@ -245,7 +265,7 @@ class _CheckStnkState extends State<CheckStnk> {
     return Stack(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 250, left: 135),
+          padding: const EdgeInsets.only(top: 110, left: 135),
           child: Container(
             height: 40,
             width: 200,
@@ -263,7 +283,7 @@ class _CheckStnkState extends State<CheckStnk> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 298, left: 135),
+          padding: const EdgeInsets.only(top: 158, left: 135),
           child: Container(
             height: 40,
             width: 200,
@@ -281,7 +301,7 @@ class _CheckStnkState extends State<CheckStnk> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 346, left: 135),
+          padding: const EdgeInsets.only(top: 206, left: 135),
           child: Container(
             height: 40,
             width: 200,
@@ -299,7 +319,7 @@ class _CheckStnkState extends State<CheckStnk> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 394, left: 135),
+          padding: const EdgeInsets.only(top: 254, left: 135),
           child: Container(
             height: 40,
             width: 200,
@@ -317,7 +337,7 @@ class _CheckStnkState extends State<CheckStnk> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 442, left: 135),
+          padding: const EdgeInsets.only(top: 302, left: 135),
           child: Container(
             height: 40,
             width: 200,
@@ -335,7 +355,7 @@ class _CheckStnkState extends State<CheckStnk> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 490, left: 135),
+          padding: const EdgeInsets.only(top: 350, left: 135),
           child: Container(
             height: 40,
             width: 200,

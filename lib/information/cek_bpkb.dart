@@ -10,126 +10,146 @@ class _CheckBpkbState extends State<CheckBpkb> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: new Stack(
-          children: <Widget>[
-            Container(
-              height: 130.0,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/background.png"),
-                    fit: BoxFit.cover,
-                  )
-              ),
-              child: new Stack(
+      body: new Stack(
+        children: <Widget>[
+          Container(
+            child: Container(
+              color: Colors.white70,
+            ),
+            width: double.infinity,
+            decoration: new BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/background2.png"),
+                    fit: BoxFit.cover
+                )
+            ),
+          ),
+          Container(
+            height: 130.0,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/background.png"),
+                  fit: BoxFit.cover,
+                )
+            ),
+            child: new Stack(
+              children: <Widget>[
+                _Logo()
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 130.0),
+            child: SingleChildScrollView(
+              child: Stack(
                 children: <Widget>[
-                  _Logo()
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 160, left: 10),
-              child: Container(
-                child: Text("Masukan No.Polisi:",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.red
-                ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 97, left: 90),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.black12,
-                ),
-                height: 40,
-                margin: EdgeInsets.all(50),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 142, left: 310),
-              child: Container(
-                height: 50,
-                child: InkWell(
-                  onTap: (){print("CL");},
-                  child: Card(
-                    color: Colors.red,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Icon(Icons.search, size: 35, color: Colors.white,)
-                        ],
-                      ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 200, left: 10, right: 10),
-              child: Container(
-                height: 400.0,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                    borderRadius: BorderRadius.circular(5.0),
-                    boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
-                ),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: new Text("Data Pemilik Kendaraan",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24.0
-                      ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8, right: 8),
-                      child: new SizedBox(
-                        child: Container(
-                          height: 2,
-                          color: Colors.black,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 10),
+                    child: Container(
+                      child: Text("Masukan No.Polisi:",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red
                         ),
                       ),
                     ),
-                    _IsiCard(),
-                  ],
-                ),
-              ),
-            ),
-            _TextField(),
-            Padding(
-              padding: const EdgeInsets.only(top: 600, left: 10),
-              child: Container(
-                child: RaisedButton(
-                  splashColor: Colors.white,
-                  color: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)
                   ),
-                  onPressed: (){},
-                  child: Text("Hubungi Konsumen",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold
+                  Padding(
+                    padding: const EdgeInsets.only(top: 7 ,left: 90),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.black12,
+                      ),
+                      height: 40,
+                      margin: EdgeInsets.only(bottom: 50, left: 50, right: 50),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2, left: 310),
+                    child: Container(
+                      height: 50,
+                      child: InkWell(
+                        onTap: (){print("CL");},
+                        child: Card(
+                          color: Colors.red,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Icon(Icons.search, size: 35, color: Colors.white,)
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
+                    child: Container(
+                      height: 400.0,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5.0),
+                          boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: new Text("Data Pemilik Kendaraan",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24.0
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8, right: 8),
+                            child: new SizedBox(
+                              child: Container(
+                                height: 2,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          _IsiCard(),
+                        ],
+                      ),
+                    ),
+                  ),
+                  _TextField(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 460, left: 10),
+                    child: Container(
+                      child: RaisedButton(
+                        splashColor: Colors.white,
+                        color: Colors.red,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                        ),
+                        onPressed: (){},
+                        child: Text("Hubungi Konsumen",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+
+        ],
       ),
     );
   }
@@ -211,7 +231,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
     return Stack(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 258, left: 140),
+          padding: const EdgeInsets.only(top: 118, left: 140),
           child: Container(
             height: 40,
             width: 200,
@@ -228,7 +248,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 306, left: 140),
+          padding: const EdgeInsets.only(top: 165, left: 140),
           child: Container(
             height: 40,
             width: 200,
@@ -245,7 +265,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 354, left: 140),
+          padding: const EdgeInsets.only(top: 213, left: 140),
           child: Container(
             height: 40,
             width: 200,
@@ -262,7 +282,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 402, left: 140),
+          padding: const EdgeInsets.only(top: 261, left: 140),
           child: Container(
             height: 40,
             width: 200,
@@ -279,7 +299,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 450, left: 140),
+          padding: const EdgeInsets.only(top: 310, left: 140),
           child: Container(
             height: 40,
             width: 200,
@@ -296,7 +316,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 498, left: 140),
+          padding: const EdgeInsets.only(top: 358, left: 140),
           child: Container(
             height: 40,
             width: 200,
@@ -313,7 +333,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 546, left: 140),
+          padding: const EdgeInsets.only(top: 405, left: 140),
           child: Container(
             height: 40,
             width: 200,
