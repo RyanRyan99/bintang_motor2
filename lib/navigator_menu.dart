@@ -40,28 +40,51 @@ class _NavigatorPageState extends State<NavigatorPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: _pageOption[_selectedPage],
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.red,
-          currentIndex: _selectedPage,
-          onTap: (int index){
-            setState(() {
-              _selectedPage = index;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text("Home"),
+        body: Stack(
+          children: <Widget>[
+            Container(
+              child: Container(
+                color: Colors.white70,
+                child: Scaffold(
+                  body: _pageOption[_selectedPage],
+                ),
+              ),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/background2.png"),
+                  fit: BoxFit.cover
+                )
+              ),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              title: Text("Notifikasi"),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.supervised_user_circle),
-              title: Text("Profile"),
-            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Theme(
+                data: Theme.of(context).copyWith(canvasColor: Colors.white70),
+                child: BottomNavigationBar(
+                  selectedItemColor: Colors.red,
+                  currentIndex: _selectedPage,
+                  onTap: (int index){
+                    setState(() {
+                      _selectedPage = index;
+                    });
+                  },
+                  items: [
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.home),
+                      title: Text("Home")
+                    ),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.notifications),
+                        title: Text("Notifikasi")
+                    ),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.perm_identity),
+                        title: Text("Profile")
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

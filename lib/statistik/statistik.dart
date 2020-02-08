@@ -12,6 +12,18 @@ class _StatistikState extends State<Statistik> {
       body: new Stack(
         children: <Widget>[
           Container(
+            child: Container(
+              color: Colors.white70,
+            ),
+            width: double.infinity,
+            decoration: new BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/background2.png"),
+                    fit: BoxFit.cover
+                )
+            ),
+          ),
+          Container(
             height: 130.0,
             width: double.infinity,
             decoration: BoxDecoration(
@@ -49,6 +61,19 @@ class _StatistikState extends State<Statistik> {
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(top: 130),
+            child: Container(
+              height: 450,
+              child: new Stack(
+
+              ),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+              ),
+            ),
+          )
         ],
       ),
     );

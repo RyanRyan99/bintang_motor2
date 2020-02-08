@@ -53,7 +53,6 @@ class _ProfileState extends State<Profile> {
                           _TextName()
                         ],
                       ),
-
                     ),
                   ),
                   _ProfileHeader(),
@@ -66,6 +65,7 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
+  //Untuk Logo
   Widget _Logo(){
     return Stack(
       children: <Widget>[
@@ -96,6 +96,7 @@ class _ProfileState extends State<Profile> {
       ],
     );
   }
+  //Untuk Profile
   Widget _ProfileHeader(){
     return Stack(
       children: <Widget>[
@@ -162,6 +163,7 @@ class _ProfileState extends State<Profile> {
       ],
     );
   }
+  //Untuk Field
   Widget _TextField(){
     return Stack(
       children: <Widget>[
@@ -262,6 +264,7 @@ class _ProfileState extends State<Profile> {
       ],
     );
   }
+  //Untuk Row Nama
   Widget _TextName(){
     return Container(
       child: Column(

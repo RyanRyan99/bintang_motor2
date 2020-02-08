@@ -37,6 +37,7 @@ class _MainPageState extends State<MainPage> {
                   image: AssetImage("assets/background.png"),
                   fit: BoxFit.cover,
                 ),
+                color: Colors.red
               ),
               child: new Stack(
                 children: <Widget>[

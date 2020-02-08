@@ -17,6 +17,9 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  flutter_pdfview:
+  path_provider:
+  http:
   flutter:
     sdk: flutter
 
@@ -44,6 +47,7 @@ flutter:
   assets:
    - assets/background.png
    - assets/background2.png
+   - assets/background3.png
    - assets/picture.jpg
    - assets/Logo.png
    - assets/profile.jpg
@@ -52,6 +56,7 @@ flutter:
    - assets/berita.jpg
    - assets/berita2.jpg
    - assets/1.jpg
+   - assets/SamplePDF.pdf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
