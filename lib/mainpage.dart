@@ -8,6 +8,11 @@ import 'package:bintang_motor/pricelist/pricelist.dart';
 import 'package:bintang_motor/statistik/statistik.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 
 void main(){
@@ -22,6 +27,35 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  //PDF FILE
+  String assetPDFPath = "";
+  @override
+  void initState(){
+    super.initState();
+
+    getFileFromAsset("assets/SamplePDF.pdf").then((f){
+      setState(() {
+        assetPDFPath = f.path;
+        print(assetPDFPath);
+      });
+    });
+  }
+
+  Future<File> getFileFromAsset(String asset) async{
+    try{
+      var data = await rootBundle.load(asset);
+      var bytes = data.buffer.asUint8List();
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/SamplePDF.pdf");
+
+      File assetFile = await file.writeAsBytes(bytes);
+      return assetFile;
+    }catch (e){
+      throw Exception("Error Saat Membuka File");
+    }
+  }
+
+  //PDF FILE
   @override
   Widget build(BuildContext context) {
     final data = MediaQuery.of(context);
@@ -229,10 +263,12 @@ class _MainPageState extends State<MainPage> {
                 new IconButton(
                   icon: Icon(Icons.attach_money,color: Colors.red, size: 30,),
                   onPressed: (){
-                    Navigator.of(context).push(new MaterialPageRoute(
-                        builder: (BuildContext context) => new PriceList()
-                    )
-                    );
+                    if(assetPDFPath != null){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PriceList(path: assetPDFPath)));
+                    }
                   },
                 ),
                 new Text("Price List", style: TextStyle(fontSize: 11,color: Colors.red),)

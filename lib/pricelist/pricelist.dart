@@ -11,40 +11,21 @@ void main(){
     home: new NavigatorPage(),
   ));
 }
-
-
 class PriceList extends StatefulWidget {
+  //PDF
+  final String path;
+  const PriceList({Key key, this.path}) : super(key: key);
+  //PDF
   @override
   _PriceListState createState() => _PriceListState();
 }
-
 class _PriceListState extends State<PriceList> {
-  String assetPDFPath = "";
-
-  @override
-  void initState() {
-    super.initState();
-
-    getFileFromAsset("assets/SamplePDF.pdf").then((f){
-      setState(() {
-        assetPDFPath = f.path;
-        print(assetPDFPath);
-      });
-    });
-  }
-
-  Future<File> getFileFromAsset(String asset) async {
-    try{
-      var data = await rootBundle.load(asset);
-      var bytes = data.buffer.asUint8List();
-      var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/SamplePDF.pdf");
-      File assetFile = await file.writeAsBytes(bytes);
-      return assetFile;
-    }catch (e){
-      throw Exception("Error");
-    }
-  }
+  //PDF
+  int _totalPages = 0;
+  int _currentPage = 0;
+  bool _pdfReady = false;
+  PDFViewController _pdfViewController;
+  //PDF
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,12 +70,70 @@ class _PriceListState extends State<PriceList> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top:140, left: 20, right: 20, bottom: 10),
+            padding: const EdgeInsets.only(top: 130.0),
             child: Container(
+              child: PDFView(
+                filePath: widget.path,
+                autoSpacing: true,
+                enableSwipe: true,
+                pageSnap: true,
+                swipeHorizontal: true,
+                nightMode: false,
+                onError: (e){
+                  print(e);
+                },
+                onRender: (_pages){
+                  setState(() {
+                    _totalPages = _pages;
+                    _pdfReady = true;
+                  });
+                },
+                onViewCreated: (PDFViewController vc){
+                  _pdfViewController = vc;
+                },
+                onPageChanged: (int page,int total){
+                  setState(() {});
+                },
+                onPageError: (page, e){},
+              ),
             ),
-          )
+          ),
+          !_pdfReady ? Center(
+            child: CircularProgressIndicator(),
+          ): Offstage(),
+        ],
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          _currentPage > 0 ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FloatingActionButton.extended(
+                backgroundColor: Colors.red,
+                label: Text("Hal ${_currentPage - 1}"),
+                onPressed: (){
+                  _currentPage -= 1;
+                  _pdfViewController.setPage(_currentPage);
+                },
+            ),
+          ) : Offstage(),
+          _currentPage + 1 < _totalPages ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FloatingActionButton.extended(
+              backgroundColor: Colors.redAccent,
+              label: Text("Hal ${_currentPage + 1}"),
+              onPressed: (){
+                _currentPage += 1;
+                _pdfViewController.setPage(_currentPage);
+              },
+            ),
+          ) : Offstage(),
         ],
       ),
     );
   }
 }
+
+
+
+
