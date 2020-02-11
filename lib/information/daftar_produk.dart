@@ -1,3 +1,4 @@
+import 'package:bintang_motor/information/detail_produk.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -201,13 +202,23 @@ class _ListProductState extends State<ListProduct> {
            Padding(
             padding: const EdgeInsets.only(top: 15.0),
             child: Card(
-              child: Container(
-                height: 100, width: 100,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/Dominator-Matte-Black-new.png"),
-                    fit: BoxFit.cover
-                  )
+              elevation: 0,
+              color: Colors.transparent,
+              child: InkWell(
+                splashColor: Colors.red,
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (BuildContext context) => new DetailProduk()
+                  ));
+                },
+                child: Container(
+                  height: 100, width: 100,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/Dominator-Matte-Black-new.png"),
+                      fit: BoxFit.cover
+                    )
+                  ),
                 ),
               ),
             ),
@@ -215,6 +226,8 @@ class _ListProductState extends State<ListProduct> {
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Card(
+              elevation: 0,
+              color: Colors.transparent,
               child: Container(
                 height: 100, width: 100,
                 decoration: BoxDecoration(
@@ -229,6 +242,8 @@ class _ListProductState extends State<ListProduct> {
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Card(
+              elevation: 0,
+              color: Colors.transparent,
               child: Container(
                 height: 100, width: 100,
                 decoration: BoxDecoration(
@@ -293,6 +308,8 @@ class _ListProductState extends State<ListProduct> {
           Padding(
             padding: const EdgeInsets.only(top: 15.0),
             child: Card(
+              elevation: 0,
+              color: Colors.transparent,
               child: Container(
                 height: 100, width: 100,
                 decoration: BoxDecoration(
@@ -315,6 +332,8 @@ class _ListProductState extends State<ListProduct> {
           Padding(
             padding: const EdgeInsets.only(top: 15.0),
             child: Card(
+              elevation: 0,
+              color: Colors.transparent,
               child: Container(
                 height: 100, width: 100,
                 decoration: BoxDecoration(
@@ -337,6 +356,8 @@ class _ListProductState extends State<ListProduct> {
           Padding(
             padding: const EdgeInsets.only(top: 15.0),
             child: Card(
+              elevation: 0,
+              color: Colors.transparent,
               child: Container(
                 height: 100, width: 100,
                 decoration: BoxDecoration(

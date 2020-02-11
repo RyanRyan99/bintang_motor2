@@ -72,6 +72,7 @@ class _PriceListState extends State<PriceList> {
           Padding(
             padding: const EdgeInsets.only(top: 130.0),
             child: Container(
+              height: 470,
               child: PDFView(
                 filePath: widget.path,
                 autoSpacing: true,
@@ -101,6 +102,27 @@ class _PriceListState extends State<PriceList> {
           !_pdfReady ? Center(
             child: CircularProgressIndicator(),
           ): Offstage(),
+
+          Padding(
+            padding: const EdgeInsets.only(top: 605, left: 20, right: 247),
+            child: Container(
+              width: double.infinity,
+              child: RaisedButton(
+                splashColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                color: Colors.red,
+                  child: Row(
+                    children: <Widget>[
+                      new Text("Share", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                      new Icon(Icons.share,color: Colors.white),
+                    ],
+                  ),
+                  onPressed: (){}
+              ),
+            ),
+          ),
         ],
       ),
       floatingActionButton: Row(
@@ -109,6 +131,7 @@ class _PriceListState extends State<PriceList> {
           _currentPage > 0 ? Padding(
             padding: const EdgeInsets.all(8.0),
             child: FloatingActionButton.extended(
+                splashColor: Colors.white,
                 backgroundColor: Colors.red,
                 label: Text("Hal ${_currentPage - 1}"),
                 onPressed: (){
@@ -120,6 +143,7 @@ class _PriceListState extends State<PriceList> {
           _currentPage + 1 < _totalPages ? Padding(
             padding: const EdgeInsets.all(8.0),
             child: FloatingActionButton.extended(
+              splashColor: Colors.white,
               backgroundColor: Colors.redAccent,
               label: Text("Hal ${_currentPage + 1}"),
               onPressed: (){
@@ -128,6 +152,7 @@ class _PriceListState extends State<PriceList> {
               },
             ),
           ) : Offstage(),
+
         ],
       ),
     );
