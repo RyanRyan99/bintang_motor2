@@ -40,114 +40,104 @@ class _CheckBpkbState extends State<CheckBpkb> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 130.0),
-            child: SingleChildScrollView(
-              child: Stack(
+            padding: const EdgeInsets.only(top: 130),
+             child: Container(
+              color: Colors.white,
+              child: new Stack(
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 10),
-                    child: Container(
-                      child: Text("Masukan No.Polisi:",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.red
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 7 ,left: 90),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.black12,
-                      ),
-                      height: 40,
-                      margin: EdgeInsets.only(bottom: 50, left: 50, right: 50),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 2, left: 310),
-                    child: Container(
-                      height: 50,
-                      child: InkWell(
-                        onTap: (){print("CL");},
-                        child: Card(
-                          color: Colors.red,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: <Widget>[
-                              Icon(Icons.search, size: 35, color: Colors.white,)
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
-                    child: Container(
-                      height: 400.0,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5.0),
-                          boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
-                      ),
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: new Text("Data Pemilik Kendaraan",
+                  SingleChildScrollView(
+                    child: Stack(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20, left: 10),
+                          child: Container(
+                            child: Text("Masukan No.Polisi:",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 24.0
+                                  color: Colors.red
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8, right: 8),
-                            child: new SizedBox(
-                              child: Container(
-                                height: 2,
-                                color: Colors.black,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 7 ,left: 90),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Colors.black12,
+                            ),
+                            height: 40,
+                            margin: EdgeInsets.only(bottom: 50, left: 50, right: 50),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
                               ),
                             ),
                           ),
-                          _IsiCard(),
-                        ],
-                      ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2, left: 310),
+                          child: Container(
+                            height: 50,
+                            child: InkWell(
+                              onTap: (){print("CL");},
+                              child: Card(
+                                color: Colors.red,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: <Widget>[
+                                    Icon(Icons.search, size: 35, color: Colors.white,)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
+                          child: Container(
+                            height: 400.0,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5.0),
+                                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                            ),
+                            child: Column(
+                              children: <Widget>[
+                                _HeaderCard(),
+                                _IsiCard(),
+                              ],
+                            ),
+                          ),
+                        ),
+                        _TextField(),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 460, left: 10),
+                          child: Container(
+                            child: RaisedButton(
+                              splashColor: Colors.white,
+                              color: Colors.red,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0)
+                              ),
+                              onPressed: (){},
+                              child: Text("Hubungi Konsumen",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                  _TextField(),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 460, left: 10),
-                    child: Container(
-                      child: RaisedButton(
-                        splashColor: Colors.white,
-                        color: Colors.red,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)
-                        ),
-                        onPressed: (){},
-                        child: Text("Hubungi Konsumen",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),
-          ),
+          )
 
         ],
       ),
@@ -180,6 +170,30 @@ class _CheckBpkbState extends State<CheckBpkb> {
             ),
           ),
         )
+      ],
+    );
+  }
+  Widget _HeaderCard(){
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: new Text("Data Pemilik Kendaraan",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24.0
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 8, right: 8),
+          child: new SizedBox(
+            child: Container(
+              height: 2,
+              color: Colors.black,
+            ),
+          ),
+        ),
       ],
     );
   }

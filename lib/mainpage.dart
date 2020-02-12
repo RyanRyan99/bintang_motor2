@@ -58,7 +58,6 @@ class _MainPageState extends State<MainPage> {
   //PDF FILE
   @override
   Widget build(BuildContext context) {
-    final data = MediaQuery.of(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: new Stack(

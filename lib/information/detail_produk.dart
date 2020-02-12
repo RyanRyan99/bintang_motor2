@@ -1,11 +1,17 @@
+import 'package:bintang_motor/mainpage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DetailProduk extends StatefulWidget {
+
   @override
   _DetailProdukState createState() => _DetailProdukState();
 }
 
 class _DetailProdukState extends State<DetailProduk> {
+  final controller = PageController(
+    initialPage: 0,
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +39,16 @@ class _DetailProdukState extends State<DetailProduk> {
                   Padding(
                     padding: const EdgeInsets.only(top: 250, right: 10, left: 10),
                     child: Container(
-                      height: 230,
+                      height: 280,
                       color: Colors.red,
+                        child: PageView(
+                          controller: controller,
+                          scrollDirection: Axis.horizontal,
+                          children: <Widget>[
+                            _Mesin(),
+                            _Rangka()
+                          ],
+                        ),
                     ),
                   )
                 ],
@@ -173,6 +187,52 @@ class _DetailProdukState extends State<DetailProduk> {
           ),
         )
       ],
+    );
+  }
+  Widget _Mesin(){
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10, bottom: 10, left: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Text("Tipe Mesin", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Sistem Suplai Bahan Bakar", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Diameter X langkah", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Tipe Transmisi", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Rasio Kompresi", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Daya Maksimum", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Torsi Maksimum", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Tipe Starter", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Tipe Kopling", style: TextStyle(color: Colors.white, fontSize: 11),),
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _Rangka(){
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Text("Sistem Pendingin Mesin", style: TextStyle(color: Colors.white, fontSize: 11),),
+          Divider(),
+          Text("Pola Perpindahan Gigi", style: TextStyle(color: Colors.white, fontSize: 11),),
+          Divider(),
+          Text("Rangka"),
+          Divider(),
+          Text("Rangka"),
+          Divider(),
+        ],
+      ),
     );
   }
 }
