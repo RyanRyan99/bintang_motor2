@@ -12,6 +12,18 @@ class _CustomerState extends State<Customer> {
       body: new Stack(
         children: <Widget>[
           Container(
+            child: Container(
+              color: Colors.white70,
+            ),
+            width: double.infinity,
+            decoration: new BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/background2.png"),
+                    fit: BoxFit.cover
+                )
+            ),
+          ),
+          Container(
             height: 130.0,
             width: double.infinity,
             decoration: BoxDecoration(
@@ -45,11 +57,108 @@ class _CustomerState extends State<Customer> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(top: 130.0),
+             child: Container(
+               width: double.infinity,
+               height: 60,
+              color: Colors.black12,
+              child: new Stack(
+                children: <Widget>[
+                   Padding(
+                    padding: const EdgeInsets.only(left: 150),
+                     child: Container(
+                      width: 90,
+                      child: RaisedButton(
+                        splashColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)
+                        ),
+                        color: Colors.red,
+                        child: Row(
+                          children: <Widget>[
+                            Icon(Icons.sync),
+                            Text("Filter", style: TextStyle(color: Colors.white),)
+                          ],
+                        ),
+                        onPressed: (){},
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 250),
+                     child: Container(
+                      width: 100,
+                      child: RaisedButton(
+                        splashColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)
+                        ),
+                        color: Colors.red,
+                        child: Row(
+                          children: <Widget>[
+                            Icon(Icons.dehaze),
+                            Text("Urutan", style: TextStyle(color: Colors.white),)
+                          ],
+                        ),
+                        onPressed: (){},
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 180),
+            child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+              ),
+              child: Stack(
+                children: <Widget>[
+                  _Tabs()
+                ],
+              ),
+            ),
+          )
         ],
+      ),
+    );
+  }
+  Widget _Tabs(){
+    return Container(
+      child: DefaultTabController(
+          length: 3,
+          child: Scaffold(
+            body: Stack(
+                children: <Widget>[
+                  TabBar(
+                      labelColor: Colors.red,
+                      indicatorColor: Colors.red,
+                      tabs: [
+                        Tab(text: "Deal Open",),
+                        Tab(text: "Deal",),
+                        Tab(text: "No Deal",),
+                      ]
+                  ),
+                  TabBarView(
+                      children: [
+                        Icon(Icons.dehaze),
+                        Icon(Icons.access_alarm),
+                        Icon(Icons.print)
+                      ]
+                  )
+                ],
+            ),
+          )
       ),
     );
   }
