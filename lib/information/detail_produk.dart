@@ -9,9 +9,6 @@ class DetailProduk extends StatefulWidget {
 }
 
 class _DetailProdukState extends State<DetailProduk> {
-  final controller = PageController(
-    initialPage: 0,
-  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,16 +36,12 @@ class _DetailProdukState extends State<DetailProduk> {
                   Padding(
                     padding: const EdgeInsets.only(top: 250, right: 10, left: 10),
                     child: Container(
-                      height: 280,
-                      color: Colors.red,
-                        child: PageView(
-                          controller: controller,
-                          scrollDirection: Axis.horizontal,
-                          children: <Widget>[
-                            _Mesin(),
-                            _Rangka()
-                          ],
-                        ),
+                      height: double.infinity,
+                      child: Stack(
+                        children: <Widget>[
+                          _Tabs()
+                        ],
+                      ),
                     ),
                   )
                 ],
@@ -187,6 +180,41 @@ class _DetailProdukState extends State<DetailProduk> {
           ),
         )
       ],
+    );
+  }
+  Widget _Tabs(){
+    return Container(
+      child: DefaultTabController(
+        length: 5,
+        child: Scaffold(
+          bottomNavigationBar: Menu(),
+          body: TabBarView(
+            children: [
+              Container(color: Colors.red,child: Text("Mesin")),
+              Container(child: Text("Rangka & Kaki Kaki")),
+              Container(child: Text("Dimensi & Berat")),
+              Container(child: Text("Kapasitas")),
+              Container(child: Text("Kelistrikan")),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget Menu(){
+    return Container(
+      child: TabBar(
+        labelColor: Colors.red,
+        indicatorColor: Colors.red,
+        indicatorSize: TabBarIndicatorSize.tab,
+        tabs: <Widget>[
+          Tab(child: Text("Mesin",style: TextStyle(fontSize: 11))),
+          Tab(child: Text("Rangka & Kaki Kaki", style: TextStyle(fontSize: 10.5))),
+          Tab(child: Text("Dimensi & Berat", style: TextStyle(fontSize: 9),),),
+          Tab(child: Text("Kapasitas", style: TextStyle(fontSize: 8),),),
+          Tab(child: Text("Kelistrikan", style: TextStyle(fontSize: 7.5),),),
+        ],
+      ),
     );
   }
   Widget _Mesin(){

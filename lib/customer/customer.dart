@@ -136,29 +136,30 @@ class _CustomerState extends State<Customer> {
   Widget _Tabs(){
     return Container(
       child: DefaultTabController(
-          length: 3,
-          child: Scaffold(
-            body: Stack(
-                children: <Widget>[
-                  TabBar(
-                      labelColor: Colors.red,
-                      indicatorColor: Colors.red,
-                      tabs: [
-                        Tab(text: "Deal Open",),
-                        Tab(text: "Deal",),
-                        Tab(text: "No Deal",),
-                      ]
-                  ),
-                  TabBarView(
-                      children: [
-                        Icon(Icons.dehaze),
-                        Icon(Icons.access_alarm),
-                        Icon(Icons.print)
-                      ]
-                  )
-                ],
-            ),
-          )
+        length: 3,
+        child: Scaffold(
+          bottomNavigationBar: Menu(),
+          body: TabBarView(
+            children: [
+              Container(child: Text("Data Open")),
+              Container(child: Text("Deal")),
+              Container(child: Text("No Deal")),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget Menu(){
+    return Container(
+      child: TabBar(
+        labelColor: Colors.red,
+        indicatorColor: Colors.red,
+        tabs: <Widget>[
+          Tab(text: "Deal Open",),
+          Tab(text: "Deal",),
+          Tab(text: "No Deal",),
+        ],
       ),
     );
   }
