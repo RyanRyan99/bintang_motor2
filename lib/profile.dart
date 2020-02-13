@@ -40,27 +40,34 @@ class _ProfileState extends State<Profile> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 130.0),
-            child: SingleChildScrollView(
-              child: new Stack(
+             child: Container(
+              color: Colors.white,
+              child: Stack(
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 160, left: 20, right: 20),
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          _TextName()
-                        ],
-                      ),
+                  SingleChildScrollView(
+                    child: new Stack(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(top: 160, left: 20, right: 20),
+                          child: Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: <Widget>[
+                                _TextName()
+                              ],
+                            ),
+                          ),
+                        ),
+                        _ProfileHeader(),
+                        _TextField(),
+                      ],
                     ),
                   ),
-                  _ProfileHeader(),
-                  _TextField(),
                 ],
               ),
             ),
-          ),
+          )
         ],
       ),
     );

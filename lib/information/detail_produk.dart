@@ -190,11 +190,46 @@ class _DetailProdukState extends State<DetailProduk> {
           bottomNavigationBar: Menu(),
           body: TabBarView(
             children: [
-              Container(color: Colors.red,child: Text("Mesin")),
-              Container(child: Text("Rangka & Kaki Kaki")),
-              Container(child: Text("Dimensi & Berat")),
-              Container(child: Text("Kapasitas")),
-              Container(child: Text("Kelistrikan")),
+              Container(
+                color: Colors.red,
+                child: Stack(
+                  children: <Widget>[
+                    _Mesin()
+                  ],
+                ),
+              ),
+              Container(
+                color: Colors.red,
+                child: Stack(
+                  children: <Widget>[
+                    _Rangka()
+                  ],
+                ),
+              ),
+              Container(
+                color: Colors.red,
+                child: Stack(
+                  children: <Widget>[
+                    _DimensiBerat()
+                  ],
+                ),
+              ),
+              Container(
+                color: Colors.red,
+                child: Stack(
+                  children: <Widget>[
+                    _Kapasitas()
+                  ],
+                ),
+              ),
+              Container(
+                color: Colors.red,
+                child: Stack(
+                  children: <Widget>[
+                    _Kelistrikan()
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -220,27 +255,19 @@ class _DetailProdukState extends State<DetailProduk> {
   Widget _Mesin(){
     return Container(
       child: Padding(
-        padding: const EdgeInsets.only(top: 10, bottom: 10, left: 20),
+        padding: const EdgeInsets.only(top: 10, bottom: 10, left: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Text("Tipe Mesin", style: TextStyle(color: Colors.white, fontSize: 11),),
-            Divider(),
             Text("Sistem Suplai Bahan Bakar", style: TextStyle(color: Colors.white, fontSize: 11),),
-            Divider(),
             Text("Diameter X langkah", style: TextStyle(color: Colors.white, fontSize: 11),),
-            Divider(),
             Text("Tipe Transmisi", style: TextStyle(color: Colors.white, fontSize: 11),),
-            Divider(),
             Text("Rasio Kompresi", style: TextStyle(color: Colors.white, fontSize: 11),),
-            Divider(),
             Text("Daya Maksimum", style: TextStyle(color: Colors.white, fontSize: 11),),
-            Divider(),
             Text("Torsi Maksimum", style: TextStyle(color: Colors.white, fontSize: 11),),
-            Divider(),
             Text("Tipe Starter", style: TextStyle(color: Colors.white, fontSize: 11),),
-            Divider(),
             Text("Tipe Kopling", style: TextStyle(color: Colors.white, fontSize: 11),),
           ],
         ),
@@ -249,17 +276,82 @@ class _DetailProdukState extends State<DetailProduk> {
   }
   Widget _Rangka(){
     return Container(
-      child: Column(
-        children: <Widget>[
-          Text("Sistem Pendingin Mesin", style: TextStyle(color: Colors.white, fontSize: 11),),
-          Divider(),
-          Text("Pola Perpindahan Gigi", style: TextStyle(color: Colors.white, fontSize: 11),),
-          Divider(),
-          Text("Rangka"),
-          Divider(),
-          Text("Rangka"),
-          Divider(),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10, bottom: 10, left: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Text("Sistem Pendingin Mesin", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Text("Pola Perpindahan Gigi", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Text("Tipe Rangka", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Text("Tipe Suspensi Depan", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Text("Tipe Suspensi Belakang", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Text("Ukuran Ban Depan", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Text("Ukuran Ban Belakang", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Text("Rem Depan", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Text("Rem Belakang", style: TextStyle(color: Colors.white, fontSize: 11),),
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _DimensiBerat(){
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10, bottom: 10, left: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Divider(),
+            Text("Panjang X Lebar X Tinggi", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Tinggi Tempat Duduk", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Jarak Sumbu Roda", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Jarak Terendah Ketanah", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _Kapasitas(){
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10, bottom: 10, left: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Divider(),
+            Text("Curb Weight", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Kapasitas Tangki Bahan Bakar", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Kapasitas Minyak Pelumas", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _Kelistrikan(){
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10, bottom: 10, left: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Divider(),
+            Text("Tipe Baterai atau Aki", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Sistem Pengapian", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+            Text("Tipe Busi", style: TextStyle(color: Colors.white, fontSize: 11),),
+            Divider(),
+          ],
+        ),
       ),
     );
   }

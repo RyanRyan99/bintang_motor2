@@ -5,7 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import '../navigator_menu.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:share/share.dart';
 void main(){
   runApp(new MaterialApp(
     home: new NavigatorPage(),
@@ -119,7 +119,9 @@ class _PriceListState extends State<PriceList> {
                       new Icon(Icons.share,color: Colors.white),
                     ],
                   ),
-                  onPressed: (){}
+                  onPressed: (){
+                    Share.share("https://bintangmotor.com/pricelist/cabang/Bintang-Motor-Bekasi-Februari-2020.pdf");
+                  }
               ),
             ),
           ),

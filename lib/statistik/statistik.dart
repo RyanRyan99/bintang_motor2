@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:fl_chart/fl_chart.dart';
+import 'indikator.dart';
 
 class Statistik extends StatefulWidget {
   @override
   _StatistikState createState() => _StatistikState();
 }
 class _StatistikState extends State<Statistik> {
+  int touchedIndex;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,9 +63,133 @@ class _StatistikState extends State<Statistik> {
               ],
             ),
           ),
+           Padding(
+            padding: const EdgeInsets.only(top: 130),
+            child: Container(
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    height: 500,
+                      child: _Chart()
+                  )
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
+  }
+  Widget _Chart(){
+    return AspectRatio(
+      aspectRatio: 1,
+      child: Container(
+        color: Colors.white,
+        height: 500,
+        child: Row(
+          children: <Widget>[
+            const SizedBox(
+              height: 18,
+            ),
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: PieChart(
+                  PieChartData(
+                    pieTouchData: PieTouchData(touchCallback: (pieTouchResponse){
+                      setState(() {
+                        if (pieTouchResponse.touchInput is FlLongPressEnd || pieTouchResponse.touchInput is FlPanEnd){
+                          touchedIndex = -1;
+                        }else{
+                          touchedIndex = pieTouchResponse.touchedSectionIndex;
+                        }
+                      });
+                    }),
+                    borderData: FlBorderData(
+                      show: false,
+                    ),
+                    sectionsSpace: 0,
+                    centerSpaceRadius: 50,
+                    sections: showingSections()),
+                ),
+              ),
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const <Widget>[
+                Indicator(
+                  color: Colors.red,
+                  text: "Data Open",
+                  isSquare: true,
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Indicator(
+                  color: Colors.yellow,
+                  text: "Deal",
+                  isSquare: true,
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Indicator(
+                  color: Colors.black38,
+                  text: 'No Deal',
+                  isSquare: true,
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+              ],
+            ),
+            const SizedBox(
+              width: 18,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+  List<PieChartSectionData> showingSections() {
+    return List.generate(3, (i) {
+      final isTouched = i == touchedIndex;
+      final double fontSize = isTouched ? 25 : 16;
+      final double radius = isTouched ? 60 : 50;
+      switch (i) {
+        case 0:
+          return PieChartSectionData(
+            color: Colors.red,
+            value: 60,
+            title: '40%',
+            radius: radius,
+            titleStyle: TextStyle(
+                fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.white),
+          );
+        case 1:
+          return PieChartSectionData(
+            color: Colors.yellow,
+            value: 25,
+            title: '30%',
+            radius: radius,
+            titleStyle: TextStyle(
+                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+          );
+        case 2:
+          return PieChartSectionData(
+            color: Colors.black38,
+            value: 15,
+            title: '15%',
+            radius: radius,
+            titleStyle: TextStyle(
+                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+          );
+        default:
+          return null;
+      }
+    });
   }
 }
 

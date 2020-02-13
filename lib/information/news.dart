@@ -1,3 +1,4 @@
+import 'package:bintang_motor/information/news_detail.dart';
 import 'package:flutter/material.dart';
 
 class News extends StatefulWidget {
@@ -41,73 +42,84 @@ class _NewsState extends State<News> {
           Padding(
             padding: const EdgeInsets.only(top: 130),
             child: Container(
-              child: GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: 1.0,
-                mainAxisSpacing: 20.0,
-                crossAxisSpacing: 20.0,
+              child: new Stack(
                 children: <Widget>[
-                  Card(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/berita.jpg")
-                        )
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("assets/berita2.jpg")
-                          )
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("assets/berita.jpg")
-                          )
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("assets/berita2.jpg")
-                          )
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("assets/berita.jpg")
-                          )
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("assets/berita2.jpg")
-                          )
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("assets/berita2.jpg")
-                          )
-                      ),
+                  Container(
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      children: <Widget>[
+                        InkWell(
+                          splashColor: Colors.white,
+                          hoverColor: Colors.white,
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => new NewsDetail()
+                            ));
+                          },
+                          child: Card(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage("assets/berita.jpg")
+                                  )
+                              ),
+                            ),
+                          ),
+                        ),
+                        Card(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/berita2.jpg")
+                                )
+                            ),
+                          ),
+                        ),
+                        Card(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/berita.jpg")
+                                )
+                            ),
+                          ),
+                        ),
+                        Card(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/berita2.jpg")
+                                )
+                            ),
+                          ),
+                        ),
+                        Card(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/berita.jpg")
+                                )
+                            ),
+                          ),
+                        ),
+                        Card(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/berita2.jpg")
+                                )
+                            ),
+                          ),
+                        ),
+                        Card(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/berita2.jpg")
+                                )
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
