@@ -26,7 +26,6 @@ class NavigatorPage extends StatefulWidget {
 }
 
 class _NavigatorPageState extends State<NavigatorPage> {
-
   int _selectedPage = 0;
   final _pageOption = [
     MainPage(),
