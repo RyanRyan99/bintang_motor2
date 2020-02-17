@@ -54,10 +54,11 @@ class _MainPageState extends State<MainPage> {
       throw Exception("Error Saat Membuka File");
     }
   }
-
   //PDF FILE
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: new Stack(
@@ -171,7 +172,7 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 270.0, left: 13.5),
+              padding: EdgeInsets.only(top: 270.0, left: MediaQuery.of(context).size.width/25),
               child: Container(
                 child: Row(
                   children: <Widget>[
@@ -218,11 +219,13 @@ class _MainPageState extends State<MainPage> {
   }
   //Untuk Container Logo
   Widget _BoxLogo(){
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
     return Container(
       child: Row(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: 35.0),
+          Container(
+            margin: EdgeInsets.only(left: queryData.size.width/8),
             child: Column(
               children: <Widget>[
                 new IconButton(
@@ -238,8 +241,8 @@ class _MainPageState extends State<MainPage> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 55.0),
+          Container(
+            margin: EdgeInsets.only(left: queryData.size.width/8),
             child: Column(
               children: <Widget>[
                 new IconButton(
@@ -255,8 +258,8 @@ class _MainPageState extends State<MainPage> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 55.0),
+          Container(
+            margin: EdgeInsets.only(left: queryData.size.width/8),
             child: Column(
               children: <Widget>[
                 new IconButton(
@@ -295,7 +298,7 @@ class _MainPageState extends State<MainPage> {
                 child: Card(
                   color: Colors.red,
                   child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/30),
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.library_books, size: 50, color: Colors.white,),
@@ -319,7 +322,7 @@ class _MainPageState extends State<MainPage> {
                 child: Card(
                   color: Colors.red,
                   child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/30),
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.collections_bookmark, size: 50, color: Colors.white,),
@@ -343,7 +346,7 @@ class _MainPageState extends State<MainPage> {
                 child: Card(
                   color: Colors.red,
                   child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/30),
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.motorcycle, size: 50, color: Colors.white,),
@@ -367,7 +370,7 @@ class _MainPageState extends State<MainPage> {
                 child: Card(
                   color: Colors.red,
                   child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/30),
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.list, size: 50, color: Colors.white,),

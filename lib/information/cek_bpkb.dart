@@ -64,13 +64,13 @@ class _CheckBpkbState extends State<CheckBpkb> {
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              color: Colors.black12,
+                              color: Color.fromRGBO(255, 179, 179, 0.4),
                             ),
                             height: 40,
                             margin: EdgeInsets.only(bottom: 50, left: 50, right: 50),
                             child: TextField(
                               decoration: InputDecoration(
-                                border: OutlineInputBorder(),
+                                border: InputBorder.none,
                               ),
                             ),
                           ),
@@ -251,7 +251,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             width: 200,
             child: TextField(
               decoration: InputDecoration(
-                border: OutlineInputBorder()
+                border: InputBorder.none
               ),
             ),
             decoration: BoxDecoration(
@@ -268,7 +268,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             width: 200,
             child: TextField(
               decoration: InputDecoration(
-                  border: OutlineInputBorder()
+                  border: InputBorder.none
               ),
             ),
             decoration: BoxDecoration(
@@ -285,7 +285,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             width: 200,
             child: TextField(
               decoration: InputDecoration(
-                  border: OutlineInputBorder()
+                  border: InputBorder.none
               ),
             ),
             decoration: BoxDecoration(
@@ -302,7 +302,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             width: 200,
             child: TextField(
               decoration: InputDecoration(
-                  border: OutlineInputBorder()
+                  border: InputBorder.none
               ),
             ),
             decoration: BoxDecoration(
@@ -319,7 +319,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             width: 200,
             child: TextField(
               decoration: InputDecoration(
-                  border: OutlineInputBorder()
+                  border: InputBorder.none
               ),
             ),
             decoration: BoxDecoration(
@@ -336,7 +336,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             width: 200,
             child: TextField(
               decoration: InputDecoration(
-                  border: OutlineInputBorder()
+                  border: InputBorder.none
               ),
             ),
             decoration: BoxDecoration(
@@ -353,7 +353,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             width: 200,
             child: TextField(
               decoration: InputDecoration(
-                  border: OutlineInputBorder()
+                  border: InputBorder.none
               ),
             ),
             decoration: BoxDecoration(

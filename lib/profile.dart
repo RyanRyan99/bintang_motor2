@@ -185,7 +185,7 @@ class _ProfileState extends State<Profile> {
             margin: EdgeInsets.all(30),
             child: TextField(
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                border: InputBorder.none
               ),
             ),
           ),
@@ -201,7 +201,7 @@ class _ProfileState extends State<Profile> {
             margin: EdgeInsets.all(30),
             child: TextField(
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                border: InputBorder.none
               ),
             ),
           ),
@@ -217,7 +217,7 @@ class _ProfileState extends State<Profile> {
             margin: EdgeInsets.all(30),
             child: TextField(
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                border: InputBorder.none
               ),
             ),
           ),
@@ -233,7 +233,7 @@ class _ProfileState extends State<Profile> {
             margin: EdgeInsets.all(30),
             child: TextField(
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                border: InputBorder.none
               ),
             ),
           ),
@@ -249,7 +249,7 @@ class _ProfileState extends State<Profile> {
             margin: EdgeInsets.all(30),
             child: TextField(
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                border: InputBorder.none
               ),
             ),
           ),
