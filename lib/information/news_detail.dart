@@ -37,7 +37,7 @@ class _NewsDetailState extends State<NewsDetail> {
                 Padding(
                   padding: const EdgeInsets.only(top: 105, left: 20),
                   child: Container(
-                    child: Text("Detail Berita",
+                    child: Text("Data Customer",
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -45,10 +45,49 @@ class _NewsDetailState extends State<NewsDetail> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
+          Container(
+            child: new Stack(
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(height: 130),
+                    Container(
+                      height: 350,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/Sample2.jpg"),
+                          fit: BoxFit.cover,
+                        )
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        child: Text("Judul Berita", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black54),),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8, right: 8),
+                      child: SizedBox(
+                        child: new Center(
+                          child: new Container(
+                            margin: new EdgeInsetsDirectional.only(start: 1.0, end: 1.0),
+                            height: 1.0,
+                            color: Colors.black38,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          )
         ],
       ),
     );

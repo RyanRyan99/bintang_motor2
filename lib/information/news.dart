@@ -1,6 +1,7 @@
 import 'package:bintang_motor/information/news_detail.dart';
 import 'package:flutter/material.dart';
 
+
 class News extends StatefulWidget {
   @override
   _NewsState createState() => _NewsState();

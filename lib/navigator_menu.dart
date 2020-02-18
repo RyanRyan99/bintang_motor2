@@ -1,4 +1,6 @@
 import 'package:bintang_motor/customer/customer.dart';
+import 'package:bintang_motor/information/cek_stnk.dart';
+import 'package:bintang_motor/information/news.dart';
 import 'package:bintang_motor/main.dart';
 import 'package:bintang_motor/mainpage.dart';
 import 'package:bintang_motor/notification.dart';
@@ -31,8 +33,6 @@ class _NavigatorPageState extends State<NavigatorPage> {
     MainPage(),
     Notifikasi(),
     Profile(),
-    Customer(),
-    PriceList(),
   ];
 
   @override

@@ -29,14 +29,22 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   //PDF FILE
   String assetPDFPath = "";
+  String urlPDFPath = "";
   @override
   void initState(){
     super.initState();
-
+    //getfileassets
     getFileFromAsset("assets/SamplePDF.pdf").then((f){
       setState(() {
         assetPDFPath = f.path;
         print(assetPDFPath);
+      });
+    });
+
+    getFileFromURL("https://bintangmotor.com/pricelist/cabang/Bintang-Motor-Bogor-Februari-2020.pdf").then((f){
+      setState(() {
+        urlPDFPath = f.path;
+        print(urlPDFPath);
       });
     });
   }
@@ -52,6 +60,20 @@ class _MainPageState extends State<MainPage> {
       return assetFile;
     }catch (e){
       throw Exception("Error Saat Membuka File");
+    }
+  }
+
+  Future<File> getFileFromURL(String url) async{
+    try{
+      var data = await http.get(url);
+      var bytes = data.bodyBytes;
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/sample.pdf");
+
+      File assetUrl = await file.writeAsBytes(bytes);
+      return assetUrl;
+    }catch (e){
+      throw Exception("Error Load");
     }
   }
   //PDF FILE
@@ -265,11 +287,11 @@ class _MainPageState extends State<MainPage> {
                 new IconButton(
                   icon: Icon(Icons.attach_money,color: Colors.red, size: 30,),
                   onPressed: (){
-                    if(assetPDFPath != null){
+                    if(urlPDFPath != null){
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => PriceList(path: assetPDFPath)));
+                            builder: (context) => PriceList(path: urlPDFPath)));
                     }
                   },
                 ),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -75,11 +76,12 @@ class _CheckBpkbState extends State<CheckBpkb> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 2, left: 310),
+                        Positioned(
+                          top: 2,
+                          left: 310,
                           child: Container(
                             height: 50,
-                            child: InkWell(
+                             child: InkWell(
                               onTap: (){print("CL");},
                               child: Card(
                                 color: Colors.red,

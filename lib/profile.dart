@@ -172,103 +172,106 @@ class _ProfileState extends State<Profile> {
   }
   //Untuk Field
   Widget _TextField(){
-    return Stack(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(top: 125,left: 80),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.black12,
-              borderRadius: BorderRadius.circular(5.0),
-            ),
-            height: 40,
-            margin: EdgeInsets.all(30),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 175,left: 80),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.black12,
-              borderRadius: BorderRadius.circular(5.0),
-            ),
-            height: 40,
-            margin: EdgeInsets.all(30),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 222,left: 80),
-          child: Container(
-            decoration: BoxDecoration(
+    return AspectRatio(
+      aspectRatio: 3/4,
+      child: Stack(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 125,left: 80),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black12,
                 borderRadius: BorderRadius.circular(5.0),
-                color: Colors.black12
-            ),
-            height: 40,
-            margin: EdgeInsets.all(30),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none
+              ),
+              height: 40,
+              margin: EdgeInsets.all(30),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none
+                ),
               ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 270,left: 80),
-          child: Container(
-            decoration: BoxDecoration(
+          Padding(
+            padding: const EdgeInsets.only(top: 175,left: 80),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black12,
                 borderRadius: BorderRadius.circular(5.0),
-                color: Colors.black12
-            ),
-            height: 40,
-            margin: EdgeInsets.all(30),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none
+              ),
+              height: 40,
+              margin: EdgeInsets.all(30),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none
+                ),
               ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 318,left: 80),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0),
-                color: Colors.black12
-            ),
-            height: 40,
-            margin: EdgeInsets.all(30),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none
+          Padding(
+            padding: const EdgeInsets.only(top: 222,left: 80),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.black12
+              ),
+              height: 40,
+              margin: EdgeInsets.all(30),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none
+                ),
               ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 390, left: 240),
-          child: Container(
-            child: RaisedButton(
-              splashColor: Colors.white,
-              color: Colors.red,
-              onPressed: (){},
-              child: Text("Save", style: TextStyle(color: Colors.white),),
-              shape: RoundedRectangleBorder(
-                borderRadius: new  BorderRadius.circular(10.0),
+          Padding(
+            padding: const EdgeInsets.only(top: 270,left: 80),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.black12
+              ),
+              height: 40,
+              margin: EdgeInsets.all(30),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none
+                ),
               ),
             ),
           ),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.only(top: 318,left: 80),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: Colors.black12
+              ),
+              height: 40,
+              margin: EdgeInsets.all(30),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 390, left: MediaQuery.of(context).size.width/1.5),
+            child: Container(
+              child: RaisedButton(
+                splashColor: Colors.white,
+                color: Colors.red,
+                onPressed: (){},
+                child: Text("Save", style: TextStyle(color: Colors.white),),
+                shape: RoundedRectangleBorder(
+                  borderRadius: new  BorderRadius.circular(10.0),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
   //Untuk Row Nama

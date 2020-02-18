@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
+
 class CheckStnk extends StatefulWidget {
   @override
   _CheckStnkState createState() => _CheckStnkState();
 }
-
 class _CheckStnkState extends State<CheckStnk> {
   @override
   Widget build(BuildContext context) {
@@ -74,11 +74,12 @@ class _CheckStnkState extends State<CheckStnk> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 2, left: 310),
+                        Positioned(
+                          top: 2,
+                          left: 310,
                           child: Container(
                             height: 50,
-                            child: InkWell(
+                             child: InkWell(
                               onTap: (){print("CL");},
                               child: Card(
                                 color: Colors.red,
