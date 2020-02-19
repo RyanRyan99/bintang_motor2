@@ -47,6 +47,10 @@ class _NewsState extends State<News> {
                 children: <Widget>[
                   Container(
                     child: GridView.count(
+                      primary: false,
+                      padding: const EdgeInsets.all(15),
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
                       crossAxisCount: 2,
                       children: <Widget>[
                         InkWell(

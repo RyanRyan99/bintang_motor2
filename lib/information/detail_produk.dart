@@ -239,9 +239,13 @@ class _DetailProdukState extends State<DetailProduk> {
   Widget Menu(){
     return Container(
       child: TabBar(
-        labelColor: Colors.red,
+        labelColor: Colors.white,
+        unselectedLabelColor: Colors.red,
         indicatorColor: Colors.red,
         indicatorSize: TabBarIndicatorSize.tab,
+        indicator: BoxDecoration(
+          color: Colors.red,
+        ),
         tabs: <Widget>[
           Tab(child: Text("Mesin",style: TextStyle(fontSize: 11))),
           Tab(child: Text("Rangka & Kaki Kaki", style: TextStyle(fontSize: 10.5))),

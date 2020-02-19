@@ -104,7 +104,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                  Container(
-                   padding: EdgeInsets.only(top: 40, left: 300),
+                   padding: EdgeInsets.only(top: 40, left: 310),
                    child: Icon(Icons.notifications, color: Colors.white,),
                  ),
                   Padding(

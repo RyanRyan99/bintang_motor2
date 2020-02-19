@@ -188,7 +188,7 @@ class _CheckStnkState extends State<CheckStnk> {
         Padding(
           padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
           child: SizedBox(
-            height: 2.0,
+            height: 1.5,
             width: double.infinity,
             child: new Center(
               child: Container(

@@ -191,7 +191,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
           padding: const EdgeInsets.only(left: 8, right: 8),
           child: new SizedBox(
             child: Container(
-              height: 2,
+              height: 1.5,
               color: Colors.black,
             ),
           ),
