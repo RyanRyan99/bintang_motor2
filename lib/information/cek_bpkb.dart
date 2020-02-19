@@ -259,7 +259,9 @@ class _CheckBpkbState extends State<CheckBpkb> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(blurRadius: 2.0, spreadRadius: 0.5, color: Colors.black38)
+                ]
             ),
           ),
         ),
@@ -276,7 +278,9 @@ class _CheckBpkbState extends State<CheckBpkb> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(blurRadius: 2.0, spreadRadius: 0.5, color: Colors.black38)
+                ]
             ),
           ),
         ),
@@ -293,7 +297,9 @@ class _CheckBpkbState extends State<CheckBpkb> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(blurRadius: 2.0, spreadRadius: 0.5, color: Colors.black38)
+                ]
             ),
           ),
         ),
@@ -310,7 +316,9 @@ class _CheckBpkbState extends State<CheckBpkb> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(blurRadius: 2.0, spreadRadius: 0.5, color: Colors.black38)
+                ]
             ),
           ),
         ),
@@ -327,7 +335,9 @@ class _CheckBpkbState extends State<CheckBpkb> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(blurRadius: 2.0, spreadRadius: 0.5, color: Colors.black38)
+                ]
             ),
           ),
         ),
@@ -344,7 +354,9 @@ class _CheckBpkbState extends State<CheckBpkb> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(blurRadius: 2.0, spreadRadius: 0.5, color: Colors.black38)
+                ]
             ),
           ),
         ),
@@ -361,7 +373,9 @@ class _CheckBpkbState extends State<CheckBpkb> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(blurRadius: 2.0, spreadRadius: 0.5, color: Colors.black38)
+                ]
             ),
           ),
         ),

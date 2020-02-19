@@ -46,6 +46,7 @@ class _NewsState extends State<News> {
               child: new Stack(
                 children: <Widget>[
                   Container(
+                    color: Colors.white70,
                     child: GridView.count(
                       primary: false,
                       padding: const EdgeInsets.all(15),
@@ -53,77 +54,14 @@ class _NewsState extends State<News> {
                       mainAxisSpacing: 10,
                       crossAxisCount: 2,
                       children: <Widget>[
-                        InkWell(
-                          splashColor: Colors.white,
-                          hoverColor: Colors.white,
-                          onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => new NewsDetail()
-                            ));
-                          },
-                          child: Card(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage("assets/berita.jpg")
-                                  )
-                              ),
-                            ),
-                          ),
-                        ),
-                        Card(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("assets/berita2.jpg")
-                                )
-                            ),
-                          ),
-                        ),
-                        Card(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("assets/berita.jpg")
-                                )
-                            ),
-                          ),
-                        ),
-                        Card(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("assets/berita2.jpg")
-                                )
-                            ),
-                          ),
-                        ),
-                        Card(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("assets/berita.jpg")
-                                )
-                            ),
-                          ),
-                        ),
-                        Card(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("assets/berita2.jpg")
-                                )
-                            ),
-                          ),
-                        ),
-                        Card(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("assets/berita2.jpg")
-                                )
-                            ),
-                          ),
-                        ),
+                        _CardNews(image: 'assets/berita.jpg'),
+                        _CardNews(image: 'assets/Sample.jpg'),
+                        _CardNews(image: 'assets/berita2.jpg'),
+                        _CardNews(image: 'assets/berita.jpg'),
+                        _CardNews(image: 'assets/Sample2.jpg'),
+                        _CardNews(image: 'assets/berita2.jpg'),
+                        _CardNews(image: 'assets/berita2.jpg'),
+                        _CardNews(image: 'assets/berita.jpg'),
                       ],
                     ),
                   ),
@@ -163,6 +101,34 @@ class _NewsState extends State<News> {
           ),
         )
       ],
+    );
+  }
+  Widget _CardNews({image}){
+    return Container(
+      child: InkWell(
+        splashColor: Colors.white,
+        hoverColor: Colors.white,
+        onTap: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => new NewsDetail()
+          ));
+        },
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0)
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(image),
+              ),
+              borderRadius: BorderRadius.circular(10.0),
+              boxShadow: <BoxShadow>[
+                new BoxShadow(blurRadius: 8,spreadRadius: 0.5, color: Colors.black38)
+              ]
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

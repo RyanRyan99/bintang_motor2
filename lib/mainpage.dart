@@ -82,160 +82,173 @@ class _MainPageState extends State<MainPage> {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Scaffold(
-      body: SingleChildScrollView(
-        child: new Stack(
-          children: <Widget>[
-            Container(
-              height: 230,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/background.png"),
-                  fit: BoxFit.cover,
-                ),
-                color: Colors.red
+      body: new Stack(
+        children: <Widget>[
+          Container(
+            child: Container(
+              color: Colors.white70,
+            ),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/background2.png"),
+                fit: BoxFit.cover
+              )
+            ),
+          ),
+          Container(
+            height: 230,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/background.png"),
+                fit: BoxFit.cover,
               ),
+              color: Colors.red
+            ),
+            child: new Stack(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 40, left: 30),
+                  child: Container(
+                    child: Text("Logo", style: TextStyle(color: Colors.white),),
+                  ),
+                ),
+               Container(
+                 padding: EdgeInsets.only(top: 40, left: 310),
+                 child: Icon(Icons.notifications, color: Colors.white,),
+               ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 80, left: 20),
+                  child: Container(
+                    width: 60.0,height: 60.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage("assets/profile.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 90, left: 90),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        new Text("Hai, Selamat Datang",
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.white,
+                          ),
+                        ),
+                        new Text("Bruce Wayne",
+                          style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.white
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 150, left: 20),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        new Text("Sales Point :",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.0
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 150, left: 90),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        new Text("120.000",
+                          style: TextStyle(
+                              color: Colors.yellow,
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 70,
+            margin: EdgeInsets.only(top: 190.0, left: 20, right: 20),
+            child: Row(
+              children: <Widget>[
+                _BoxLogo()
+              ],
+            ),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8.0),
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(blurRadius: 10.0, color: Colors.black12)
+                ]
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 270.0, left: MediaQuery.of(context).size.width/25),
+            child: Container(
+              child: Row(
+                children: <Widget>[
+                  _CardButton()
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 390),
+            child: Container(
+              height: 220,
+              width: double.infinity,
+              color: Colors.white70,
               child: new Stack(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 40, left: 30),
-                    child: Container(
-                      child: Text("Logo", style: TextStyle(color: Colors.white),),
-                    ),
+                    padding: const EdgeInsets.only(top: 8.0, left: 18),
+                    child: new Text("Info dan Promo", style: TextStyle(fontWeight: FontWeight.bold),),
                   ),
-                 Container(
-                   padding: EdgeInsets.only(top: 40, left: 310),
-                   child: Icon(Icons.notifications, color: Colors.white,),
-                 ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 80, left: 20),
-                    child: Container(
-                      width: 60.0,height: 60.0,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: AssetImage("assets/profile.jpg"),
-                          fit: BoxFit.cover,
+                    padding: const EdgeInsets.only(top: 25),
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[
+                        new Container(
+                          child: Row(
+                            children: <Widget>[
+                              _CardInfo(image: 'assets/Sample2.jpg'),
+                              _CardInfo(image: 'assets/Sample.jpg'),
+                              _CardInfo(image: 'assets/Sample2.jpg')
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 90, left: 90),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          new Text("Hai, Selamat Datang",
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                            ),
-                          ),
-                          new Text("Bruce Wayne",
-                            style: TextStyle(
-                                fontSize: 24,
-                                color: Colors.white
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 150, left: 20),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          new Text("Sales Point :",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12.0
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 150, left: 90),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          new Text("120.000",
-                            style: TextStyle(
-                                color: Colors.yellow,
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  )
                 ],
               ),
             ),
-            Container(
-              height: 70,
-              margin: EdgeInsets.only(top: 190.0, left: 20, right: 20),
-              child: Row(
-                children: <Widget>[
-                  _BoxLogo()
-                ],
-              ),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8.0),
-                  boxShadow: <BoxShadow>[BoxShadow(blurRadius: 5.0)]
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 270.0, left: MediaQuery.of(context).size.width/25),
-              child: Container(
-                child: Row(
-                  children: <Widget>[
-                    _CardButton()
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 390),
-              child: Container(
-                height: 220,
-                width: double.infinity,
-                color: Colors.black12,
-                child: new Stack(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, left: 18),
-                      child: new Text("Info dan Promo", style: TextStyle(fontWeight: FontWeight.bold),),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 25),
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: <Widget>[
-                          new Container(
-                            child: Row(
-                              children: <Widget>[
-                                _CardInfo()
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
@@ -409,52 +422,22 @@ class _MainPageState extends State<MainPage> {
     );
   }
   //Untuk Card Info Dan Promo
-  Widget _CardInfo(){
+  Widget _CardInfo({image}){
     return Container(
       child: Row(
         children: <Widget>[
-          Card(
-            child: Container(
-              height: 180, width: 180,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/Sample2.jpg"),
-                      fit: BoxFit.cover
-                  )
-              ),
-            ),
-          ),
-          Card(
-            child: Container(
-              height: 180, width: 180,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/Sample.jpg"),
-                      fit: BoxFit.cover
-                  )
-              ),
-            ),
-          ),
-          Card(
-            child: Container(
-              height: 180, width: 180,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/Sample2.jpg"),
-                      fit: BoxFit.cover
-                  )
-              ),
-            ),
-          ),
-          Card(
-            child: Container(
-              height: 180, width: 180,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/Sample.jpg"),
-                      fit: BoxFit.cover
-                  )
-              ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 5),
+            height: 180, width: 180,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(image),
+                    fit: BoxFit.cover
+                ),
+                borderRadius: BorderRadius.circular(10.0),
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(blurRadius: 3,spreadRadius: 1.0, color: Colors.black45)
+                ]
             ),
           ),
         ],

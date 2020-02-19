@@ -13,16 +13,22 @@ class _ListProductState extends State<ListProduct> {
     return Scaffold(
       body: new Stack(
         children: <Widget>[
-          Container(
-            child: Container(
-              color: Colors.white70,
-            ),
-            width: double.infinity,
-            decoration: new BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/background2.png"),
-                fit: BoxFit.cover
-              )
+          Padding(
+            padding: const EdgeInsets.only(top: 130),
+             child: RotatedBox(
+              quarterTurns: 10,
+              child: Container(
+                child: Container(
+                  color: Colors.white70,
+                ),
+                width: double.infinity,
+                decoration: new BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/background2.png"),
+                    fit: BoxFit.cover
+                  )
+                ),
+              ),
             ),
           ),
 
@@ -88,7 +94,7 @@ class _ListProductState extends State<ListProduct> {
                               Container(
                                 child: Row(
                                   children: <Widget>[
-                                    _PremiumCard()
+                                    _PremiumCard(image: "https://bintangmotor.com/wp-content/uploads/2019/08/Dominator-Matte-Black-new.png")
                                   ],
                                 ),
                               )
@@ -195,7 +201,7 @@ class _ListProductState extends State<ListProduct> {
       ),
     );
   }
-  Widget _PremiumCard(){
+  Widget _PremiumCard({image}){
     return Container(
       child: Row(
         children: <Widget>[
@@ -215,7 +221,7 @@ class _ListProductState extends State<ListProduct> {
                   height: 100, width: 100,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/Dominator-Matte-Black-new.png"),
+                      image: NetworkImage(image),
                       fit: BoxFit.cover
                     )
                   ),

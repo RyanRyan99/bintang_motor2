@@ -286,7 +286,9 @@ class _CheckStnkState extends State<CheckStnk> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
+                ]
             ),
           ),
         ),
@@ -304,7 +306,9 @@ class _CheckStnkState extends State<CheckStnk> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
+                ]
             ),
           ),
         ),
@@ -322,7 +326,9 @@ class _CheckStnkState extends State<CheckStnk> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
+                ]
             ),
           ),
         ),
@@ -340,7 +346,9 @@ class _CheckStnkState extends State<CheckStnk> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
+                ]
             ),
           ),
         ),
@@ -358,7 +366,9 @@ class _CheckStnkState extends State<CheckStnk> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
+                ]
             ),
           ),
         ),
@@ -376,7 +386,9 @@ class _CheckStnkState extends State<CheckStnk> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
+                ]
             ),
           ),
         ),

@@ -136,42 +136,9 @@ class _DetailProdukState extends State<DetailProduk> {
                 Container(
                   child: Row(
                     children: <Widget>[
-                      Card(
-                        elevation: 0,
-                        child: Container(
-                          height: 100, width: 100,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/moto-gp-edition_bintangmotor-Jatiasih-1.png"),
-                                  fit: BoxFit.cover
-                              )
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 0,
-                        child: Container(
-                          height: 100, width: 100,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/Dominator-Matte-Black-new.png"),
-                                  fit: BoxFit.cover
-                              )
-                          ),
-                        ),
-                      ),
-                      Card(
-                        elevation: 0,
-                        child: Container(
-                          height: 100, width: 100,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/Matte-black-new.png"),
-                                  fit: BoxFit.cover
-                              )
-                          ),
-                        ),
-                      ),
+                      _CardMotor(image: 'https://bintangmotor.com/wp-content/uploads/2019/08/moto-gp-edition_bintangmotor-Jatiasih-1.png'),
+                      _CardMotor(image: 'https://bintangmotor.com/wp-content/uploads/2019/08/moto-gp-edition_bintangmotor-Jatiasih-1.png'),
+                      _CardMotor(image: 'https://bintangmotor.com/wp-content/uploads/2019/08/moto-gp-edition_bintangmotor-Jatiasih-1.png'),
                     ],
                   ),
                 )
@@ -180,6 +147,20 @@ class _DetailProdukState extends State<DetailProduk> {
           ),
         )
       ],
+    );
+  }
+  Widget _CardMotor({image}){
+    return Card(
+      elevation: 0,
+      child: Container(
+        height: 100, width: 100,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(image),
+            fit: BoxFit.cover
+          )
+        ),
+      ),
     );
   }
   Widget _Tabs(){

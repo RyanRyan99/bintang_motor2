@@ -120,7 +120,7 @@ class _PriceListState extends State<PriceList> {
                     ],
                   ),
                   onPressed: (){
-                    Share.share("https://bintangmotor.com/pricelist/cabang/Bintang-Motor-Bekasi-Februari-2020.pdf");
+                    Share.share("https://bintangmotor.com/pricelist/cabang/Bintang-Motor-Bogor-Februari-2020.pdf");
                   }
               ),
             ),

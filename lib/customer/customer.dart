@@ -66,7 +66,7 @@ class _CustomerState extends State<Customer> {
              child: Container(
                width: double.infinity,
                height: 60,
-              color: Colors.black12,
+              color: Colors.white30,
               child: new Stack(
                 children: <Widget>[
                    Padding(
