@@ -1,5 +1,6 @@
 import 'package:bintang_motor/information/news_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class News extends StatefulWidget {
@@ -109,8 +110,7 @@ class _NewsState extends State<News> {
         splashColor: Colors.white,
         hoverColor: Colors.white,
         onTap: (){
-          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => new NewsDetail()
-          ));
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext) => new NewsDetail()));
         },
         child: Card(
           shape: RoundedRectangleBorder(

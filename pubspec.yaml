@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  url_launcher: ^3.0.3
   flutter_screenutil: ^1.0.2
   fl_chart: ^0.8.1
   share:
