@@ -101,7 +101,7 @@ class _CheckStnkState extends State<CheckStnk> {
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(5.0),
-                                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0,color: Colors.black54)]
                             ),
                             child: Column(
                               children: <Widget>[
@@ -279,6 +279,7 @@ class _CheckStnkState extends State<CheckStnk> {
             width: 200,
             margin: EdgeInsets.all(5),
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                   border: InputBorder.none
               ),
@@ -299,6 +300,7 @@ class _CheckStnkState extends State<CheckStnk> {
             width: 200,
             margin: EdgeInsets.all(5),
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                 border: InputBorder.none
               ),
@@ -319,6 +321,7 @@ class _CheckStnkState extends State<CheckStnk> {
             width: 200,
             margin: EdgeInsets.all(5),
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                 border: InputBorder.none
               ),
@@ -339,6 +342,7 @@ class _CheckStnkState extends State<CheckStnk> {
             width: 200,
             margin: EdgeInsets.all(5),
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                 border: InputBorder.none
               ),
@@ -359,6 +363,7 @@ class _CheckStnkState extends State<CheckStnk> {
             width: 200,
             margin: EdgeInsets.all(5),
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                 border: InputBorder.none
               ),
@@ -379,6 +384,7 @@ class _CheckStnkState extends State<CheckStnk> {
             width: 200,
             margin: EdgeInsets.all(5),
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                 border: InputBorder.none
               ),

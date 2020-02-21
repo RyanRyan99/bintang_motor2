@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 void main(){
@@ -264,7 +265,7 @@ class _MainPageState extends State<MainPage> {
             child: Column(
               children: <Widget>[
                 new IconButton(
-                  icon: Icon(Icons.dns,color: Colors.red, size: 30,),
+                  icon: FaIcon(FontAwesomeIcons.database, size: 25, color: Colors.red,),
                   onPressed: (){
                     Navigator.of(context).push(new MaterialPageRoute(
                         builder: (BuildContext context) => new Customer()
@@ -298,7 +299,7 @@ class _MainPageState extends State<MainPage> {
             child: Column(
               children: <Widget>[
                 new IconButton(
-                  icon: Icon(Icons.attach_money,color: Colors.red, size: 30,),
+                  icon: Icon(Icons.attach_money, size: 30, color: Colors.red,),
                   onPressed: (){
                     if(urlPDFPath != null){
                       Navigator.push(

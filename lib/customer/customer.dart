@@ -81,7 +81,7 @@ class _CustomerState extends State<Customer> {
                         color: Colors.red,
                         child: Row(
                           children: <Widget>[
-                            Icon(Icons.sync),
+                            Icon(Icons.filter_list),
                             Text("Filter", style: TextStyle(color: Colors.white),)
                           ],
                         ),
@@ -101,7 +101,7 @@ class _CustomerState extends State<Customer> {
                         color: Colors.red,
                         child: Row(
                           children: <Widget>[
-                            Icon(Icons.dehaze),
+                            Icon(Icons.sort,),
                             Text("Urutan", style: TextStyle(color: Colors.white),)
                           ],
                         ),

@@ -133,13 +133,13 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 75, left: 180),
+          padding: const EdgeInsets.only(top: 75, left: 175),
           child: Container(
             child: Icon(Icons.location_on, size: 30, color: Colors.black38,),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 80, left: 210),
+          padding: const EdgeInsets.only(top: 80, left: 205),
           child: Container(
             child: Text("Cibinong",
               style: TextStyle(

@@ -103,7 +103,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(5.0),
-                                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0)]
+                                boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0, color: Colors.black54)]
                             ),
                             child: Column(
                               children: <Widget>[
@@ -252,6 +252,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             height: 40,
             width: 200,
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                 border: InputBorder.none
               ),
@@ -271,6 +272,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             height: 40,
             width: 200,
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                   border: InputBorder.none
               ),
@@ -290,6 +292,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             height: 40,
             width: 200,
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                   border: InputBorder.none
               ),
@@ -309,6 +312,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             height: 40,
             width: 200,
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                   border: InputBorder.none
               ),
@@ -328,6 +332,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             height: 40,
             width: 200,
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                   border: InputBorder.none
               ),
@@ -347,6 +352,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             height: 40,
             width: 200,
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                   border: InputBorder.none
               ),
@@ -366,6 +372,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
             height: 40,
             width: 200,
             child: TextField(
+              enabled: false,
               decoration: InputDecoration(
                   border: InputBorder.none
               ),
