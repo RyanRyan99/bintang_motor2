@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bintang_motor/customer/customer.dart';
 import 'package:bintang_motor/information/cek_bpkb.dart';
 import 'package:bintang_motor/information/cek_stnk.dart';
@@ -14,6 +16,7 @@ import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
 
 void main(){
@@ -261,14 +264,23 @@ class _MainPageState extends State<MainPage> {
   }
   //Untuk Container Logo
   Widget _BoxLogo(){
+    ScreenScaler scaler = new ScreenScaler()..init(context);
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
+    window.physicalSize;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    var padding = MediaQuery.of(context).padding;
+//    double height1 = height - padding.top - padding.bottom;
+//    double height2 = height - padding.top;
+//    double height3 = height - padding.top - kToolbarHeight;
     return Container(
       child: Row(
         children: <Widget>[
+          SizedBox(width: scaler.getWidth(8.0)),
           Container(
-            margin: EdgeInsets.only(left: queryData.size.width/8),
-            child: Column(
+//              margin: EdgeInsets.only(left: queryData.size.width/8),
+             child: Column(
               children: <Widget>[
                 new IconButton(
                   icon: FaIcon(FontAwesomeIcons.database, size: 25, color: Colors.red,),
@@ -283,8 +295,9 @@ class _MainPageState extends State<MainPage> {
               ],
             ),
           ),
+          SizedBox(width: scaler.getWidth(15.0)),
           Container(
-            margin: EdgeInsets.only(left: queryData.size.width/8),
+//            margin: EdgeInsets.only(left: queryData.size.width/8),
             child: Column(
               children: <Widget>[
                 new IconButton(
@@ -300,8 +313,9 @@ class _MainPageState extends State<MainPage> {
               ],
             ),
           ),
+          SizedBox(width: scaler.getWidth(15.0)),
           Container(
-            margin: EdgeInsets.only(left: queryData.size.width/8),
+//            margin: EdgeInsets.only(left: queryData.size.width/8),
             child: Column(
               children: <Widget>[
                 new IconButton(

@@ -41,7 +41,7 @@ class _ProfileState extends State<Profile> {
             padding: const EdgeInsets.only(top: 130.0),
              child: Container(
               color: Colors.white,
-              height: 480,
+              height: MediaQuery.of(context).size.height/1.4,
               child: Stack(
                 children: <Widget>[
                   SingleChildScrollView(
