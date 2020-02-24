@@ -43,7 +43,7 @@ class _NotifikasiState extends State<Notifikasi> {
             Padding(
               padding: const EdgeInsets.only(top: 130.0),
                child: Container(
-                height: 475,
+                height: 480,
                 child: Row(
                   children: <Widget>[
                     _CardNotifilasi()

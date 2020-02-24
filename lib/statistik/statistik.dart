@@ -1,6 +1,8 @@
+import 'package:bintang_motor/navigator_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'indikator.dart';
+
 
 class Statistik extends StatefulWidget {
   @override

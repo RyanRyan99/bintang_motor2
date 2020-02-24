@@ -11,16 +11,15 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       body: new Stack(
         children: <Widget>[
-          Container(
+          new Container(
             child: Container(
               color: Colors.white70,
             ),
-            width: double.infinity,
-            decoration: new BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/background2.png"),
-                    fit: BoxFit.cover
-                )
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/background2.png"),
+                fit: BoxFit.cover
+              )
             ),
           ),
           Container(
@@ -42,6 +41,7 @@ class _ProfileState extends State<Profile> {
             padding: const EdgeInsets.only(top: 130.0),
              child: Container(
               color: Colors.white,
+              height: 480,
               child: Stack(
                 children: <Widget>[
                   SingleChildScrollView(

@@ -109,9 +109,15 @@ class _MainPageState extends State<MainPage> {
             child: new Stack(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(top: 40, left: 30),
+                  padding: const EdgeInsets.only(top: 20, left: 30),
                   child: Container(
-                    child: Text("Logo", style: TextStyle(color: Colors.white),),
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/Logo.png")
+                      )
+                    ),
                   ),
                 ),
                Container(
@@ -207,7 +213,7 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 270.0, left: MediaQuery.of(context).size.width/25),
+            padding: EdgeInsets.only(top: 270.0, left: MediaQuery.of(context).size.width/20),
             child: Container(
               child: Row(
                 children: <Widget>[
@@ -334,7 +340,7 @@ class _MainPageState extends State<MainPage> {
                 child: Card(
                   color: Colors.red,
                   child: Padding(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/30),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/25),
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.library_books, size: 50, color: Colors.white,),
@@ -358,7 +364,7 @@ class _MainPageState extends State<MainPage> {
                 child: Card(
                   color: Colors.red,
                   child: Padding(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/30),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/25),
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.collections_bookmark, size: 50, color: Colors.white,),
@@ -382,7 +388,7 @@ class _MainPageState extends State<MainPage> {
                 child: Card(
                   color: Colors.red,
                   child: Padding(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/30),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/25),
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.motorcycle, size: 50, color: Colors.white,),
@@ -406,7 +412,7 @@ class _MainPageState extends State<MainPage> {
                 child: Card(
                   color: Colors.red,
                   child: Padding(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/30),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/25),
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.list, size: 50, color: Colors.white,),
