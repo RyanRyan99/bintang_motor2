@@ -228,11 +228,11 @@ class _DetailProdukState extends State<DetailProduk> {
           color: Colors.red,
         ),
         tabs: <Widget>[
-          Tab(child: Text("Mesin",style: TextStyle(fontSize: 11))),
-          Tab(child: Text("Rangka & Kaki Kaki", style: TextStyle(fontSize: 10.5))),
-          Tab(child: Text("Dimensi & Berat", style: TextStyle(fontSize: 9),),),
-          Tab(child: Text("Kapasitas", style: TextStyle(fontSize: 8),),),
-          Tab(child: Text("Kelistrikan", style: TextStyle(fontSize: 7.5),),),
+          Tab(child: Text("Mesin",style: TextStyle(fontSize: 10))),
+          Tab(child: Text("Rangka & Kaki Kaki", style: TextStyle(fontSize: 10))),
+          Tab(child: Text("Dimensi & Berat", style: TextStyle(fontSize: 10),),),
+          Tab(child: Text("Kapasitas", style: TextStyle(fontSize: 10),),),
+          Tab(child: Text("Kelistrikan", style: TextStyle(fontSize: 9.5),),),
         ],
       ),
     );

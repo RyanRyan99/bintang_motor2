@@ -72,43 +72,51 @@ class _CustomerState extends State<Customer> {
               child: new Stack(
                 children: <Widget>[
                    Padding(
-                    padding: const EdgeInsets.only(left: 150),
-                     child: Container(
-                      width: 90,
-                      child: RaisedButton(
-                        splashColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)
+                     padding: const EdgeInsets.only(right: 115, bottom: 10),
+                      child: Align(
+                       alignment: Alignment.centerRight,
+                       child: Container(
+                        width: 90,
+                        height: 30,
+                        child: RaisedButton(
+                          splashColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)
+                          ),
+                          color: Colors.red,
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.filter_list),
+                              Text("Filter", style: TextStyle(color: Colors.white),)
+                            ],
+                          ),
+                          onPressed: (){},
                         ),
-                        color: Colors.red,
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.filter_list),
-                            Text("Filter", style: TextStyle(color: Colors.white),)
-                          ],
                         ),
-                        onPressed: (){},
-                      ),
-                    ),
-                  ),
+                     ),
+                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 250),
-                     child: Container(
-                      width: 100,
-                      child: RaisedButton(
-                        splashColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)
+                    padding: const EdgeInsets.only(bottom: 10, right: 8),
+                     child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                       width: 100,
+                       height: 30,
+                       child: RaisedButton(
+                         splashColor: Colors.white,
+                         shape: RoundedRectangleBorder(
+                           borderRadius: BorderRadius.circular(20)
+                         ),
+                         color: Colors.red,
+                         child: Row(
+                           children: <Widget>[
+                             Icon(Icons.sort,),
+                             Text("Urutan", style: TextStyle(color: Colors.white),)
+                           ],
+                         ),
+                         onPressed: (){},
+                       ),
                         ),
-                        color: Colors.red,
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.sort,),
-                            Text("Urutan", style: TextStyle(color: Colors.white),)
-                          ],
-                        ),
-                        onPressed: (){},
-                      ),
                     ),
                   )
                 ],

@@ -68,32 +68,34 @@ class _CheckStnkState extends State<CheckStnk> {
                             height: 40,
                             margin: EdgeInsets.only(left: 50, right: 50, bottom: 50),
                             child: TextField(
+                              style: TextStyle(height: 2.0),
+                              cursorColor: Colors.red,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                               ),
                             ),
                           ),
                         ),
-                        Positioned(
-                          top: 2,
-                          left: 310,
-                          child: Container(
-                            height: 50,
-                             child: InkWell(
-                              onTap: (){print("CL");},
-                              child: Card(
-                                color: Colors.red,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: <Widget>[
-                                    Icon(Icons.search, size: 35, color: Colors.white,)
-                                  ],
-                                ),
-                              ),
-                            ),
+                        Align(
+                         alignment: Alignment.centerRight,
+                         child: Container(
+                           padding: EdgeInsets.only(right: 8),
+                           height: 50,
+                            child: InkWell(
+                             onTap: (){print("CL");},
+                             child: Card(
+                               color: Colors.red,
+                               child: Column(
+                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                 children: <Widget>[
+                                   Icon(Icons.search, size: 35, color: Colors.white,)
+                                 ],
+                               ),
+                             ),
+                           ),
+                         ),
                           ),
-                        ),
                         Padding(
                           padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
                           child: Container(
@@ -273,10 +275,10 @@ class _CheckStnkState extends State<CheckStnk> {
     return Stack(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 110, left: 135),
+          padding: const EdgeInsets.only(top: 110, left: 135, right: 15),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             margin: EdgeInsets.all(5),
             child: TextField(
               enabled: false,
@@ -294,10 +296,10 @@ class _CheckStnkState extends State<CheckStnk> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 158, left: 135),
+          padding: const EdgeInsets.only(top: 158, left: 135, right: 15),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             margin: EdgeInsets.all(5),
             child: TextField(
               enabled: false,
@@ -315,10 +317,10 @@ class _CheckStnkState extends State<CheckStnk> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 206, left: 135),
+          padding: const EdgeInsets.only(top: 206, left: 135, right: 15),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             margin: EdgeInsets.all(5),
             child: TextField(
               enabled: false,
@@ -336,10 +338,10 @@ class _CheckStnkState extends State<CheckStnk> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 254, left: 135),
+          padding: const EdgeInsets.only(top: 254, left: 135, right: 15),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             margin: EdgeInsets.all(5),
             child: TextField(
               enabled: false,
@@ -357,10 +359,10 @@ class _CheckStnkState extends State<CheckStnk> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 302, left: 135),
+          padding: const EdgeInsets.only(top: 302, left: 135, right: 15),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             margin: EdgeInsets.all(5),
             child: TextField(
               enabled: false,
@@ -378,10 +380,10 @@ class _CheckStnkState extends State<CheckStnk> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 350, left: 135),
+          padding: const EdgeInsets.only(top: 350, left: 135, right: 15),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             margin: EdgeInsets.all(5),
             child: TextField(
               enabled: false,

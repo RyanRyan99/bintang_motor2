@@ -123,9 +123,12 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                 ),
-               Container(
-                 padding: EdgeInsets.only(top: 40, left: 310),
-                 child: Icon(Icons.notifications, color: Colors.white,),
+               Align(
+                 alignment: Alignment.topRight,
+                 child: Container(
+                 padding: EdgeInsets.only(top: 40, right: 40),
+                   child: Icon(Icons.notifications, color: Colors.white,),
+                 ),
                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 80, left: 20),

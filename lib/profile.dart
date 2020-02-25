@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -172,106 +174,118 @@ class _ProfileState extends State<Profile> {
   }
   //Untuk Field
   Widget _TextField(){
-    return AspectRatio(
-      aspectRatio: 3/4,
-      child: Stack(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 125,left: 80),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.black12,
+    ScreenScaler scaler = new ScreenScaler()..init(context);
+    return Stack(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(top: 125,left: 80),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black12,
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            height: 40,
+            margin: EdgeInsets.all(30),
+            child: TextField(
+              style: TextStyle(height: 2.0),
+              cursorColor: Colors.red,
+              decoration: InputDecoration(
+                border: InputBorder.none
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 175,left: 80),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black12,
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            height: 40,
+            margin: EdgeInsets.all(30),
+            child: TextField(
+              style: TextStyle(height: 2.0),
+              cursorColor: Colors.red,
+              decoration: InputDecoration(
+                border: InputBorder.none
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 222,left: 80),
+          child: Container(
+            decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
-              ),
-              height: 40,
-              margin: EdgeInsets.all(30),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none
-                ),
+                color: Colors.black12
+            ),
+            height: 40,
+            margin: EdgeInsets.all(30),
+            child: TextField(
+              style: TextStyle(height: 2.0),
+              cursorColor: Colors.red,
+              decoration: InputDecoration(
+                border: InputBorder.none
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 175,left: 80),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.black12,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 270,left: 80),
+          child: Container(
+            decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
-              ),
-              height: 40,
-              margin: EdgeInsets.all(30),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none
-                ),
+                color: Colors.black12
+            ),
+            height: 40,
+            margin: EdgeInsets.all(30),
+            child: TextField(
+              style: TextStyle(height: 2.0),
+              cursorColor: Colors.red,
+              decoration: InputDecoration(
+                border: InputBorder.none
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 222,left: 80),
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.black12
-              ),
-              height: 40,
-              margin: EdgeInsets.all(30),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none
-                ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 318,left: 80),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+                color: Colors.black12
+            ),
+            height: 40,
+            margin: EdgeInsets.all(30),
+            child: TextField(
+              style: TextStyle(height: 2.0),
+              cursorColor: Colors.red,
+              decoration: InputDecoration(
+                border: InputBorder.none
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 270,left: 80),
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.black12
-              ),
-              height: 40,
-              margin: EdgeInsets.all(30),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none
-                ),
-              ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 400, right: 30),
+          child: Align(
+           alignment: Alignment.bottomRight,
+           child: Container(
+             height: 30,
+             child: RaisedButton(
+               splashColor: Colors.white,
+               color: Colors.red,
+               onPressed: (){},
+               child: Text("Save", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+               shape: RoundedRectangleBorder(
+                 borderRadius: new  BorderRadius.circular(20.0),
+               ),
+             ),
+           ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 318,left: 80),
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0),
-                  color: Colors.black12
-              ),
-              height: 40,
-              margin: EdgeInsets.all(30),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 390, left: MediaQuery.of(context).size.width/1.5),
-            child: Container(
-              child: RaisedButton(
-                splashColor: Colors.white,
-                color: Colors.red,
-                onPressed: (){},
-                child: Text("Save", style: TextStyle(color: Colors.white),),
-                shape: RoundedRectangleBorder(
-                  borderRadius: new  BorderRadius.circular(10.0),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
   //Untuk Row Nama

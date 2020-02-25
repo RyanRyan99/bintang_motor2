@@ -104,24 +104,31 @@ class _PriceListState extends State<PriceList> {
           ): Offstage(),
 
           Padding(
-            padding: const EdgeInsets.only(top: 605, left: 20, right: 247),
-            child: Container(
-              width: double.infinity,
-              child: RaisedButton(
-                splashColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)
-                ),
-                color: Colors.red,
-                  child: Row(
-                    children: <Widget>[
-                      new Text("Share", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-                      new Icon(Icons.share,color: Colors.white),
-                    ],
+            padding: const EdgeInsets.only(bottom: 22, left: 20),
+             child: Align(
+              alignment: Alignment.bottomLeft,
+              child: SizedBox(
+                height: 30,
+                width: 95,
+                child: Container(
+                  width: double.infinity,
+                   child: RaisedButton(
+                    splashColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)
+                    ),
+                    color: Colors.red,
+                      child: Row(
+                        children: <Widget>[
+                          new Text("Share", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                          new Icon(Icons.share,color: Colors.white),
+                        ],
+                      ),
+                      onPressed: (){
+                        Share.share("https://bintangmotor.com/pricelist/cabang/Bintang-Motor-Bogor-Februari-2020.pdf");
+                      }
                   ),
-                  onPressed: (){
-                    Share.share("https://bintangmotor.com/pricelist/cabang/Bintang-Motor-Bogor-Februari-2020.pdf");
-                  }
+                ),
               ),
             ),
           ),
@@ -132,26 +139,32 @@ class _PriceListState extends State<PriceList> {
         children: <Widget>[
           _currentPage > 0 ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: FloatingActionButton.extended(
-                splashColor: Colors.white,
-                backgroundColor: Colors.red,
-                label: Text("Hal ${_currentPage - 1}"),
-                onPressed: (){
-                  _currentPage -= 1;
-                  _pdfViewController.setPage(_currentPage);
-                },
+            child: Container(
+              height: 30,
+              child: FloatingActionButton.extended(
+                  splashColor: Colors.white,
+                  backgroundColor: Colors.orange,
+                  label: Text("Hal ${_currentPage - 1}"),
+                  onPressed: (){
+                    _currentPage -= 1;
+                    _pdfViewController.setPage(_currentPage);
+                  },
+              ),
             ),
           ) : Offstage(),
           _currentPage + 1 < _totalPages ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: FloatingActionButton.extended(
-              splashColor: Colors.white,
-              backgroundColor: Colors.redAccent,
-              label: Text("Hal ${_currentPage + 1}"),
-              onPressed: (){
-                _currentPage += 1;
-                _pdfViewController.setPage(_currentPage);
-              },
+            child: Container(
+              height: 30,
+              child: FloatingActionButton.extended(
+                splashColor: Colors.white,
+                backgroundColor: Colors.redAccent,
+                label: Text("Hal ${_currentPage + 1}"),
+                onPressed: (){
+                  _currentPage += 1;
+                  _pdfViewController.setPage(_currentPage);
+                },
+              ),
             ),
           ) : Offstage(),
 

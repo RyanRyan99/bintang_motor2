@@ -69,17 +69,19 @@ class _CheckBpkbState extends State<CheckBpkb> {
                             ),
                             height: 40,
                             margin: EdgeInsets.only(bottom: 50, left: 50, right: 50),
-                            child: TextField(
+                            child: new TextField(
+                              style: TextStyle(height: 2.0),
+                              cursorColor: Colors.red,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                               ),
                             ),
                           ),
                         ),
-                        Positioned(
-                          top: 2,
-                          left: 310,
+                        Align(
+                          alignment: Alignment.centerRight,
                           child: Container(
+                            padding: EdgeInsets.only(right: 8),
                             height: 50,
                              child: InkWell(
                               onTap: (){print("CL");},
@@ -247,10 +249,10 @@ class _CheckBpkbState extends State<CheckBpkb> {
     return Stack(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 118, left: 140),
+          padding: const EdgeInsets.only(top: 118, left: 140, right: 20),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             child: TextField(
               enabled: false,
               decoration: InputDecoration(
@@ -267,10 +269,10 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 165, left: 140),
+          padding: const EdgeInsets.only(top: 165, left: 140, right: 20),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             child: TextField(
               enabled: false,
               decoration: InputDecoration(
@@ -287,10 +289,10 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 213, left: 140),
+          padding: const EdgeInsets.only(top: 213, left: 140, right: 20),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             child: TextField(
               enabled: false,
               decoration: InputDecoration(
@@ -307,10 +309,10 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 261, left: 140),
+          padding: const EdgeInsets.only(top: 261, left: 140, right: 20),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             child: TextField(
               enabled: false,
               decoration: InputDecoration(
@@ -327,10 +329,10 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 310, left: 140),
+          padding: const EdgeInsets.only(top: 310, left: 140, right: 20),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             child: TextField(
               enabled: false,
               decoration: InputDecoration(
@@ -347,10 +349,10 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 358, left: 140),
+          padding: const EdgeInsets.only(top: 358, left: 140, right: 20),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             child: TextField(
               enabled: false,
               decoration: InputDecoration(
@@ -367,10 +369,10 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 405, left: 140),
+          padding: const EdgeInsets.only(top: 405, left: 140, right: 20),
           child: Container(
             height: 40,
-            width: 200,
+            width: double.infinity,
             child: TextField(
               enabled: false,
               decoration: InputDecoration(
