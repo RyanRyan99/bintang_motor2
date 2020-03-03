@@ -422,7 +422,7 @@ class _MainPageState extends State<MainPage> {
               new InkWell(
                 onTap: (){
                   Navigator.of(context).push(new MaterialPageRoute(
-                      builder: (BuildContext context) => new News()
+                      builder: (BuildContext context) => new NewsPage()
                   )
                   );
                 },
