@@ -1,10 +1,12 @@
+import 'dart:async';
 import 'dart:ui';
-
 import 'package:bintang_motor/customer/customer.dart';
 import 'package:bintang_motor/information/cek_bpkb.dart';
 import 'package:bintang_motor/information/cek_stnk.dart';
 import 'package:bintang_motor/information/daftar_produk.dart';
 import 'package:bintang_motor/information/news.dart';
+import 'package:bintang_motor/mainpage_backend/photocell.dart';
+import 'package:bintang_motor/mainpage_backend/service.dart';
 import 'package:bintang_motor/navigator_menu.dart';
 import 'package:bintang_motor/pricelist/pricelist.dart';
 import 'package:bintang_motor/statistik/statistik.dart';
@@ -18,18 +20,17 @@ import 'package:path_provider/path_provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
+import 'mainpage_backend/jsondata.dart';
 
 void main(){
   runApp(new MaterialApp(
     home: new NavigatorPage(),
   ));
 }
-
 class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
 }
-
 class _MainPageState extends State<MainPage> {
   //PDF FILE
   String assetPDFPath = "";
@@ -44,7 +45,6 @@ class _MainPageState extends State<MainPage> {
         print(assetPDFPath);
       });
     });
-
     getFileFromURL("https://bintangmotor.com/pricelist/cabang/Bintang-Motor-Bogor-Februari-2020.pdf").then((f){
       setState(() {
         urlPDFPath = f.path;
@@ -52,7 +52,6 @@ class _MainPageState extends State<MainPage> {
       });
     });
   }
-
   Future<File> getFileFromAsset(String asset) async{
     try{
       var data = await rootBundle.load(asset);
@@ -66,14 +65,12 @@ class _MainPageState extends State<MainPage> {
       throw Exception("Error Saat Membuka File");
     }
   }
-
   Future<File> getFileFromURL(String url) async{
     try{
       var data = await http.get(url);
       var bytes = data.bodyBytes;
       var dir = await getApplicationDocumentsDirectory();
       File file = File("${dir.path}/sample.pdf");
-
       File assetUrl = await file.writeAsBytes(bytes);
       return assetUrl;
     }catch (e){
@@ -81,6 +78,31 @@ class _MainPageState extends State<MainPage> {
     }
   }
   //PDF FILE
+  //Get API Promo
+  StreamController<int> streamController = new StreamController<int>();
+  listview(AsyncSnapshot<List<JsonDataMainPage>> snapshot){
+    ListView(
+      scrollDirection: Axis.horizontal,
+      children: snapshot.data.map(
+          (photos){
+            return GestureDetector(
+              child: GridTile(
+                child: PhotosCell(context: context, photos: photos,),
+              ),
+              onTap: (){
+
+              },
+            );
+          }
+      ).toList(),
+    );
+  }
+  circularProgress() {
+    return Center(
+      child: const CircularProgressIndicator(),
+    );
+  }
+  //Get API Promo
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
@@ -242,19 +264,28 @@ class _MainPageState extends State<MainPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 25),
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        new Container(
-                          child: Row(
-                            children: <Widget>[
-                              _CardInfo(image: 'assets/Sample2.jpg'),
-                              _CardInfo(image: 'assets/Sample.jpg'),
-                              _CardInfo(image: 'assets/Sample2.jpg')
-                            ],
-                          ),
-                        ),
-                      ],
+                    child: Container(
+                      width: double.infinity,
+                      height: 150,
+                      child: Row(
+                        children: <Widget>[
+                          Flexible(
+                            child: FutureBuilder<List<JsonDataMainPage>>(
+                              future: ServiceMainPage.getPromo(),
+                              builder: (context, snapshot){
+                                if(snapshot.hasError){
+                                  return Text('Error ${snapshot.error}');
+                                }
+                                if(snapshot.hasData){
+                                  streamController.sink.add(snapshot.data.length);
+                                  return listview(snapshot);
+                                }
+                                return circularProgress();
+                              },
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   )
                 ],

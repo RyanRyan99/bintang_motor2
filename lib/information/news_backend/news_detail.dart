@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-
+import 'album.dart';
+import 'package:intl/intl.dart';
 class NewsDetail extends StatefulWidget {
+  final Album curAlbum;
+  NewsDetail({@required this.curAlbum});
   @override
   _NewsDetailState createState() => _NewsDetailState();
 }
 
 class _NewsDetailState extends State<NewsDetail> {
-  String berita = "Bintangmotor.com – Musim penghujan yang masih terus berlangsung hingga saat ini menyebabkan beberapa jalanan terendam genangan air.Anda harus berhati-hati jika melintasi jalanan yang terendam air. Sebab bisa menyebabkan air masuk ke dalam ruang mesin dan bercampur dengan oli.Genangan air tersebut bisa menyebabkan kerusakan pada mesin motor, karena air yang masuk dan tercampur dengan oli.Cara mengetahui oli tercampur dengan air adalah dengan melihat warna oli. Jika oli berwarna putih maka dipastikan oli sudah tercampur dengan air.Lalu, seperti apa efek buruk yang terjadi pada mesin motor?Pertama-tama yang perlu diketahui bahwa oli punya sifat demulsifier, yang mempunyai makna bahwa oli bisa memisahkan diri dengan air, tetapi dalam kasus ini oli dan air bersatu di dalam satu tempat yang sama meskipun tetap terpisah.Lalu yang kedua pelumasan pada mesin menjadi tidak optimal karena adanya air yang bercampur oli. Efeknya mesin akan menjadi berat dan membuat suhu mesin akan menjadi lebih panas.Akibat buruk lainnyasifat asam air yang tercampur oli akan mengakibatkan karat dan membuat mesin menjadi keropos.Bila hal ini terus dipaksakan untuk tetap digunakan, akan mengakibatkan kerusakan mesin motor, kandungan air yang tercampur dengan oli bisa membuat korosi pada komponen yang ada di dalam mesin, sehingga mesin motor akan cepat rusak.";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +19,7 @@ class _NewsDetailState extends State<NewsDetail> {
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/berita.jpg"),
+                image: NetworkImage(widget.curAlbum.images),
                 fit: BoxFit.cover,
               ),
             ),
@@ -35,11 +37,11 @@ class _NewsDetailState extends State<NewsDetail> {
                 padding: EdgeInsets.only(right: 10, left: 10, bottom: 80),
                 child: Align(
                   alignment: Alignment.bottomLeft,
-                  child: Text("Motor Bebek Irit Honda",
+                  child: Text(widget.curAlbum.title,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
-                        fontSize: 24,
+                        fontSize: 18,
                     ),
                   ),
                 ),
@@ -66,14 +68,14 @@ class _NewsDetailState extends State<NewsDetail> {
                           ),
                           SizedBox(
                             width: 80,
-                            child: Text("Tips & Trick"),
+                            child: Text(widget.curAlbum.category),
                           ),
                           Container(
                             child: Icon(Icons.date_range, color: Colors.black54,),
                           ),
                           SizedBox(
-                            width: 50,
-                            child: Text("Feb 19"),
+                            width: 80,
+                            child: Text(widget.curAlbum.date),
                           ),
                           InkWell(
                             child: Row(
@@ -100,7 +102,7 @@ class _NewsDetailState extends State<NewsDetail> {
                         alignment: Alignment.topLeft,
                         child: SingleChildScrollView(
                           child: Container(
-                            child: Text(berita,textAlign: TextAlign.justify),
+                            child: Text(widget.curAlbum.content, textAlign: TextAlign.justify),
                           ),
                         ),
                       ),

@@ -9,25 +9,26 @@ class AlbumCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
+    return Container(
+      alignment: Alignment.center,
       child: Padding(
-        padding:
-        EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0, top: 10.0),
-        child: Container(
-          alignment: Alignment.center,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Flexible(
-                child: Image.network(
-                  album.images,
-                  width: 150,
-                  height: 150,
-                ),
+        padding: const EdgeInsets.only(bottom: 20, left: 8, right: 8),
+        child: Column(
+          children: <Widget>[
+            Flexible(
+              child: Container(
+               decoration: BoxDecoration(
+                 image: DecorationImage(
+                   image: NetworkImage(album.images),
+                 ),
+                 borderRadius: BorderRadius.circular(10.0),
+                 boxShadow: <BoxShadow>[
+                   new BoxShadow(blurRadius: 2,spreadRadius: 1.0, color: Colors.black45)
+                 ]
+               ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

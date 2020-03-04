@@ -6,7 +6,7 @@ class Services {
   static Future<List<Album>> getPhotos() async {
     try {
       final response =
-      await http.get("http://bintang-niagajaya.000webhostapp.com/getnews.php");
+      await http.get("http://bintang-niagajaya.000webhostapp.com/api_news.php");
       if (response.statusCode == 200) {
         List<Album> list = parsePhotos(response.body);
         return list;
