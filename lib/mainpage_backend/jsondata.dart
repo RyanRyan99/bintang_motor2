@@ -6,9 +6,10 @@ class JsonDataMainPage{
   String alamat;
   String promo;
   String syarat;
-  String image;
+  String images;
 
-  JsonDataMainPage({this.id, this.title, this.date, this.category, this.alamat, this.promo, this.syarat, this.image});
+  JsonDataMainPage({this.id, this.title, this.date, this.category, this.alamat, this.promo, this.syarat, this.images});
+  // Return object from JSON //
   factory JsonDataMainPage.fromJson(Map<String, dynamic> json){
     return JsonDataMainPage(
       id: json['id'],
@@ -18,7 +19,7 @@ class JsonDataMainPage{
       alamat: json['alamat'],
       promo: json['promo'],
       syarat: json['syarat'],
-      image: json['image'],
+      images: json['image'],
     );
   }
 }

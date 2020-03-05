@@ -28,7 +28,7 @@ class _NewsPageState extends State<NewsPage> {
                 child: AlbumCell(context, album),
               ),
               onTap: () {
-                goToDetailsPage(context, album);
+
               },
             );
           },

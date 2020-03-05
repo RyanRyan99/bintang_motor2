@@ -10,6 +10,9 @@ class ServiceMainPage{
         List<JsonDataMainPage> list = parsePromoPhotos(response.body);
         return list;
       }
+      else{
+        throw Exception("error");
+      }
     }catch (e){
       throw Exception(e.toString());
     }
