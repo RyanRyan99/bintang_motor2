@@ -1,4 +1,4 @@
-class JsonDataMainPage{
+class AlbumMp {
   String id;
   String title;
   String date;
@@ -6,12 +6,12 @@ class JsonDataMainPage{
   String alamat;
   String promo;
   String syarat;
-  String images;
+  String image;
 
-  JsonDataMainPage({this.id, this.title, this.date, this.category, this.alamat, this.promo, this.syarat, this.images});
-  // Return object from JSON //
-  factory JsonDataMainPage.fromJson(Map<String, dynamic> json){
-    return JsonDataMainPage(
+  AlbumMp({this.id, this.title, this.date, this.category, this.alamat, this.promo, this.syarat, this.image});
+
+  factory AlbumMp.fromJson(Map<String, dynamic> json){
+    return AlbumMp(
       id: json['id'],
       title: json['title'],
       date: json['date'],
@@ -19,7 +19,7 @@ class JsonDataMainPage{
       alamat: json['alamat'],
       promo: json['promo'],
       syarat: json['syarat'],
-      images: json['image'],
+      image: json['image'],
     );
   }
 }

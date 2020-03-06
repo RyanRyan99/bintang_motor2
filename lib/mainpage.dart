@@ -5,8 +5,8 @@ import 'package:bintang_motor/information/cek_bpkb.dart';
 import 'package:bintang_motor/information/cek_stnk.dart';
 import 'package:bintang_motor/information/daftar_produk.dart';
 import 'package:bintang_motor/information/news.dart';
-import 'package:bintang_motor/information/news_backend/albumcell.dart';
-import 'package:bintang_motor/mainpage_backend/photocell.dart';
+import 'package:bintang_motor/mainpage_backend/albumcellmp.dart';
+import 'package:bintang_motor/mainpage_backend/getdata-mp.dart';
 import 'package:bintang_motor/mainpage_backend/service.dart';
 import 'package:bintang_motor/navigator_menu.dart';
 import 'package:bintang_motor/pricelist/pricelist.dart';
@@ -19,7 +19,6 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
-import 'mainpage_backend/jsondata.dart';
 
 void main(){
   runApp(new MaterialApp(
@@ -27,7 +26,6 @@ void main(){
   ));
 }
 class MainPage extends StatefulWidget {
-  MainPage(): super();
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -78,37 +76,33 @@ class _MainPageState extends State<MainPage> {
     }
   }
   //PDF FILE
-  //Get API Promo
-  // ignore: close_sinks
+  //
   StreamController<int> streamController = new StreamController<int>();
-  gridview(AsyncSnapshot<List<JsonDataMainPage>> snapshot){
-    Padding(
-      padding: const EdgeInsets.all(8.0),
+  gridview(AsyncSnapshot<List<AlbumMp>> snapshot) {
+    return Padding(
+      padding: EdgeInsets.all(5.0),
       child: GridView.count(
-          crossAxisCount: 2,
-          childAspectRatio: 1.0,
-          mainAxisSpacing: 4.0,
-          crossAxisSpacing: 4.0,
+        scrollDirection: Axis.horizontal,
+        crossAxisCount: 1,
+        childAspectRatio: 1.0,
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0,
         children: snapshot.data.map(
-            (photos) {
-              return GestureDetector(
-                child: GridTile(
-                  child: PhotosCell(context, photos),
-                ),
-                onTap: (){},
-              );
-            }
-        ).toList()
+              (album) {
+            return GestureDetector(
+              child: GridTile(
+                child: AlbumCellMp(context, album),
+              ),
+              onTap: () {
+
+              },
+            );
+          },
+        ).toList(),
       ),
     );
   }
-
-  circularProgress() {
-    return Center(
-      child: const CircularProgressIndicator(),
-    );
-  }
-  //Get API Promo
+  //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -254,51 +248,58 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
           ),
-           Container(
-            width: double.infinity,
-            color: Colors.white70,
-            child: new Stack(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, left: 18),
-                  child: new Text("Info dan Promo", style: TextStyle(fontWeight: FontWeight.bold),),
-                ),
-                Container(
-                  color: Colors.black45,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Flexible(
-                        child: FutureBuilder<List<JsonDataMainPage>>(
-                          future: ServiceMainPage.getPromo(),
-                          builder: (context, snapshot){
-                            if(snapshot.hasError){
-                              return Text('Error ${snapshot.error}');
-                            }
-                            if(snapshot.hasData){
-                              streamController.sink.add(snapshot.data.length);
-                              return gridview(snapshot);
-                            }
-                            return circularProgress();
-                          },
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          )
+         Padding(
+           padding: const EdgeInsets.only(top: 400),
+           child: Container(
+             color: Colors.white70,
+             height: 200,
+             child: new Stack(
+               children: <Widget>[
+                 Padding(
+                   padding: const EdgeInsets.only(top: 10),
+                   child: Container(
+                     child: Column(
+                       children: <Widget>[
+                         Padding(
+                           padding: const EdgeInsets.only(left: 10, bottom: 10),
+                           child: Align(
+                             alignment: Alignment.topLeft,
+                               child: Text(
+                                 "Info & Promo",
+                                 style: TextStyle(
+                                   fontWeight: FontWeight.bold
+                                 ),
+                               )
+                           ),
+                         ),
+                         Flexible(
+                           child: FutureBuilder<List<AlbumMp>>(
+                             future: ServiceMp.getPhotos(),
+                             builder: (context, snapshot){
+                               if(snapshot.hasError){
+                                 return Text("Error${snapshot.error}");
+                               }
+                               if(snapshot.hasData){
+                                 streamController.sink.add(snapshot.data.length);
+                                 return gridview(snapshot);
+                               }
+                               return CircularProgressIndicator();
+                             },
+                           ),
+                         )
+                       ],
+                     ),
+                   ),
+                 )
+               ],
+             ),
+           ),
+         )
         ],
       ),
     );
   }
-  void dispose() {
-    streamController.close();
-    super.dispose();
-  }
+
   //Untuk Container Logo
   Widget _BoxLogo(){
     ScreenScaler scaler = new ScreenScaler()..init(context);
@@ -503,4 +504,17 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
