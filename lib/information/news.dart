@@ -27,8 +27,8 @@ class _NewsPageState extends State<NewsPage> {
               child: GridTile(
                 child: AlbumCell(context, album),
               ),
-              onTap: () {
-
+              onTap:(){
+                goToDetailsPage(context, album);
               },
             );
           },

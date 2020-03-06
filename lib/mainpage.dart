@@ -7,6 +7,7 @@ import 'package:bintang_motor/information/daftar_produk.dart';
 import 'package:bintang_motor/information/news.dart';
 import 'package:bintang_motor/mainpage_backend/albumcellmp.dart';
 import 'package:bintang_motor/mainpage_backend/getdata-mp.dart';
+import 'package:bintang_motor/mainpage_backend/info_detail.dart';
 import 'package:bintang_motor/mainpage_backend/service.dart';
 import 'package:bintang_motor/navigator_menu.dart';
 import 'package:bintang_motor/pricelist/pricelist.dart';
@@ -94,11 +95,22 @@ class _MainPageState extends State<MainPage> {
                 child: AlbumCellMp(context, album),
               ),
               onTap: () {
-
+                goToDetailsPage(context, album);
               },
             );
           },
         ).toList(),
+      ),
+    );
+  }
+  goToDetailsPage(BuildContext context, AlbumMp album) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (BuildContext context) => InfoPromoDetail(
+          curAlbum: album,
+        ),
       ),
     );
   }
