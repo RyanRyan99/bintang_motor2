@@ -1,6 +1,14 @@
+import 'dart:async';
 import 'package:bintang_motor/information/detail_produk.dart';
+import 'package:bintang_motor/information/produk_backend/service.dart';
+import 'package:bintang_motor/mainpage_backend/albumcellmp.dart';
+import 'package:bintang_motor/mainpage_backend/getdata-mp.dart';
+import 'package:bintang_motor/mainpage_backend/info_detail.dart';
+import 'package:bintang_motor/mainpage_backend/service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'produk_backend/albumcellpr.dart';
+import 'produk_backend/getdata-prod.dart';
 
 class ListProduct extends StatefulWidget {
   @override
@@ -8,6 +16,44 @@ class ListProduct extends StatefulWidget {
 }
 
 class _ListProductState extends State<ListProduct> {
+  //manual_API
+  StreamController<int> streamController = new StreamController<int>();
+  gridview(AsyncSnapshot<List<AlbumProd>> snapshot) {
+    return Padding(
+      padding: EdgeInsets.all(5.0),
+      child: GridView.count(
+        scrollDirection: Axis.horizontal,
+        crossAxisCount: 1,
+        childAspectRatio: 1.0,
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0,
+        children: snapshot.data.map(
+              (album) {
+            return GestureDetector(
+              child: GridTile(
+                child: AlbumCellPr(context, album),
+              ),
+              onTap: () {
+                goToDetailsPage(context, album);
+              },
+            );
+          },
+        ).toList(),
+      ),
+    );
+  }
+  goToDetailsPage(BuildContext context, AlbumProd album) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (BuildContext context) => DetailProduk(
+          curAlbum: album,
+        ),
+      ),
+    );
+  }
+  //manual_API
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,151 +89,49 @@ class _ListProductState extends State<ListProduct> {
             ),
             child: new Stack(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0, left: 20.0),
-                  child: Container(
-                    height: 60.0,
-                    width: 60.0,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage("assets/Logo.png")
-                        )
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 105, left: 20),
-                  child: Container(
-                    child: Text("Daftar Produk",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
-                      ),
-                    ),
-                  ),
-                )
+                _Logo()
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 130),
-            child: SingleChildScrollView(
-              child: Stack(
+            padding: const EdgeInsets.only(top: 140),
+            child: Container(
+              color: Colors.white70,
+              height: 140,
+              child: new Stack(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 5),
+                    padding: const EdgeInsets.only(top: 10),
                     child: Container(
-                      height: 140,
-                      color: Colors.white70,
-                      child: new Stack(
+                      child: Column(
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 5.0, right: 8.0, left: 8.0, bottom: 10.0),
-                            child: new Text("Premium",
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                            padding: const EdgeInsets.only(left: 8),
+                             child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                  "Manual",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              ),
                             ),
                           ),
-                          ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: <Widget>[
-                              Container(
-                                child: Row(
-                                  children: <Widget>[
-                                    _PremiumCard(image: "https://bintangmotor.com/wp-content/uploads/2019/08/Dominator-Matte-Black-new.png")
-                                  ],
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 150),
-                    child: Container(
-                      height: 140,
-                      color: Colors.white70,
-                      child: new Stack(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5.0, right: 8.0, left: 8.0, bottom: 10.0),
-                            child: new Text("Sport",
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                          Flexible(
+                            child: FutureBuilder<List<AlbumProd>>(
+                              future: ServiceProd.getPhotos(),
+                              builder: (context, snapshot){
+                                if(snapshot.hasError){
+                                  return Text("Error${snapshot.error}");
+                                }
+                                if(snapshot.hasData){
+                                  streamController.sink.add(snapshot.data.length);
+                                  return gridview(snapshot);
+                                }
+                                return CircularProgressIndicator();
+                              },
                             ),
-                          ),
-                          ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: <Widget>[
-                              Container(
-                                child: Row(
-                                  children: <Widget>[
-                                    _SportCard()
-                                  ],
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 295),
-                    child: Container(
-                      height: 140,
-                      color: Colors.white70,
-                      child: new Stack(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5.0, right: 8.0, left: 8.0, bottom: 10.0),
-                            child: new Text("Matic",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold
-                            ),
-                            ),
-                          ),
-                          ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: <Widget>[
-                              Container(
-                                child: Row(
-                                  children: <Widget>[
-                                    _MaticCard()
-                                  ],
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 440),
-                    child: Container(
-                      height: 140,
-                      color: Colors.white70,
-                      child: new Stack(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5.0, right: 8.0, left: 8.0, bottom: 10.0),
-                            child: new Text("Cub",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: <Widget>[
-                              Container(
-                                child: Row(
-                                  children: <Widget>[
-                                    _CubCard()
-                                  ],
-                                ),
-                              )
-                            ],
                           )
                         ],
                       ),
@@ -196,10 +140,45 @@ class _ListProductState extends State<ListProduct> {
                 ],
               ),
             ),
-          ),
+          )
         ],
       ),
     );
+  }
+    @override
+    void dispose() {
+      streamController.close();
+      super.dispose();
+    }
+  Widget _Logo(){
+      return Stack(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 20.0, left: 20.0),
+            child: Container(
+              height: 60.0,
+              width: 60.0,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/Logo.png")
+                  )
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 105, left: 20),
+            child: Container(
+              child: Text("Daftar Produk",
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white
+                ),
+              ),
+            ),
+          )
+        ],
+      );
   }
   Widget _PremiumCard({image}){
     return Container(
@@ -239,64 +218,6 @@ class _ListProductState extends State<ListProduct> {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/advance-black-metallic-bintangmotor-1.png"),
-                        fit: BoxFit.cover
-                    )
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Card(
-              elevation: 0,
-              color: Colors.transparent,
-              child: Container(
-                height: 100, width: 100,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/Dominator-Matte-Black-new.png"),
-                        fit: BoxFit.cover
-                    )
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Card(
-              child: Container(
-                height: 100, width: 100,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/Dominator-Matte-Black-new.png"),
-                        fit: BoxFit.cover
-                    )
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Card(
-              child: Container(
-                height: 100, width: 100,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/Dominator-Matte-Black-new.png"),
-                        fit: BoxFit.cover
-                    )
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Card(
-              child: Container(
-                height: 100, width: 100,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/Dominator-Matte-Black-new.png"),
                         fit: BoxFit.cover
                     )
                 ),
