@@ -21,6 +21,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
+import 'information/searching_stnk.dart';
+
 void main(){
   runApp(new MaterialApp(
     home: new NavigatorPage(),

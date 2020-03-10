@@ -18,7 +18,7 @@ class ListProduct extends StatefulWidget {
 class _ListProductState extends State<ListProduct> {
   //manual_API
   StreamController<int> streamController = new StreamController<int>();
-  gridview(AsyncSnapshot<List<AlbumProd>> snapshot) {
+  gridview(AsyncSnapshot<List<AlbumProdManual>> snapshot) {
     return Padding(
       padding: EdgeInsets.all(5.0),
       child: GridView.count(
@@ -31,7 +31,7 @@ class _ListProductState extends State<ListProduct> {
               (album) {
             return GestureDetector(
               child: GridTile(
-                child: AlbumCellPr(context, album),
+                child: AlbumCellPrManual(context, album),
               ),
               onTap: () {
                 goToDetailsPage(context, album);
@@ -42,12 +42,82 @@ class _ListProductState extends State<ListProduct> {
       ),
     );
   }
-  goToDetailsPage(BuildContext context, AlbumProd album) {
+  goToDetailsPage(BuildContext context, AlbumProdManual album) {
     Navigator.push(
       context,
       MaterialPageRoute(
         fullscreenDialog: true,
         builder: (BuildContext context) => DetailProduk(
+          curAlbum: album,
+        ),
+      ),
+    );
+  }
+  gridviewMt(AsyncSnapshot<List<AlbumProdMatic>> snapshot) {
+    return Padding(
+      padding: EdgeInsets.all(5.0),
+      child: GridView.count(
+        scrollDirection: Axis.horizontal,
+        crossAxisCount: 1,
+        childAspectRatio: 1.0,
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0,
+        children: snapshot.data.map(
+              (album) {
+            return GestureDetector(
+              child: GridTile(
+                child: AlbumCellPrMatic(context, album),
+              ),
+              onTap: () {
+                goToDetailsPageMt(context, album);
+              },
+            );
+          },
+        ).toList(),
+      ),
+    );
+  }
+  goToDetailsPageMt(BuildContext context, AlbumProdMatic album) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (BuildContext context) => DetailProdukMt(
+          curAlbum: album,
+        ),
+      ),
+    );
+  }
+  gridviewCub(AsyncSnapshot<List<AlbumProdCub>> snapshot) {
+    return Padding(
+      padding: EdgeInsets.all(5.0),
+      child: GridView.count(
+        scrollDirection: Axis.horizontal,
+        crossAxisCount: 1,
+        childAspectRatio: 1.0,
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0,
+        children: snapshot.data.map(
+              (album) {
+            return GestureDetector(
+              child: GridTile(
+                child: AlbumCellPrCub(context, album),
+              ),
+              onTap: () {
+                goToDetailsPageCub(context, album);
+              },
+            );
+          },
+        ).toList(),
+      ),
+    );
+  }
+  goToDetailsPageCub(BuildContext context, AlbumProdCub album) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (BuildContext context) => DetailProdukCub(
           curAlbum: album,
         ),
       ),
@@ -110,7 +180,7 @@ class _ListProductState extends State<ListProduct> {
                              child: Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                  "Manual",
+                                  "Sport",
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold
@@ -119,7 +189,7 @@ class _ListProductState extends State<ListProduct> {
                             ),
                           ),
                           Flexible(
-                            child: FutureBuilder<List<AlbumProd>>(
+                            child: FutureBuilder<List<AlbumProdManual>>(
                               future: ServiceProd.getPhotos(),
                               builder: (context, snapshot){
                                 if(snapshot.hasError){
@@ -128,6 +198,104 @@ class _ListProductState extends State<ListProduct> {
                                 if(snapshot.hasData){
                                   streamController.sink.add(snapshot.data.length);
                                   return gridview(snapshot);
+                                }
+                                return CircularProgressIndicator();
+                              },
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          //Matic
+          Padding(
+            padding: const EdgeInsets.only(top: 290),
+            child: Container(
+              color: Colors.white70,
+              height: 140,
+              child: new Stack(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Container(
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                "Matic",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            child: FutureBuilder<List<AlbumProdMatic>>(
+                              future: ServiceProdMatic.getPhotos(),
+                              builder: (context, snapshot){
+                                if(snapshot.hasError){
+                                  return Text("Error${snapshot.error}");
+                                }
+                                if(snapshot.hasData){
+                                  streamController.sink.add(snapshot.data.length);
+                                  return gridviewMt(snapshot);
+                                }
+                                return CircularProgressIndicator();
+                              },
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          //CubMotor
+          Padding(
+            padding: const EdgeInsets.only(top: 440),
+            child: Container(
+              color: Colors.white70,
+              height: 140,
+              child: new Stack(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Container(
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                "Cub",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            child: FutureBuilder<List<AlbumProdCub>>(
+                              future: ServiceProdCub.getPhotos(),
+                              builder: (context, snapshot){
+                                if(snapshot.hasError){
+                                  return Text("Error${snapshot.error}");
+                                }
+                                if(snapshot.hasData){
+                                  streamController.sink.add(snapshot.data.length);
+                                  return gridviewCub(snapshot);
                                 }
                                 return CircularProgressIndicator();
                               },
@@ -179,126 +347,6 @@ class _ListProductState extends State<ListProduct> {
           )
         ],
       );
-  }
-  Widget _PremiumCard({image}){
-    return Container(
-      child: Row(
-        children: <Widget>[
-           Padding(
-            padding: const EdgeInsets.only(top: 15.0),
-            child: Card(
-              elevation: 0,
-              color: Colors.transparent,
-              child: InkWell(
-                splashColor: Colors.red,
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (BuildContext context) => new DetailProduk()
-                  ));
-                },
-                child: Container(
-                  height: 100, width: 100,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(image),
-                      fit: BoxFit.cover
-                    )
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Card(
-              elevation: 0,
-              color: Colors.transparent,
-              child: Container(
-                height: 100, width: 100,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/advance-black-metallic-bintangmotor-1.png"),
-                        fit: BoxFit.cover
-                    )
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-  Widget _SportCard(){
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 15.0),
-            child: Card(
-              elevation: 0,
-              color: Colors.transparent,
-              child: Container(
-                height: 100, width: 100,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/advance-black-metallic-bintangmotor-1.png"),
-                    fit: BoxFit.cover,
-                  )
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-  Widget _MaticCard(){
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 15.0),
-            child: Card(
-              elevation: 0,
-              color: Colors.transparent,
-              child: Container(
-                height: 100, width: 100,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage("https://bintangmotor.com/wp-content/uploads/2019/08/advance-black-metallic-bintangmotor-1.png"),
-                      fit: BoxFit.cover,
-                    )
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-  Widget _CubCard(){
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 15.0),
-            child: Card(
-              elevation: 0,
-              color: Colors.transparent,
-              child: Container(
-                height: 100, width: 100,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage("https://bintangmotor.com/wp-content/uploads/listing-uploads/gallery/2019/12/pearl-shining-black-1024x343.png"),
-                    fit: BoxFit.cover
-                  )
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
   }
 }
 
