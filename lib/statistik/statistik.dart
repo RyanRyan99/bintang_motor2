@@ -130,7 +130,7 @@ class _StatistikState extends State<Statistik> {
                   height: 4,
                 ),
                 Indicator(
-                  color: Colors.yellow,
+                  color: Colors.orangeAccent,
                   text: "Deal",
                   isSquare: true,
                 ),
@@ -138,7 +138,7 @@ class _StatistikState extends State<Statistik> {
                   height: 4,
                 ),
                 Indicator(
-                  color: Colors.black38,
+                  color: Colors.blueGrey,
                   text: 'No Deal',
                   isSquare: true,
                 ),
@@ -165,15 +165,15 @@ class _StatistikState extends State<Statistik> {
           return PieChartSectionData(
             color: Colors.red,
             value: 60,
-            title: '40%',
+            title: '60%',
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.white),
           );
         case 1:
           return PieChartSectionData(
-            color: Colors.yellow,
-            value: 25,
+            color: Colors.orangeAccent,
+            value: 30,
             title: '30%',
             radius: radius,
             titleStyle: TextStyle(
@@ -181,7 +181,7 @@ class _StatistikState extends State<Statistik> {
           );
         case 2:
           return PieChartSectionData(
-            color: Colors.black38,
+            color: Colors.blueGrey,
             value: 15,
             title: '15%',
             radius: radius,

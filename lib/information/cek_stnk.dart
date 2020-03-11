@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 
 class CheckStnk extends StatefulWidget {
@@ -6,6 +9,36 @@ class CheckStnk extends StatefulWidget {
   _CheckStnkState createState() => _CheckStnkState();
 }
 class _CheckStnkState extends State<CheckStnk> {
+
+  //
+  List<STNK> _stnk = new List<STNK>();
+  List<STNK> _stnkDisplay = new List<STNK>();
+
+  Future<List<STNK>> GetStnk() async {
+    var url = 'https://bintang-niagajaya.000webhostapp.com/api_stnk.php';
+    var response = await http.get(url);
+    var stnk = List<STNK>();
+
+    if(response.statusCode == 200){
+      var stnkJson = json.decode(response.body);
+      for(var jsonstnk in stnkJson){
+        stnk.add(STNK.fromJson(jsonstnk));
+      }
+    }
+    return stnk;
+  }
+
+  @override
+  void initState() {
+    GetStnk().then((value){
+      setState(() {
+        _stnk.addAll(value);
+        _stnkDisplay = _stnk;
+      });
+    });
+    super.initState();
+  }
+  //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,6 +106,15 @@ class _CheckStnkState extends State<CheckStnk> {
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                               ),
+                              onChanged: (text){
+                                text = text.toLowerCase();
+                                setState(() {
+                                  _stnkDisplay = _stnk.where((stnk){
+                                    var NoMesin = stnk.no_mesin.toLowerCase();
+                                    return NoMesin.contains(text);
+                                  }).toList();
+                                });
+                              },
                             ),
                           ),
                         ),
@@ -132,15 +174,13 @@ class _CheckStnkState extends State<CheckStnk> {
                             ),
                           ),
                         ),
-                        _TextField()
                       ],
                     ),
                   ),
                 ],
               ),
             ),
-          )
-
+          ),
         ],
       ),
     );
@@ -271,7 +311,7 @@ class _CheckStnkState extends State<CheckStnk> {
       ],
     );
   }
-  Widget _TextField(){
+  _TextField(index){
     return Stack(
       children: <Widget>[
         Padding(
@@ -280,10 +320,9 @@ class _CheckStnkState extends State<CheckStnk> {
             height: 40,
             width: double.infinity,
             margin: EdgeInsets.all(5),
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                  border: InputBorder.none
+            child: Container(
+              child: Text(
+               ""
               ),
             ),
             decoration: BoxDecoration(
@@ -402,5 +441,27 @@ class _CheckStnkState extends State<CheckStnk> {
         ),
       ],
     );
+  }
+}
+class STNK {
+  String id;
+  String no_mesin;
+  String pemilik_kendaraan;
+  String type_motor;
+  String no_rangka;
+  String status_stnk;
+  String tanggal_terbit_stnk;
+
+  STNK(this.id, this.no_mesin, this.pemilik_kendaraan, this.type_motor,
+      this.no_rangka, this.status_stnk, this.tanggal_terbit_stnk);
+
+  STNK.fromJson(Map<String, dynamic> json){
+    id = json['id'];
+    no_mesin = json['no_mesin'];
+    pemilik_kendaraan = json['pemilik_kendaraan'];
+    type_motor = json['type_motor'];
+    no_rangka = json['no_rangka'];
+    status_stnk = json['status_stnk'];
+    tanggal_terbit_stnk = json['tanggal_terbit_stnk'];
   }
 }
