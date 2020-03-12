@@ -54,24 +54,42 @@ class _SearchState extends State<Search> {
         child: Column(
           children: <Widget>[
             Container(
-              child: Card(
-                child: ListTile(
-                  leading: Icon(Icons.search),
-                  title: TextField(
-                    controller: controller,
-                    onChanged: Searching,
-                    decoration: InputDecoration(
-                      hintText: "Search", border: InputBorder.none,
+              padding: EdgeInsets.only(top: 50),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    width: 300,
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(Icons.search),
+                        title: TextField(
+                          controller: controller,
+//                          onChanged: Searching,
+                          decoration: InputDecoration(
+                            hintText: "Search", border: InputBorder.none,
+                          ),
+                        ),
+                        trailing: IconButton(
+                          icon: Icon(Icons.clear),
+                          onPressed: (){
+                            controller.clear();
+                            Searching('');
+                          },
+                        ),
+                      ),
                     ),
                   ),
-                  trailing: IconButton(
-                    icon: Icon(Icons.clear),
+                  FlatButton(
+                    child: Icon(Icons.search, color: Colors.white,),
+                    // ignore: unnecessary_statements
                     onPressed: (){
-                      controller.clear();
-                      Searching('');
+                      setState(() {
+                        Searching(controller.text);
+                      });
                     },
-                  ),
-                ),
+                    color: Colors.red,
+                  )
+                ],
               ),
             ),
             loading ? Center(
