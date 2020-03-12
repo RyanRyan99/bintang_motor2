@@ -126,9 +126,17 @@ class _CheckStnkState extends State<CheckStnk> {
                            height: 50,
                             child: InkWell(
                              onTap: (){
-                               setState(() {
+                               if(searchcontroller.text.length != 12){
+                                 showDialog(
+                                   context: context,
+                                   builder: (context){
+                                    return AlertDialog(content: Text("No Mesin Harus 12 Digit"),);
+                                   }
+                                 );
+                               }
+                               else {
                                  Searching(searchcontroller.text);
-                               });
+                               }
                              },
                              child: Card(
                                color: Colors.red,

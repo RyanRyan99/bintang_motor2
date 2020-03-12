@@ -126,9 +126,17 @@ class _CheckBpkbState extends State<CheckBpkb> {
                             height: 50,
                              child: InkWell(
                               onTap: (){
-                                setState(() {
+                                if(searchController.text.length != 8){
+                                  showDialog(
+                                    context: context,
+                                    builder: (context){
+                                      return AlertDialog(content: Text("No Polisi Harus 8 Digit"),);
+                                    }
+                                  );
+                                }
+                                else{
                                   Searching(searchController.text);
-                                });
+                                }
                               },
                               child: Card(
                                 color: Colors.red,
