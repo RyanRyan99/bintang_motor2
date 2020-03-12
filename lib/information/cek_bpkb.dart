@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 
 class CheckBpkb extends StatefulWidget {
@@ -8,6 +10,45 @@ class CheckBpkb extends StatefulWidget {
 }
 
 class _CheckBpkbState extends State<CheckBpkb> {
+  List<BPKB> _list = [];
+  List<BPKB> _search = [];
+  var loading = false;
+  Future<Null> fetchData() async {
+    setState(() {
+      loading = true;
+    });
+    _list.clear();
+    final response = await http.get("https://bintang-niagajaya.000webhostapp.com/api_bpkb.php");
+    if(response.statusCode == 200){
+      final data = jsonDecode(response.body);
+      setState(() {
+        for(Map i in data){
+          _list.add(BPKB.fromJson(i));
+          loading = false;
+        }
+      });
+    }
+  }
+  TextEditingController searchController = new TextEditingController();
+  Searching(String text) async {
+    _search.clear();
+    if(text.isEmpty){
+      setState(() {
+        return;
+      });
+    }
+    _list.forEach((f){
+      if(f.no_polisi.contains(text))
+        _search.add(f);
+    });
+    setState(() {});
+  }
+  @override
+  void initState() {
+    fetchData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +111,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
                             height: 40,
                             margin: EdgeInsets.only(bottom: 50, left: 50, right: 50),
                             child: new TextField(
-                              style: TextStyle(height: 2.0),
+                              controller: searchController,
                               cursorColor: Colors.red,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -84,7 +125,11 @@ class _CheckBpkbState extends State<CheckBpkb> {
                             padding: EdgeInsets.only(right: 8),
                             height: 50,
                              child: InkWell(
-                              onTap: (){print("CL");},
+                              onTap: (){
+                                setState(() {
+                                  Searching(searchController.text);
+                                });
+                              },
                               child: Card(
                                 color: Colors.red,
                                 child: Column(
@@ -253,11 +298,20 @@ class _CheckBpkbState extends State<CheckBpkb> {
           child: Container(
             height: 40,
             width: double.infinity,
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                border: InputBorder.none
-              ),
+            child: Container(
+              child: _search.length == 0 || searchController.text.isNotEmpty ? ListView.builder(
+                padding: EdgeInsets.zero,
+                itemCount: _search.length,
+                itemBuilder: (context, i){
+                  final b = _search[i];
+                  return Container(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 12, left: 5),
+                      child: Text(b.pemilik_kendaraan),
+                    ),
+                  );
+                },
+              ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -273,11 +327,20 @@ class _CheckBpkbState extends State<CheckBpkb> {
           child: Container(
             height: 40,
             width: double.infinity,
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                  border: InputBorder.none
-              ),
+            child: Container(
+              child: _search.length == 0 || searchController.text.isNotEmpty ? ListView.builder(
+                padding: EdgeInsets.zero,
+                itemCount: _search.length,
+                itemBuilder: (context, i){
+                  final b = _search[i];
+                  return Container(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 12, left: 5),
+                      child: Text(b.type_motor),
+                    ),
+                  );
+                },
+              ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -293,11 +356,20 @@ class _CheckBpkbState extends State<CheckBpkb> {
           child: Container(
             height: 40,
             width: double.infinity,
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                  border: InputBorder.none
-              ),
+            child: Container(
+                child: _search.length == 0 || searchController.text.isNotEmpty ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: _search.length,
+                  itemBuilder: (context, i){
+                    final b = _search[i];
+                    return Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 12, left: 5),
+                        child: Text(b.no_polisi),
+                      ),
+                    );
+                  },
+                ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -313,11 +385,20 @@ class _CheckBpkbState extends State<CheckBpkb> {
           child: Container(
             height: 40,
             width: double.infinity,
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                  border: InputBorder.none
-              ),
+            child: Container(
+                child: _search.length == 0 || searchController.text.isNotEmpty ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: _search.length,
+                  itemBuilder: (context, i){
+                    final b = _search[i];
+                    return Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 12, left: 5),
+                        child: Text(b.no_mesin),
+                      ),
+                    );
+                  },
+                ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -333,11 +414,20 @@ class _CheckBpkbState extends State<CheckBpkb> {
           child: Container(
             height: 40,
             width: double.infinity,
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                  border: InputBorder.none
-              ),
+            child: Container(
+                child: _search.length == 0 || searchController.text.isNotEmpty ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: _search.length,
+                  itemBuilder: (context, i){
+                    final b = _search[i];
+                    return Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 12, left: 5),
+                        child: Text(b.no_rangka),
+                      ),
+                    );
+                  },
+                ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -353,11 +443,20 @@ class _CheckBpkbState extends State<CheckBpkb> {
           child: Container(
             height: 40,
             width: double.infinity,
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                  border: InputBorder.none
-              ),
+            child: Container(
+                child: _search.length == 0 || searchController.text.isNotEmpty ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: _search.length,
+                  itemBuilder: (context, i){
+                    final b = _search[i];
+                    return Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 12, left: 5),
+                        child: Text(b.status_bpkb),
+                      ),
+                    );
+                  },
+                ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -373,11 +472,20 @@ class _CheckBpkbState extends State<CheckBpkb> {
           child: Container(
             height: 40,
             width: double.infinity,
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                  border: InputBorder.none
-              ),
+            child: Container(
+                child: _search.length == 0 || searchController.text.isNotEmpty ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: _search.length,
+                  itemBuilder: (context, i){
+                    final b = _search[i];
+                    return Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 12, left: 5),
+                        child: Text(b.tanggal_terbit_bpkb),
+                      ),
+                    );
+                  },
+                ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -389,6 +497,34 @@ class _CheckBpkbState extends State<CheckBpkb> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class BPKB {
+  String id;
+  String pemilik_kendaraan;
+  String type_motor;
+  String no_polisi;
+  String no_mesin	;
+  String no_rangka;
+  String status_bpkb;
+  String tanggal_terbit_bpkb;
+
+  BPKB({this.id, this.pemilik_kendaraan, this.type_motor, this.no_polisi,
+      this.no_mesin, this.no_rangka, this.status_bpkb,
+      this.tanggal_terbit_bpkb});
+
+  factory BPKB.fromJson(Map<String, dynamic> json){
+    return BPKB(
+      id: json['id'],
+      pemilik_kendaraan: json['pemilik_kendaraan'],
+      type_motor: json['type_motor'],
+      no_polisi: json['no_polisi'],
+      no_mesin: json['no_mesin'],
+      no_rangka: json['no_rangka'],
+      status_bpkb: json['status_bpkb'],
+      tanggal_terbit_bpkb: json['tanggal_terbit_bpkb']
     );
   }
 }

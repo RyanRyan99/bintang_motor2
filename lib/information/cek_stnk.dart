@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,36 +8,45 @@ class CheckStnk extends StatefulWidget {
   _CheckStnkState createState() => _CheckStnkState();
 }
 class _CheckStnkState extends State<CheckStnk> {
-
-  //
-  List<STNK> _stnk = new List<STNK>();
-  List<STNK> _stnkDisplay = new List<STNK>();
-
-  Future<List<STNK>> GetStnk() async {
-    var url = 'https://bintang-niagajaya.000webhostapp.com/api_stnk.php';
-    var response = await http.get(url);
-    var stnk = List<STNK>();
-
+  List<STNK> _list = [];
+  List<STNK> _search = [];
+  var loading = false;
+  Future<Null> fetchData() async{
+    setState(() {
+      loading = true;
+    });
+    _list.clear();
+    final response = await http.get("https://bintang-niagajaya.000webhostapp.com/api_stnk.php");
     if(response.statusCode == 200){
-      var stnkJson = json.decode(response.body);
-      for(var jsonstnk in stnkJson){
-        stnk.add(STNK.fromJson(jsonstnk));
-      }
+      final data = jsonDecode(response.body);
+      setState(() {
+        for(Map i in data){
+          _list.add(STNK.fromJson(i));
+          loading = false;
+        }
+      });
     }
-    return stnk;
   }
 
+  TextEditingController searchcontroller = new TextEditingController();
+  Searching(String text) async{
+    _search.clear();
+    if(text.isEmpty){
+      setState(() {
+        return;
+      });
+    }
+    _list.forEach((f){
+      if(f.no_mesin.contains(text))
+        _search.add(f);
+    });
+    setState(() {});
+  }
   @override
   void initState() {
-    GetStnk().then((value){
-      setState(() {
-        _stnk.addAll(value);
-        _stnkDisplay = _stnk;
-      });
-    });
+    fetchData();
     super.initState();
   }
-  //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,14 +79,14 @@ class _CheckStnkState extends State<CheckStnk> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 130),
-             child: Container(
-              color: Colors.white,
-              child: new Stack(
-                children: <Widget>[
-                  SingleChildScrollView(
-                    child: new Stack(
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 130),
+               child: Container(
+                color: Colors.white,
+                child: new Stack(
+                  children: <Widget>[
+                    new Stack(
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.only(top: 20, left: 10),
@@ -101,20 +109,13 @@ class _CheckStnkState extends State<CheckStnk> {
                             height: 40,
                             margin: EdgeInsets.only(left: 50, right: 50, bottom: 50),
                             child: TextField(
+                              controller: searchcontroller,
                               style: TextStyle(height: 2.0),
                               cursorColor: Colors.red,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                               ),
-                              onChanged: (text){
-                                text = text.toLowerCase();
-                                setState(() {
-                                  _stnkDisplay = _stnk.where((stnk){
-                                    var NoMesin = stnk.no_mesin.toLowerCase();
-                                    return NoMesin.contains(text);
-                                  }).toList();
-                                });
-                              },
+
                             ),
                           ),
                         ),
@@ -124,7 +125,11 @@ class _CheckStnkState extends State<CheckStnk> {
                            padding: EdgeInsets.only(right: 8),
                            height: 50,
                             child: InkWell(
-                             onTap: (){print("CL");},
+                             onTap: (){
+                               setState(() {
+                                 Searching(searchcontroller.text);
+                               });
+                             },
                              child: Card(
                                color: Colors.red,
                                child: Column(
@@ -150,7 +155,7 @@ class _CheckStnkState extends State<CheckStnk> {
                             child: Column(
                               children: <Widget>[
                                 _HeaderCard(),
-                                _IsiCard()
+                                _IsiCard(),
                               ],
                             ),
                           ),
@@ -174,10 +179,11 @@ class _CheckStnkState extends State<CheckStnk> {
                             ),
                           ),
                         ),
+                        _TextField()
                       ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -311,7 +317,7 @@ class _CheckStnkState extends State<CheckStnk> {
       ],
     );
   }
-  _TextField(index){
+  _TextField(){
     return Stack(
       children: <Widget>[
         Padding(
@@ -321,9 +327,19 @@ class _CheckStnkState extends State<CheckStnk> {
             width: double.infinity,
             margin: EdgeInsets.all(5),
             child: Container(
-              child: Text(
-               ""
-              ),
+                child: _search.length == 0 || searchcontroller.text.isNotEmpty ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: _search.length,
+                  itemBuilder: (context, i){
+                    final b = _search[i];
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 12, left: 5),
+                      child: Container(
+                        child: Text(b.pemilik_kendaraan),
+                      ),
+                    );
+                  },
+                ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -340,11 +356,20 @@ class _CheckStnkState extends State<CheckStnk> {
             height: 40,
             width: double.infinity,
             margin: EdgeInsets.all(5),
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                border: InputBorder.none
-              ),
+            child: Container(
+                child: _search.length == 0 || searchcontroller.text.isNotEmpty ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: _search.length,
+                  itemBuilder: (context, i){
+                    final b = _search[i];
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 12, left: 5),
+                      child: Container(
+                        child: Text(b.type_motor),
+                      ),
+                    );
+                  },
+                ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -361,11 +386,20 @@ class _CheckStnkState extends State<CheckStnk> {
             height: 40,
             width: double.infinity,
             margin: EdgeInsets.all(5),
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                border: InputBorder.none
-              ),
+            child: Container(
+                child: _search.length == 0 || searchcontroller.text.isNotEmpty ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: _search.length,
+                  itemBuilder: (context, i){
+                    final b = _search[i];
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 12, left: 5),
+                      child: Container(
+                        child: Text(b.no_mesin),
+                      ),
+                    );
+                  },
+                ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -382,11 +416,20 @@ class _CheckStnkState extends State<CheckStnk> {
             height: 40,
             width: double.infinity,
             margin: EdgeInsets.all(5),
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                border: InputBorder.none
-              ),
+            child: Container(
+                child: _search.length == 0 || searchcontroller.text.isNotEmpty ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: _search.length,
+                  itemBuilder: (context, i){
+                    final b = _search[i];
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 12, left: 5),
+                      child: Container(
+                        child: Text(b.no_rangka),
+                      ),
+                    );
+                  },
+                ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -403,11 +446,20 @@ class _CheckStnkState extends State<CheckStnk> {
             height: 40,
             width: double.infinity,
             margin: EdgeInsets.all(5),
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                border: InputBorder.none
-              ),
+            child: Container(
+                child: _search.length == 0 || searchcontroller.text.isNotEmpty ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: _search.length,
+                  itemBuilder: (context, i){
+                    final b = _search[i];
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 12, left: 5),
+                      child: Container(
+                        child: Text(b.status_stnk),
+                      ),
+                    );
+                  },
+                ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -424,11 +476,20 @@ class _CheckStnkState extends State<CheckStnk> {
             height: 40,
             width: double.infinity,
             margin: EdgeInsets.all(5),
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                border: InputBorder.none
-              ),
+            child: Container(
+                child: _search.length == 0 || searchcontroller.text.isNotEmpty ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: _search.length,
+                  itemBuilder: (context, i){
+                    final b = _search[i];
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 12, left: 5),
+                      child: Container(
+                        child: Text(b.tanggal_terbit_stnk),
+                      ),
+                    );
+                  },
+                ) : ListView.builder()
             ),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -452,8 +513,8 @@ class STNK {
   String status_stnk;
   String tanggal_terbit_stnk;
 
-  STNK(this.id, this.no_mesin, this.pemilik_kendaraan, this.type_motor,
-      this.no_rangka, this.status_stnk, this.tanggal_terbit_stnk);
+  STNK({this.id, this.no_mesin, this.pemilik_kendaraan, this.type_motor,
+      this.no_rangka, this.status_stnk, this.tanggal_terbit_stnk});
 
   STNK.fromJson(Map<String, dynamic> json){
     id = json['id'];

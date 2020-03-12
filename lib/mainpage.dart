@@ -5,7 +5,6 @@ import 'package:bintang_motor/information/cek_bpkb.dart';
 import 'package:bintang_motor/information/cek_stnk.dart';
 import 'package:bintang_motor/information/daftar_produk.dart';
 import 'package:bintang_motor/information/news.dart';
-import 'package:bintang_motor/information/searching.dart';
 import 'package:bintang_motor/mainpage_backend/albumcellmp.dart';
 import 'package:bintang_motor/mainpage_backend/getdata-mp.dart';
 import 'package:bintang_motor/mainpage_backend/info_detail.dart';
@@ -400,7 +399,7 @@ class _MainPageState extends State<MainPage> {
               new InkWell(
                 onTap: (){
                   Navigator.of(context).push(new MaterialPageRoute(
-                      builder: (BuildContext context) => new Search()
+                      builder: (BuildContext context) => new CheckStnk()
                   )
                   );
                 },
