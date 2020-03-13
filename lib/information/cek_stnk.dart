@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 
 class CheckStnk extends StatefulWidget {
@@ -108,7 +111,8 @@ class _CheckStnkState extends State<CheckStnk> {
                             ),
                             height: 40,
                             margin: EdgeInsets.only(left: 50, right: 50, bottom: 50),
-                            child: TextField(
+                            child: TextFormField(
+                              inputFormatters: [LengthLimitingTextInputFormatter(12)],
                               controller: searchcontroller,
                               style: TextStyle(height: 2.0),
                               cursorColor: Colors.red,
@@ -130,7 +134,10 @@ class _CheckStnkState extends State<CheckStnk> {
                                  showDialog(
                                    context: context,
                                    builder: (context){
-                                    return AlertDialog(content: Text("No Mesin Harus 12 Digit"),);
+                                    return AlertDialog(
+                                      title: Text("Terjadi Kesalahan :", style: TextStyle(fontSize: 12),),
+                                      content: Text("No Mesin Harus 12 Digit"),
+                                    );
                                    }
                                  );
                                }
@@ -261,7 +268,7 @@ class _CheckStnkState extends State<CheckStnk> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("Pemilik Kendaraan",
@@ -271,7 +278,7 @@ class _CheckStnkState extends State<CheckStnk> {
           ),
           ),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("Type Motor",
@@ -281,7 +288,7 @@ class _CheckStnkState extends State<CheckStnk> {
             ),
           ),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("No.Mesin",
@@ -291,7 +298,7 @@ class _CheckStnkState extends State<CheckStnk> {
             ),
           ),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("No.Rangka",
@@ -301,7 +308,7 @@ class _CheckStnkState extends State<CheckStnk> {
             ),
           ),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("Status STNK",
@@ -311,7 +318,7 @@ class _CheckStnkState extends State<CheckStnk> {
             ),
           ),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("Tgl Terbit STNK",
@@ -321,7 +328,7 @@ class _CheckStnkState extends State<CheckStnk> {
             ),
           ),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
       ],
     );
   }
@@ -488,12 +495,14 @@ class _CheckStnkState extends State<CheckStnk> {
                 child: _search.length == 0 || searchcontroller.text.isNotEmpty ? ListView.builder(
                   padding: EdgeInsets.zero,
                   itemCount: _search.length,
-                  itemBuilder: (context, i){
-                    final b = _search[i];
+                  itemBuilder: (BuildContext context, int i){
+                    DateTime b = _search[i].tanggal_terbit_stnk;
+                    DateFormat formatdata = new DateFormat('dd MMM yyyy');
+                    String formated = formatdata.format(b);
                     return Padding(
                       padding: const EdgeInsets.only(top: 12, left: 5),
                       child: Container(
-                        child: Text(b.tanggal_terbit_stnk),
+                        child: Text(formated),
                       ),
                     );
                   },
@@ -519,18 +528,20 @@ class STNK {
   String type_motor;
   String no_rangka;
   String status_stnk;
-  String tanggal_terbit_stnk;
+  DateTime tanggal_terbit_stnk;
 
   STNK({this.id, this.no_mesin, this.pemilik_kendaraan, this.type_motor,
       this.no_rangka, this.status_stnk, this.tanggal_terbit_stnk});
 
-  STNK.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    no_mesin = json['no_mesin'];
-    pemilik_kendaraan = json['pemilik_kendaraan'];
-    type_motor = json['type_motor'];
-    no_rangka = json['no_rangka'];
-    status_stnk = json['status_stnk'];
-    tanggal_terbit_stnk = json['tanggal_terbit_stnk'];
+  factory STNK.fromJson(Map<String, dynamic> json){
+    return STNK(
+      id: json['id'],
+      no_mesin: json['no_mesin'],
+      pemilik_kendaraan: json['pemilik_kendaraan'],
+      type_motor: json['type_motor'],
+      no_rangka: json['no_rangka'],
+      status_stnk: json['status_stnk'],
+      tanggal_terbit_stnk: json['tanggal_terbit_stnk'] == null ? null : DateTime.parse(json['tanggal_terbit_stnk']),
+    );
   }
 }

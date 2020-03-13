@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import 'package:intl/intl.dart';
 
 class CheckBpkb extends StatefulWidget {
   @override
@@ -110,8 +111,10 @@ class _CheckBpkbState extends State<CheckBpkb> {
                             ),
                             height: 40,
                             margin: EdgeInsets.only(bottom: 50, left: 50, right: 50),
-                            child: new TextField(
+                            child: new TextFormField(
+                              inputFormatters: [LengthLimitingTextInputFormatter(8)],
                               controller: searchController,
+                              style: TextStyle(height: 1.5, fontSize: 18),
                               cursorColor: Colors.red,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -126,11 +129,14 @@ class _CheckBpkbState extends State<CheckBpkb> {
                             height: 50,
                              child: InkWell(
                               onTap: (){
-                                if(searchController.text.length != 8){
+                                if(searchController.text.length != 6 && searchController.text.length != 7 && searchController.text.length != 8){
                                   showDialog(
                                     context: context,
                                     builder: (context){
-                                      return AlertDialog(content: Text("No Polisi Harus 8 Digit"),);
+                                      return AlertDialog(
+                                        title: Text("Terjadi Kesalahan :", style: TextStyle(fontSize: 12),),
+                                        content: Text("Silahkan Cek No Polisi Kembali", style: TextStyle(fontWeight: FontWeight.bold),),
+                                      );
                                     }
                                   );
                                 }
@@ -259,42 +265,42 @@ class _CheckBpkbState extends State<CheckBpkb> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("Pemilik Kendaraan",style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("Type Motor",style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("No.Polisi",style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("No.Mesin",style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("No.Rangka",style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("Status BPKB",style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: new Text("Tgl Terbit BPKB",style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
         ),
-        Divider(),
+        Divider(color: Colors.transparent,),
       ],
     );
   }
@@ -484,12 +490,14 @@ class _CheckBpkbState extends State<CheckBpkb> {
                 child: _search.length == 0 || searchController.text.isNotEmpty ? ListView.builder(
                   padding: EdgeInsets.zero,
                   itemCount: _search.length,
-                  itemBuilder: (context, i){
-                    final b = _search[i];
+                  itemBuilder: (BuildContext context, int i){
+                    DateTime b = _search[i].tanggal_terbit_bpkb;
+                    DateFormat formatdata = new DateFormat('dd MMM yyyy');
+                    String formated = formatdata.format(b);
                     return Container(
                       child: Padding(
                         padding: const EdgeInsets.only(top: 12, left: 5),
-                        child: Text(b.tanggal_terbit_bpkb),
+                        child: Text(formated),
                       ),
                     );
                   },
@@ -517,7 +525,7 @@ class BPKB {
   String no_mesin	;
   String no_rangka;
   String status_bpkb;
-  String tanggal_terbit_bpkb;
+  DateTime tanggal_terbit_bpkb;
 
   BPKB({this.id, this.pemilik_kendaraan, this.type_motor, this.no_polisi,
       this.no_mesin, this.no_rangka, this.status_bpkb,
@@ -532,7 +540,7 @@ class BPKB {
       no_mesin: json['no_mesin'],
       no_rangka: json['no_rangka'],
       status_bpkb: json['status_bpkb'],
-      tanggal_terbit_bpkb: json['tanggal_terbit_bpkb']
+      tanggal_terbit_bpkb: json['tanggal_terbit_bpkb'] == null ? null : DateTime.parse(json['tanggal_terbit_bpkb']),
     );
   }
 }
