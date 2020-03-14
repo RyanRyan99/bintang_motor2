@@ -189,7 +189,7 @@ class _MainPageState extends State<MainPage> {
                               color: Colors.white,
                           ),
                         ),
-                        new Text("Bruce Wayne",
+                        new Text("Ryan_Ryan",
                           style: TextStyle(
                               fontSize: 24,
                               color: Colors.white
@@ -222,7 +222,7 @@ class _MainPageState extends State<MainPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        new Text("120.000",
+                        new Text("1.250",
                           style: TextStyle(
                               color: Colors.yellow,
                               fontSize: 12.0,
@@ -253,7 +253,7 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 270.0, left: MediaQuery.of(context).size.width/20),
+            padding: EdgeInsets.only(top: 270.0, left: MediaQuery.of(context).size.width/25),
             child: Container(
               child: Row(
                 children: <Widget>[
@@ -329,7 +329,7 @@ class _MainPageState extends State<MainPage> {
     return Container(
       child: Row(
         children: <Widget>[
-          SizedBox(width: scaler.getWidth(8.0)),
+          SizedBox(width: scaler.getWidth(5.0)),
           Container(
 //              margin: EdgeInsets.only(left: queryData.size.width/8),
              child: Column(
@@ -338,7 +338,7 @@ class _MainPageState extends State<MainPage> {
                   icon: FaIcon(FontAwesomeIcons.database, size: 25, color: Colors.red,),
                   onPressed: (){
                     Navigator.of(context).push(new MaterialPageRoute(
-                        builder: (BuildContext context) => new Customer()
+                        builder: (BuildContext context) => new Customer2()
                     )
                     );
                   },
@@ -406,7 +406,7 @@ class _MainPageState extends State<MainPage> {
                 child: Card(
                   color: Colors.red,
                   child: Padding(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/25),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/30),
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.library_books, size: 50, color: Colors.white,),
@@ -430,7 +430,7 @@ class _MainPageState extends State<MainPage> {
                 child: Card(
                   color: Colors.red,
                   child: Padding(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/25),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/30),
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.collections_bookmark, size: 50, color: Colors.white,),
@@ -454,7 +454,7 @@ class _MainPageState extends State<MainPage> {
                 child: Card(
                   color: Colors.red,
                   child: Padding(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/25),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/30),
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.motorcycle, size: 50, color: Colors.white,),
@@ -478,7 +478,7 @@ class _MainPageState extends State<MainPage> {
                 child: Card(
                   color: Colors.red,
                   child: Padding(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/25),
+                    padding: EdgeInsets.all(MediaQuery.of(context).size.width/30),
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.list, size: 50, color: Colors.white,),

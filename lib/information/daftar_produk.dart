@@ -1,10 +1,6 @@
 import 'dart:async';
 import 'package:bintang_motor/information/detail_produk.dart';
 import 'package:bintang_motor/information/produk_backend/service.dart';
-import 'package:bintang_motor/mainpage_backend/albumcellmp.dart';
-import 'package:bintang_motor/mainpage_backend/getdata-mp.dart';
-import 'package:bintang_motor/mainpage_backend/info_detail.dart';
-import 'package:bintang_motor/mainpage_backend/service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'produk_backend/albumcellpr.dart';
