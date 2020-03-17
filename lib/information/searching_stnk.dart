@@ -208,19 +208,7 @@ class _SearchState extends State<Search> {
                     ),
                   );
                 },
-              ) : ListView.builder(
-                itemCount: _list.length,
-                itemBuilder: (context, i){
-                  final a = _list[i];
-                  return Container(
-                    child: Column(
-                      children: <Widget>[
-
-                      ],
-                    ),
-                  );
-                },
-              )
+              ) : ListView.builder()
             )
           ],
         ),

@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:async/async.dart';
 import 'package:bintang_motor/mainpage_backend/getdata-mp.dart';
 import 'package:http/http.dart' as http;
 

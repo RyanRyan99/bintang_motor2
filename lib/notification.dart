@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -153,11 +154,11 @@ class _NotifikasiState extends State<Notifikasi> {
             shrinkWrap: true,
             itemBuilder: (context, i){
               final a = _list[i];
-              final b = _list2[i];
               DateTime time = _list[i].tanggal;
               DateFormat formated = new DateFormat("MMM");
               String formater = formated.format(time);
 
+              final b = _list2[i];
               DateTime time2 = _list2[i].date;
               DateFormat formated2 = new DateFormat("MMM");
               String formater2 = formated2.format(time2);
@@ -232,7 +233,7 @@ class _NotifikasiState extends State<Notifikasi> {
                       ],
                     ),
                     ),
-                    Card(
+                     Card(
                       child: new Stack(
                         children: <Widget>[
                           Container(
@@ -304,13 +305,13 @@ class _NotifikasiState extends State<Notifikasi> {
                 ),
               );
             },
-          )
+          ),
+
         ],
       ),
     );
   }
 }
-
 class CardNewsNotif{
   String id;
   String title;

@@ -409,7 +409,7 @@ class _DetailProdukState extends State<DetailProduk> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("Rem Depan", style: TextStyle(color: Colors.white, fontSize: 11),),
-                  Text(widget.curAlbum.rem_depan, style: TextStyle(color: Colors.white, fontSize: 11),)
+                  Text(widget.curAlbum.rem_depan, overflow: TextOverflow.ellipsis, maxLines: 1, style: TextStyle(color: Colors.white, fontSize: 11),)
                 ],
               ),
             ),
@@ -418,7 +418,7 @@ class _DetailProdukState extends State<DetailProduk> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("Rem Belakang", style: TextStyle(color: Colors.white, fontSize: 11),),
-                  Text(widget.curAlbum.rem_belakang, style: TextStyle(color: Colors.white, fontSize: 11),)
+                  Text(widget.curAlbum.rem_belakang, overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.white, fontSize: 11),)
                 ],
               ),
             )

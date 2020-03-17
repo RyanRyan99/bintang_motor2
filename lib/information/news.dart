@@ -17,6 +17,7 @@ class _NewsPageState extends State<NewsPage> {
     return Padding(
       padding: EdgeInsets.all(5.0),
       child: GridView.count(
+        padding: EdgeInsets.only(top: 5),
         crossAxisCount: 2,
         childAspectRatio: 1.0,
         mainAxisSpacing: 4.0,
@@ -85,7 +86,7 @@ class _NewsPageState extends State<NewsPage> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 130),
+            padding: EdgeInsets.only(top: 125.0),
             child: Container(
               height: double.infinity,
               child: Column(

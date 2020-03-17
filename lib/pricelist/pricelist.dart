@@ -1,11 +1,8 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
 import '../navigator_menu.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:http/http.dart' as http;
 import 'package:share/share.dart';
+
 void main(){
   runApp(new MaterialApp(
     home: new NavigatorPage(),

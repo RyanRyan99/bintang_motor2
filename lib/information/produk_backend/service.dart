@@ -51,6 +51,9 @@ class ServiceProdCub {
         List<AlbumProdCub> list = parsePhotos(response.body);
         return list;
       }
+      else {
+        throw Exception("Error");
+      }
     }catch (e) {
       throw Exception(e.toString());
     }

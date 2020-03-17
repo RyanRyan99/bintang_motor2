@@ -1,13 +1,7 @@
-import 'package:bintang_motor/customer/customer.dart';
-import 'package:bintang_motor/information/cek_stnk.dart';
-import 'package:bintang_motor/information/news.dart';
-import 'package:bintang_motor/main.dart';
 import 'package:bintang_motor/mainpage.dart';
 import 'package:bintang_motor/notification.dart';
-import 'package:bintang_motor/pricelist/pricelist.dart';
 import 'package:bintang_motor/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main()=> runApp(MyApp());
 

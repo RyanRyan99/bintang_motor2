@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -174,7 +173,6 @@ class _ProfileState extends State<Profile> {
   }
   //Untuk Field
   Widget _TextField(){
-    ScreenScaler scaler = new ScreenScaler()..init(context);
     return Stack(
       children: <Widget>[
         Padding(

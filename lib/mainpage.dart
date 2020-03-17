@@ -21,8 +21,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
-import 'information/searching_stnk.dart';
-
 void main(){
   runApp(new MaterialApp(
     home: new NavigatorPage(),
@@ -349,12 +347,7 @@ class _MainPageState extends State<MainPage> {
   //Untuk Container Logo
   Widget _BoxLogo(){
     ScreenScaler scaler = new ScreenScaler()..init(context);
-    MediaQueryData queryData;
-    queryData = MediaQuery.of(context);
     window.physicalSize;
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    var padding = MediaQuery.of(context).padding;
 //    double height1 = height - padding.top - padding.bottom;
 //    double height2 = height - padding.top;
 //    double height3 = height - padding.top - kToolbarHeight;
@@ -521,29 +514,6 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-  //Untuk Card Info Dan Promo
-  Widget _CardInfo({image}){
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 5),
-            height: 180, width: 180,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(image),
-                    fit: BoxFit.cover
-                ),
-                borderRadius: BorderRadius.circular(10.0),
-                boxShadow: <BoxShadow>[
-                  new BoxShadow(blurRadius: 3,spreadRadius: 1.0, color: Colors.black45)
-                ]
-            ),
           ),
         ],
       ),
