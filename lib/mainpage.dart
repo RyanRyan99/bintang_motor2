@@ -161,7 +161,7 @@ class _MainPageState extends State<MainPage> {
                  alignment: Alignment.topRight,
                  child: Container(
                  padding: EdgeInsets.only(top: 40, right: 40),
-                   child: Icon(Icons.notifications, color: Colors.white,),
+                   child: _IconBadge(Icons.notifications, "5", Colors.black)
                  ),
                ),
                 Padding(
@@ -314,6 +314,38 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
+  //Icon Badge
+  Widget _IconBadge(IconData icon, String Badgetext, Color badgeColor){
+    return Stack(
+      children: <Widget>[
+        Icon(icon, size: 30, color: Colors.white,),
+        Positioned(
+          top: 2.0,
+          right: 1.0,
+          child: Container(
+            decoration: BoxDecoration(
+              color: badgeColor, shape: BoxShape.circle
+            ),
+            constraints: BoxConstraints(
+              maxWidth: 13.0,
+              maxHeight: 13.0,
+            ),
+            child: Center(
+              child: Text(
+                Badgetext,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 10.0,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
   //Untuk Container Logo
   Widget _BoxLogo(){
     ScreenScaler scaler = new ScreenScaler()..init(context);
@@ -338,7 +370,7 @@ class _MainPageState extends State<MainPage> {
                   icon: FaIcon(FontAwesomeIcons.database, size: 25, color: Colors.red,),
                   onPressed: (){
                     Navigator.of(context).push(new MaterialPageRoute(
-                        builder: (BuildContext context) => new Customer2()
+                        builder: (BuildContext context) => new Customer()
                     )
                     );
                   },

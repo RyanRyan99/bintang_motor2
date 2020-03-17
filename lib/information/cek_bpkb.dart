@@ -112,7 +112,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
                             height: 40,
                             margin: EdgeInsets.only(bottom: 50, left: 50, right: 50),
                             child: new TextFormField(
-                              inputFormatters: [LengthLimitingTextInputFormatter(8)],
+                              inputFormatters: [LengthLimitingTextInputFormatter(9)],
                               controller: searchController,
                               style: TextStyle(height: 1.5, fontSize: 18),
                               cursorColor: Colors.red,
@@ -129,7 +129,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
                             height: 50,
                              child: InkWell(
                               onTap: (){
-                                if(searchController.text.length != 6 && searchController.text.length != 7 && searchController.text.length != 8){
+                                if(searchController.text.length != 7 && searchController.text.length != 8 && searchController.text.length != 9){
                                   showDialog(
                                     context: context,
                                     builder: (context){

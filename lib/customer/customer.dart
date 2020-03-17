@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bintang_motor/customer/service.dart';
@@ -9,8 +10,65 @@ class Customer extends StatefulWidget {
   @override
   _CustomerState createState() => _CustomerState();
 }
-class _CustomerState extends State<Customer> {
-
+class _CustomerState extends State<Customer>  {
+  List<CardCustomer> _list = List<CardCustomer>();
+  Future<List<CardCustomer>> getData() async {
+    var url = "https://bintang-niagajaya.000webhostapp.com/api_customer_dataopen.php";
+    var response = await http.get(url);
+    var list = List<CardCustomer>();
+    if(response.statusCode == 200){
+      var listjson = json.decode(response.body);
+      for(var datajson in listjson){
+        list.add(CardCustomer.fromJson(datajson));
+      }
+    }
+    return list;
+  }
+  List<CardCustomer> _list2 = List<CardCustomer>();
+  Future<List<CardCustomer>> getDataDeal() async {
+    var url = "https://bintang-niagajaya.000webhostapp.com/api_customer_deal.php";
+    var response = await http.get(url);
+    var list = List<CardCustomer>();
+    if(response.statusCode == 200){
+      var listjson2 = json.decode(response.body);
+      for(var datajson2 in listjson2){
+        list.add(CardCustomer.fromJson(datajson2));
+      }
+    }
+    return list;
+  }
+  List<CardCustomer> _list3 = List<CardCustomer>();
+  Future<List<CardCustomer>> getDataNoDeal() async {
+    var url = "https://bintang-niagajaya.000webhostapp.com/api_customer_nodeal.php";
+    var response = await http.get(url);
+    var list = List<CardCustomer>();
+    if(response.statusCode == 200){
+      var listjson3 = json.decode(response.body);
+      for(var listjson3 in listjson3){
+        list.add(CardCustomer.fromJson(listjson3));
+      }
+    }
+    return list;
+  }
+  @override
+  void initState() {
+    getData().then((value){
+      setState(() {
+        _list.addAll(value);
+      });
+    });
+    getDataDeal().then((value){
+      setState(() {
+        _list2.addAll(value);
+      });
+    });
+    getDataNoDeal().then((value){
+      setState(() {
+        _list3.addAll(value);
+      });
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,7 +204,7 @@ class _CustomerState extends State<Customer> {
       ),
     );
   }
-  Widget _Tabs(){
+  Widget _Tabs() {
     return Container(
       child: DefaultTabController(
         length: 3,
@@ -155,24 +213,33 @@ class _CustomerState extends State<Customer> {
           body: TabBarView(
             children: [
               Container(
-                child: Column(
-                  children: <Widget>[
-                    _NotifCard(),
-                  ],
+                child: SingleChildScrollView(
+                  physics: ScrollPhysics(),
+                  child: Column(
+                    children: <Widget>[
+                      _NotifCardDataOpen(),
+                    ],
+                  ),
                 )
               ),
               Container(
-                child: Column(
-                  children: <Widget>[
-
-                  ],
+                child: SingleChildScrollView(
+                  physics: ScrollPhysics(),
+                  child: Column(
+                    children: <Widget>[
+                      _NotifCardDeal()
+                    ],
+                  ),
                 ),
               ),
               Container(
-                child: Column(
-                  children: <Widget>[
-
-                  ],
+                child: SingleChildScrollView(
+                  physics: ScrollPhysics(),
+                  child: Column(
+                    children: <Widget>[
+                      _NotifCardNoDeal()
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -181,90 +248,283 @@ class _CustomerState extends State<Customer> {
       ),
     );
   }
-  Widget _NotifCard(){
+  Widget _NotifCardDataOpen(){
     window.physicalSize;
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    var padding = MediaQuery.of(context).padding;
-    double height1 = height - padding.top - padding.bottom;
-    double height2 = height - padding.top;
-    double height3 = height - padding.top - kToolbarHeight;
-    return Flexible(
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            Card(
-              child: new Stack(
-                children: <Widget>[
-                  Container(
-                    width: width,
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            padding: EdgeInsets.all(8.0),
-                            child: Column(
-                              children: <Widget>[
-                                new Text("2020",style: TextStyle(color: Colors.white,fontSize: 11, fontWeight: FontWeight.bold),),
-                                new Text("15",style: TextStyle(color: Colors.white,fontSize: 24, fontWeight: FontWeight.bold),),
-                                new Text("FEB",style: TextStyle(color: Colors.white,fontSize: 11, fontWeight: FontWeight.bold),),
-                              ],
-                            ),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: Colors.red
-                            ),
-                          ),
-                        ),
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Container(
-                                width:200,
+    return Container(
+      child: Column(
+        children: <Widget>[
+          ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
+            itemCount: _list.length,
+            shrinkWrap: true,
+            itemBuilder: (context, i){
+              final a = _list[i];
+              DateTime time = _list[i].tanggal;
+              DateFormat formated = new DateFormat("MMM");
+              String formater = formated.format(time);
+              return Container(
+                child: Card(
+                  child: new Stack(
+                    children: <Widget>[
+                      Container(
+                        width: width,
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 50,
+                                padding: EdgeInsets.all(8.0),
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    new Text("", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                                    new Text("Honda BeAT Sporty",style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
-                                    new Text("CASH",style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
+                                    new Text(time.year.toString(),style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
+                                    new Text(time.day.toString(),style: TextStyle(color: Colors.white,fontSize: 28, fontWeight: FontWeight.bold),),
+                                    new Text(formater,style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
                                   ],
                                 ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    color: Colors.red
+                                ),
                               ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 25, right: 8),
-                     child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Container(
-                        height: 30,
-                        width: 85,
-                        child: RaisedButton(
-                          splashColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          color: Colors.red,
-                          child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11),),
-                          onPressed: (){},
+                            ),
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                    width:200,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                                        new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
+                                        new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25, right: 8),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            height: 30,
+                            width: 85,
+                            child: RaisedButton(
+                              splashColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
+                              color: Colors.red,
+                              child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11),),
+                              onPressed: (){},
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          )
+        ],
       ),
     );
   }
+  Widget _NotifCardDeal(){
+    window.physicalSize;
+    double width = MediaQuery.of(context).size.width;
+    return Container(
+      child: Column(
+        children: <Widget>[
+          ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
+            itemCount: _list2.length,
+            shrinkWrap: true,
+            itemBuilder: (context, i){
+              final a = _list2[i];
+              DateTime time = _list2[i].tanggal;
+              DateFormat formated = new DateFormat("MMM");
+              String formater = formated.format(time);
+              return Container(
+                child: Card(
+                  child: new Stack(
+                    children: <Widget>[
+                      Container(
+                        width: width,
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 50,
+                                padding: EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    new Text(time.year.toString(),style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
+                                    new Text(time.day.toString(),style: TextStyle(color: Colors.white,fontSize: 28, fontWeight: FontWeight.bold),),
+                                    new Text(formater,style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    color: Colors.red
+                                ),
+                              ),
+                            ),
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                    width:200,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                                        new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
+                                        new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25, right: 8),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            height: 30,
+                            width: 85,
+                            child: RaisedButton(
+                              splashColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
+                              color: Colors.red,
+                              child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11),),
+                              onPressed: (){},
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          )
+        ],
+      ),
+    );
+  }
+  Widget _NotifCardNoDeal(){
+    window.physicalSize;
+    double width = MediaQuery.of(context).size.width;
+    return Container(
+      child: Column(
+        children: <Widget>[
+          ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
+            itemCount: _list3.length,
+            shrinkWrap: true,
+            itemBuilder: (context, i){
+              final a = _list3[i];
+              DateTime time = _list3[i].tanggal;
+              DateFormat formated = new DateFormat("MMM");
+              String formater = formated.format(time);
+              return Container(
+                child: Card(
+                  child: new Stack(
+                    children: <Widget>[
+                      Container(
+                        width: width,
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 50,
+                                padding: EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    new Text(time.year.toString(),style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
+                                    new Text(time.day.toString(),style: TextStyle(color: Colors.white,fontSize: 28, fontWeight: FontWeight.bold),),
+                                    new Text(formater,style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    color: Colors.red
+                                ),
+                              ),
+                            ),
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                    width:200,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                                        new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
+                                        new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25, right: 8),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            height: 30,
+                            width: 85,
+                            child: RaisedButton(
+                              splashColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
+                              color: Colors.red,
+                              child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11),),
+                              onPressed: (){},
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          )
+        ],
+      ),
+    );
+  }
+
   Widget Menu(){
     return Container(
       child: TabBar(
@@ -280,228 +540,3 @@ class _CustomerState extends State<Customer> {
   }
 }
 
-class Customer2 extends StatefulWidget {
-  @override
-  _Customer2State createState() => _Customer2State();
-}
-
-class _Customer2State extends State<Customer2> {
-  List<CardCustomer> _list = [];
-  List<CardCustomer> _search = [];
-  var loading = false;
-  Future<Null> fetchData() async {
-    setState(() {
-      loading = true;
-    });
-    _list.clear();
-    final response = await http.get("https://bintang-niagajaya.000webhostapp.com/api_customer_deal.php");
-    if(response.statusCode == 200){
-      final data = jsonDecode(response.body);
-      setState(() {
-        for (Map i in data){
-          _list.add(CardCustomer.fromJson(i));
-          loading = false;
-        }
-      });
-    }
-  }
-  TextEditingController controller = new TextEditingController();
-
-  Searching(String text) async{
-    _search.clear();
-    if(text.isEmpty){
-      setState(() {
-        return;
-      });
-    }
-    _list.forEach((f){
-      if(f.nama.contains(text))
-        _search.add(f);
-    });
-    setState(() {});
-  }
-  @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(top: 50),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    width: 300,
-                    child: Card(
-                      child: ListTile(
-                        leading: Icon(Icons.search),
-                        title: TextField(
-                          controller: controller,
-//                          onChanged: Searching,
-                          decoration: InputDecoration(
-                            hintText: "Search", border: InputBorder.none,
-                          ),
-                        ),
-                        trailing: IconButton(
-                          icon: Icon(Icons.clear),
-                          onPressed: (){
-                            controller.clear();
-                            Searching('');
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                  FlatButton(
-                    child: Icon(Icons.search, color: Colors.white,),
-                    // ignore: unnecessary_statements
-                    onPressed: (){
-                      setState(() {
-                        Searching(controller.text);
-                      });
-                    },
-                    color: Colors.red,
-                  )
-                ],
-              ),
-            ),
-            loading ? Center(
-              child: CircularProgressIndicator(),
-            ) : Flexible(
-                child: _search.length != 0 || controller.text.isNotEmpty ? ListView.builder(
-                  itemCount: _search.length,
-                  itemBuilder: (context, i) {
-                    final b = _search[i];
-                    return Container(
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            height: 40,
-                            width: double.infinity,
-                            margin: EdgeInsets.all(5),
-                            child: Container(
-                              child: Text(
-                                  b.nama
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(4.0),
-                                boxShadow: <BoxShadow>[
-                                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
-                                ]
-                            ),
-                          ),
-                          Container(
-                            height: 40,
-                            width: double.infinity,
-                            margin: EdgeInsets.all(5),
-                            child: Container(
-                              child: Text(
-                                b.produk_pembelian,
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(4.0),
-                                boxShadow: <BoxShadow>[
-                                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
-                                ]
-                            ),
-                          ),
-                          Container(
-                            height: 40,
-                            width: double.infinity,
-                            margin: EdgeInsets.all(5),
-                            child: Container(
-                              child: Text(
-                                  b.pembayaran
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(4.0),
-                                boxShadow: <BoxShadow>[
-                                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
-                                ]
-                            ),
-                          ),
-                          Container(
-                            height: 40,
-                            width: double.infinity,
-                            margin: EdgeInsets.all(5),
-                            child: Container(
-                              child: Text(
-                                  b.tanggal
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(4.0),
-                                boxShadow: <BoxShadow>[
-                                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
-                                ]
-                            ),
-                          ),
-                          Container(
-                            height: 40,
-                            width: double.infinity,
-                            margin: EdgeInsets.all(5),
-                            child: Container(
-                              child: Text(
-                                  b.id
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(4.0),
-                                boxShadow: <BoxShadow>[
-                                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
-                                ]
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ) : ListView.builder(
-                  itemCount: _list.length,
-                  itemBuilder: (context, i){
-                    final a = _list[i];
-                    return Container(
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            height: 40,
-                            width: double.infinity,
-                            margin: EdgeInsets.all(5),
-                            child: Container(
-                              child: Text(
-                                  a.nama
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(4.0),
-                                boxShadow: <BoxShadow>[
-                                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
-                                ]
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                )
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}

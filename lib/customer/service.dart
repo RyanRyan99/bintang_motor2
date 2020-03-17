@@ -3,7 +3,7 @@ class CardCustomer {
   String nama;
   String produk_pembelian;
   String pembayaran;
-  String tanggal;
+  DateTime tanggal;
   String data;
 
   CardCustomer({this.id, this.nama, this.produk_pembelian, this.pembayaran,
@@ -15,7 +15,7 @@ class CardCustomer {
       nama: json['nama'],
       produk_pembelian: json['produk_pembelian'],
       pembayaran: json['pembayaran'],
-      tanggal: json['tanggal'],
+      tanggal: json['tanggal']== null ? null : DateTime.parse(json['tanggal']),
       data: json['data'],
     );
   }
