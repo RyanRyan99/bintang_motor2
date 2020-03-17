@@ -150,7 +150,7 @@ class _NotifikasiState extends State<Notifikasi> {
           ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
-            itemCount: _list.length,
+            itemCount: _list.length == 0 ? _list2.length : _list.length,
             shrinkWrap: true,
             itemBuilder: (context, i){
               final a = _list[i];
