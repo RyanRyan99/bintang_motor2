@@ -13,28 +13,17 @@ class Notifikasi extends StatefulWidget {
 }
 
 class _NotifikasiState extends State<Notifikasi> {
-  List<CardCustomer> _list = List<CardCustomer>();
-  Future<List<CardCustomer>> getData() async {
-    var url = "https://bintang-niagajaya.000webhostapp.com/api_customer.php";
+  bool loading = false;
+  List<CardNotifikasi> _list = List<CardNotifikasi>();
+  Future<List<CardNotifikasi>> getData() async {
+    var url = "https://bintang-niagajaya.000webhostapp.com/api_notifikasi.php";
     var response = await http.get(url);
-    var list = List<CardCustomer>();
+    var list = List<CardNotifikasi>();
     if(response.statusCode == 200){
       var listjson = json.decode(response.body);
       for(var datajson in listjson){
-        list.add(CardCustomer.fromJson(datajson));
-      }
-    }
-    return list;
-  }
-  List<CardNewsNotif> _list2 = List<CardNewsNotif>();
-  Future<List<CardNewsNotif>> getNews() async {
-    var url = "https://bintang-niagajaya.000webhostapp.com/api_news.php";
-    var response = await http.get(url);
-    var list = List<CardNewsNotif>();
-    if(response.statusCode == 200){
-      var listjson = json.decode(response.body);
-      for(var datajson in listjson){
-        list.add(CardNewsNotif.fromJson(datajson));
+        list.add(CardNotifikasi.fromJson(datajson));
+        loading = false;
       }
     }
     return list;
@@ -42,17 +31,15 @@ class _NotifikasiState extends State<Notifikasi> {
   @override
   void initState() {
     getData().then((value){
-      setState(() {
-        _list.addAll(value);
-      });
-    });
-    getNews().then((value){
-      setState(() {
-        _list2.addAll(value);
-      });
+      if (!mounted) return;
+        setState(() {
+          _list.addAll(value);
+        });
+        super.initState();
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     window.physicalSize;
@@ -145,189 +132,212 @@ class _NotifikasiState extends State<Notifikasi> {
     window.physicalSize;
     double width = MediaQuery.of(context).size.width;
     return Container(
-      child: Column(
-        children: <Widget>[
-          ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.zero,
-            itemCount: _list.length == 0 ? _list2.length : _list.length,
-            shrinkWrap: true,
-            itemBuilder: (context, i){
-              final a = _list[i];
-              DateTime time = _list[i].tanggal;
-              DateFormat formated = new DateFormat("MMM");
-              String formater = formated.format(time);
-
-              final b = _list2[i];
-              DateTime time2 = _list2[i].date;
-              DateFormat formated2 = new DateFormat("MMM");
-              String formater2 = formated2.format(time2);
-              return Container(
-                child: Column(
-                  children: <Widget>[
-                    Card(
-                     child: new Stack(
-                      children: <Widget>[
-                        Container(
-                          width: width,
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  width: 50,
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: <Widget>[
-                                      new Text(time.year.toString(),style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
-                                      new Text(time.day.toString(),style: TextStyle(color: Colors.white,fontSize: 28, fontWeight: FontWeight.bold),),
-                                      new Text(formater,style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
-                                    ],
-                                  ),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      color: Colors.red
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: loading ? Center(
+          child: CircularProgressIndicator()
+         ) : ListView.builder(
+        padding: EdgeInsets.zero,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: _list.length,
+        shrinkWrap: true,
+        itemBuilder: (context, i){
+          final a = _list[i];
+          DateTime time = _list[i].date;
+          DateFormat formated = new DateFormat("MMM");
+          String formater = formated.format(time);
+          DateTime timers = _list[i].tanggal;
+          DateFormat formated2 = new DateFormat("MMM");
+          String formater2 = formated2.format(timers);
+          return Container(
+            child: Column(
+              children: <Widget>[
+                Card(
+                  child: new Stack(
+                    children: <Widget>[
+                      Container(
+                        width: width,
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 50,
+                                padding: EdgeInsets.all(8.0),
+                                child: Column(
                                   children: <Widget>[
-                                    Container(
-                                      width:200,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                                          new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
-                                          new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
-                                        ],
-                                      ),
-                                    ),
+                                    new Text(time.year.toString(),style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
+                                    new Text(time.day.toString(),style: TextStyle(color: Colors.white,fontSize: 28, fontWeight: FontWeight.bold),),
+                                    new Text(formater,style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
                                   ],
                                 ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 25, right: 8),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Container(
-                              height: 30,
-                              width: 85,
-                              child: RaisedButton(
-                                splashColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    color: Colors.red
                                 ),
-                                color: Colors.red,
-                                child: Text("Accept",style: TextStyle(color: Colors.white, fontSize: 11),),
-                                onPressed: (){},
                               ),
                             ),
-                          ),
-                        )
-                      ],
-                    ),
-                    ),
-                     Card(
-                      child: new Stack(
-                        children: <Widget>[
-                          Container(
-                            width: width,
-                            child: Row(
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    width: 50,
-                                    padding: EdgeInsets.all(8.0),
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                    width:200,
                                     child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        new Text(time2.year.toString(),style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
-                                        new Text(time2.day.toString(),style: TextStyle(color: Colors.white,fontSize: 28, fontWeight: FontWeight.bold),),
-                                        new Text(formater2,style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
+                                        new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                                        new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
+                                        new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
                                       ],
                                     ),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8.0),
-                                        color: Colors.red
-                                    ),
                                   ),
-                                ),
-                                Container(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Container(
-                                        width:200,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            new Text(b.title, overflow: TextOverflow.ellipsis, maxLines: 1, style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                                            new Text(b.content, overflow: TextOverflow.ellipsis, maxLines: 1, style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
-                                            new Text(b.category,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25, right: 8),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            height: 30,
+                            width: 85,
+                            child: RaisedButton(
+                              splashColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
+                              color: Colors.red,
+                              child: Text("Access",style: TextStyle(color: Colors.white, fontSize: 11),),
+                              onPressed: (){},
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 25, right: 8),
-                            child: Align(
-                              alignment: Alignment.centerRight,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Card(
+                  child: new Stack(
+                    children: <Widget>[
+                      Container(
+                        width: width,
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                height: 30,
-                                width: 85,
-                                child: RaisedButton(
-                                  splashColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)
-                                  ),
-                                  color: Colors.red,
-                                  child: Text("Open",style: TextStyle(color: Colors.white, fontSize: 11),),
-                                  onPressed: (){},
+                                width: 50,
+                                padding: EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    new Text(timers.year.toString(),style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
+                                    new Text(timers.day.toString(),style: TextStyle(color: Colors.white,fontSize: 28, fontWeight: FontWeight.bold),),
+                                    new Text(formater2,style: TextStyle(color: Colors.white,fontSize: 12, fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    color: Colors.red
                                 ),
                               ),
                             ),
-                          )
-                        ],
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                    width:200,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        new Text(a.title, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                                        new Text(a.content, overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
+                                        new Text(a.category,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25, right: 8),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            height: 30,
+                            width: 85,
+                            child: RaisedButton(
+                              splashColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
+                              color: Colors.red,
+                              child: Text("Open",style: TextStyle(color: Colors.white, fontSize: 11),),
+                              onPressed: (){},
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              );
-            },
-          ),
-
-        ],
+              ],
+            ),
+          );
+        },
       ),
     );
   }
 }
-class CardNewsNotif{
-  String id;
+class CardNotifikasi {
   String title;
-  String content;
   String category;
   DateTime date;
+  String content;
+  String nama;
+  String produk_pembelian;
+  String pembayaran;
+  DateTime tanggal;
 
-  CardNewsNotif({this.id, this.title, this.content, this.category, this.date});
-  factory CardNewsNotif.fromJson(Map<String, dynamic> json){
-    return CardNewsNotif(
-      id: json['id'],
+  CardNotifikasi({this.title, this.category, this.date, this.content, this.nama,
+      this.produk_pembelian, this.pembayaran, this.tanggal});
+
+  factory CardNotifikasi.fromJson(Map<String, dynamic> json){
+    return CardNotifikasi(
       title: json['title'],
-      content: json['content'],
       category: json['category'],
       date: json['date'] == null ? null : DateTime.parse(json['date']),
+      content: json['content'],
+      nama: json['nama'],
+      produk_pembelian: json['produk_pembelian'],
+      pembayaran: json['pembayaran'],
+      tanggal: json['tanggal'] == null ? null : DateTime.parse(json['tanggal']),
     );
   }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
