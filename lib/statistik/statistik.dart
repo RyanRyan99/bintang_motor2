@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Statistik extends StatefulWidget {
   @override
   _StatistikState createState() => _StatistikState();
 }
 class _StatistikState extends State<Statistik> {
+  Future<DataService> getData() async {
+    final response = await http.get("https://bintang-niagajaya.000webhostapp.com/api_statistik.php");
+    if(response.statusCode == 200){
+      return DataService.fromJson(json.decode(response.body));
+    }
+    else{
+      throw Exception('Error');
+    }
+  }
   int touchedIndex;
   @override
   Widget build(BuildContext context) {
@@ -63,13 +73,13 @@ class _StatistikState extends State<Statistik> {
               ],
             ),
           ),
-           Padding(
+          Padding(
             padding: const EdgeInsets.only(top: 130),
             child: Container(
               child: Stack(
                 children: <Widget>[
                   Container(
-                    height: 500,
+                      height: 500,
                       child: _Chart()
                   )
                 ],
@@ -96,21 +106,21 @@ class _StatistikState extends State<Statistik> {
                 aspectRatio: 1,
                 child: PieChart(
                   PieChartData(
-                    pieTouchData: PieTouchData(touchCallback: (pieTouchResponse){
-                      setState(() {
-                        if (pieTouchResponse.touchInput is FlLongPressEnd || pieTouchResponse.touchInput is FlPanEnd){
-                          touchedIndex = -1;
-                        }else{
-                          touchedIndex = pieTouchResponse.touchedSectionIndex;
-                        }
-                      });
-                    }),
-                    borderData: FlBorderData(
-                      show: false,
-                    ),
-                    sectionsSpace: 0,
-                    centerSpaceRadius: 50,
-                    sections: showingSections()),
+                      pieTouchData: PieTouchData(touchCallback: (pieTouchResponse){
+                        setState(() {
+                          if (pieTouchResponse.touchInput is FlLongPressEnd || pieTouchResponse.touchInput is FlPanEnd){
+                            touchedIndex = -1;
+                          }else{
+                            touchedIndex = pieTouchResponse.touchedSectionIndex;
+                          }
+                        });
+                      }),
+                      borderData: FlBorderData(
+                        show: false,
+                      ),
+                      sectionsSpace: 0,
+                      centerSpaceRadius: 50,
+                      sections: showingSections()),
                 ),
               ),
             ),
@@ -192,7 +202,22 @@ class _StatistikState extends State<Statistik> {
     });
   }
 }
+class DataService {
+  String data_open;
+  String deal;
+  String no_deal;
 
+  DataService({this.data_open, this.deal, this.no_deal});
+
+  factory DataService.fromJson(Map<String, dynamic> json){
+    return DataService(
+      data_open: json['DataOpen'],
+      deal: json['Deal'],
+      no_deal: json['NoDeal'],
+    );
+  }
+
+}
 class Indicator extends StatelessWidget {
   final Color color;
   final String text;
@@ -232,4 +257,3 @@ class Indicator extends StatelessWidget {
     );
   }
 }
-

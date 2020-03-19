@@ -12,6 +12,7 @@ import 'package:bintang_motor/mainpage_backend/service.dart';
 import 'package:bintang_motor/navigator_menu.dart';
 import 'package:bintang_motor/pricelist/pricelist.dart';
 import 'package:bintang_motor/statistik/statistik.dart';
+import 'package:bintang_motor/statistik/statistik2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
