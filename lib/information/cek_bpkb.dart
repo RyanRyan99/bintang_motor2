@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
@@ -44,8 +45,22 @@ class _CheckBpkbState extends State<CheckBpkb> {
     });
     setState(() {});
   }
+  String _platformVersion = 'Unknown';
+  Future<void> initPlatformState()  async{
+    String platformVersion;
+    try{
+      platformVersion = await FlutterOpenWhatsapp.platformVersion;
+    }on PlatformException{
+      platformVersion = "Gagal mendapatkan versi";
+    }
+    if (!mounted) return;
+    setState(() {
+      _platformVersion = platformVersion;
+    });
+  }
   @override
   void initState() {
+    initPlatformState();
     fetchData();
     super.initState();
   }
@@ -176,24 +191,35 @@ class _CheckBpkbState extends State<CheckBpkb> {
                         ),
                         _TextField(),
                         Padding(
-                          padding: const EdgeInsets.only(top: 460, left: 10),
+                          padding: const EdgeInsets.only(top: 470, left: 10, right: 10),
                           child: Container(
-                            child: RaisedButton(
-                              splashColor: Colors.white,
-                              color: Colors.red,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)
-                              ),
-                              onPressed: (){},
-                              child: Text("Hubungi Konsumen",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
+                            child: _search.length == 0 || searchController.text.isNotEmpty ? ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              itemCount: _search.length,
+                              itemBuilder: (context, i){
+                                final b = _search[i];
+                                return RaisedButton(
+                                  splashColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0)
+                                  ),
+                                  color: Colors.red,
+                                  onPressed: (){
+                                    FlutterOpenWhatsapp.sendSingleMessage(b.no_telp,"Hallo Customer Bintang Motor");
+                                    return Text('Running on: $_platformVersion\n');
+                                  },
+                                  child: Text("Hubungi Konsumen",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ) : ListView.builder(),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -526,10 +552,11 @@ class BPKB {
   String no_rangka;
   String status_bpkb;
   DateTime tanggal_terbit_bpkb;
+  String no_telp;
 
   BPKB({this.id, this.pemilik_kendaraan, this.type_motor, this.no_polisi,
       this.no_mesin, this.no_rangka, this.status_bpkb,
-      this.tanggal_terbit_bpkb});
+      this.tanggal_terbit_bpkb, this.no_telp});
 
   factory BPKB.fromJson(Map<String, dynamic> json){
     return BPKB(
@@ -541,6 +568,7 @@ class BPKB {
       no_rangka: json['no_rangka'],
       status_bpkb: json['status_bpkb'],
       tanggal_terbit_bpkb: json['tanggal_terbit_bpkb'] == null ? null : DateTime.parse(json['tanggal_terbit_bpkb']),
+      no_telp: json['no_telp'],
     );
   }
 }

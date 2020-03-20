@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
@@ -30,7 +31,6 @@ class _CheckStnkState extends State<CheckStnk> {
       });
     }
   }
-
   TextEditingController searchcontroller = new TextEditingController();
   Searching(String text) async{
     _search.clear();
@@ -45,11 +45,26 @@ class _CheckStnkState extends State<CheckStnk> {
     });
     setState(() {});
   }
+  String _platformVersion = 'Unknown';
+  Future<void> initPlatformState()  async{
+    String platformVersion;
+    try{
+      platformVersion = await FlutterOpenWhatsapp.platformVersion;
+    }on PlatformException{
+      platformVersion = "Gagal mendapatkan versi";
+    }
+    if (!mounted) return;
+    setState(() {
+      _platformVersion = platformVersion;
+    });
+  }
   @override
   void initState() {
     fetchData();
+    initPlatformState();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -160,14 +175,14 @@ class _CheckStnkState extends State<CheckStnk> {
                           ),
                         Padding(
                           padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
-                          child: Container(
-                            height: 400.0,
-                            decoration: BoxDecoration(
+                            child: Container(
+                              height: 400.0,
+                              decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(5.0),
                                 boxShadow: <BoxShadow>[BoxShadow(blurRadius: 2.0,color: Colors.black54)]
-                            ),
-                            child: Column(
+                              ),
+                              child: Column(
                               children: <Widget>[
                                 _HeaderCard(),
                                 _IsiCard(),
@@ -176,22 +191,33 @@ class _CheckStnkState extends State<CheckStnk> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 460, left: 10),
+                          padding: const EdgeInsets.only(top: 470, left: 10, right: 10),
                           child: Container(
-                            child: RaisedButton(
-                              splashColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)
-                              ),
-                              color: Colors.red,
-                              onPressed: (){print("c");},
-                              child: Text("Hubungi Konsumen",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
+                            child: _search.length == 0 || searchcontroller.text.isNotEmpty ? ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              itemCount: _search.length,
+                              itemBuilder: (context, i){
+                                final b = _search[i];
+                                return RaisedButton(
+                                  splashColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0)
+                                  ),
+                                  color: Colors.red,
+                                  onPressed: (){
+                                    FlutterOpenWhatsapp.sendSingleMessage(b.no_telpon,"Hallo Customer Bintang Motor");
+                                    return Text('Running on: $_platformVersion\n');
+                                  },
+                                  child: Text("Hubungi Konsumen",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ) : ListView.builder(),
                           ),
                         ),
                         _TextField()
@@ -329,6 +355,15 @@ class _CheckStnkState extends State<CheckStnk> {
           ),
         ),
         Divider(color: Colors.transparent,),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: new Text("No Telpon",
+          style: TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.bold
+           ),
+          ),
+        ),
       ],
     );
   }
@@ -517,6 +552,36 @@ class _CheckStnkState extends State<CheckStnk> {
             ),
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.only(top: 398,left: 135, right: 15),
+          child: Container(
+            height: 40,
+            width: double.infinity,
+            margin: EdgeInsets.all(5),
+            child: Container(
+              child: _search.length == 0 || searchcontroller.text.isNotEmpty ? ListView.builder(
+                padding: EdgeInsets.zero,
+                itemCount: _search.length,
+                itemBuilder: (context, i){
+                  final b = _search[i];
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 12, left: 5),
+                    child: Container(
+                      child: Text(b.no_telpon),
+                    ),
+                  );
+                },
+              ) : ListView.builder()
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(4.0),
+              boxShadow: <BoxShadow>[
+                new BoxShadow(spreadRadius: 0.5, blurRadius: 2.0, color: Colors.black38)
+              ]
+            ),
+          ),
+        )
       ],
     );
   }
@@ -529,9 +594,10 @@ class STNK {
   String no_rangka;
   String status_stnk;
   DateTime tanggal_terbit_stnk;
+  String no_telpon;
 
   STNK({this.id, this.no_mesin, this.pemilik_kendaraan, this.type_motor,
-      this.no_rangka, this.status_stnk, this.tanggal_terbit_stnk});
+      this.no_rangka, this.status_stnk, this.tanggal_terbit_stnk, this.no_telpon});
 
   factory STNK.fromJson(Map<String, dynamic> json){
     return STNK(
@@ -542,6 +608,7 @@ class STNK {
       no_rangka: json['no_rangka'],
       status_stnk: json['status_stnk'],
       tanggal_terbit_stnk: json['tanggal_terbit_stnk'] == null ? null : DateTime.parse(json['tanggal_terbit_stnk']),
+      no_telpon: json['no_telp'],
     );
   }
 }
