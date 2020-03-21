@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'package:bintang_motor/customer/customer.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class Notifikasi extends StatefulWidget {
   @override
@@ -207,7 +209,13 @@ class _NotifikasiState extends State<Notifikasi> {
                               ),
                               color: Colors.red,
                               child: Text("Access",style: TextStyle(color: Colors.white, fontSize: 11),),
-                              onPressed: (){},
+                              onPressed: (){
+                                  if(a.nama == a.nama){
+                                    (nama){
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> new Customer(dataopen: nama,)));
+                                    };
+                                  }
+                              },
                             ),
                           ),
                         ),
@@ -300,9 +308,10 @@ class CardNotifikasi {
   String produk_pembelian;
   String pembayaran;
   DateTime tanggal;
+  String data;
 
   CardNotifikasi({this.title, this.category, this.date, this.content, this.nama,
-      this.produk_pembelian, this.pembayaran, this.tanggal});
+      this.produk_pembelian, this.pembayaran, this.tanggal, this.data});
 
   factory CardNotifikasi.fromJson(Map<String, dynamic> json){
     return CardNotifikasi(
@@ -314,6 +323,7 @@ class CardNotifikasi {
       produk_pembelian: json['produk_pembelian'],
       pembayaran: json['pembayaran'],
       tanggal: json['tanggal'] == null ? null : DateTime.parse(json['tanggal']),
+      data: json['data'],
     );
   }
 }

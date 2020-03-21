@@ -57,14 +57,8 @@ flutter:
    - assets/background.png
    - assets/background2.png
    - assets/background3.png
-   - assets/picture.jpg
    - assets/Logo.png
    - assets/profile.jpg
-   - assets/Sample.jpg
-   - assets/Sample2.jpg
-   - assets/berita.jpg
-   - assets/berita2.jpg
-   - assets/1.jpg
    - assets/SamplePDF.pdf
 
   # An image asset can refer to one or more resolution-specific "variants", see

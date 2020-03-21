@@ -1,12 +1,18 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:flutter/services.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bintang_motor/customer/service.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class Customer extends StatefulWidget {
+  final CardCustomer dataopen;
+  Customer({this.dataopen});
   @override
   _CustomerState createState() => _CustomerState();
 }
@@ -49,6 +55,19 @@ class _CustomerState extends State<Customer>  {
       }
     }
     return list;
+  }
+  String _platformVersion = 'Unknown';
+  Future<void> initPlatformState()  async{
+    String platformVersion;
+    try{
+      platformVersion = await FlutterOpenWhatsapp.platformVersion;
+    }on PlatformException{
+      platformVersion = "Gagal mendapatkan versi";
+    }
+    if (!mounted) return;
+    setState(() {
+      _platformVersion = platformVersion;
+    });
   }
   @override
   void initState() {
@@ -249,6 +268,7 @@ class _CustomerState extends State<Customer>  {
     );
   }
   Widget _NotifCardDataOpen(){
+    widget.dataopen;
     window.physicalSize;
     double width = MediaQuery.of(context).size.width;
     return Container(
@@ -325,7 +345,45 @@ class _CustomerState extends State<Customer>  {
                               ),
                               color: Colors.red,
                               child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11),),
-                              onPressed: (){},
+                              onPressed: (){
+                                showDialog(
+                                    context: context,
+                                    builder: (context){
+                                      return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                        title: Align(
+                                          alignment: Alignment.center,
+                                            child: Text("Hubungi Via")
+                                        ),
+                                        content: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 8, left: 20, bottom: 8),
+                                              child: InkWell(
+                                                  onTap: (){
+                                                    FlutterOpenWhatsapp.sendSingleMessage(a.no_telp,"Hallo Customer Bintang Motor");
+                                                    return Text('Running on: $_platformVersion\n');
+                                                  },
+                                                  child: Icon(FontAwesomeIcons.whatsappSquare, size: 50, color: Colors.red,)
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 8, right: 20, bottom: 8),
+                                              child: InkWell(
+                                                onTap:() => launch("tel://${a.no_telp}"),
+                                                  child: Icon(FontAwesomeIcons.phoneSquare, size: 50, color: Colors.red,)
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    }
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -417,7 +475,45 @@ class _CustomerState extends State<Customer>  {
                               ),
                               color: Colors.red,
                               child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11),),
-                              onPressed: (){},
+                              onPressed: (){
+                                showDialog(
+                                    context: context,
+                                    builder: (context){
+                                      return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                        title: Align(
+                                            alignment: Alignment.center,
+                                            child: Text("Hubungi Via")
+                                        ),
+                                        content: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 8, left: 20, bottom: 8),
+                                              child: InkWell(
+                                                  onTap: (){
+                                                    FlutterOpenWhatsapp.sendSingleMessage(a.no_telp,"Hallo Customer Bintang Motor");
+                                                    return Text('Running on: $_platformVersion\n');
+                                                  },
+                                                  child: Icon(FontAwesomeIcons.whatsappSquare, size: 50, color: Colors.red,)
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 8, right: 20, bottom: 8),
+                                              child: InkWell(
+                                                  onTap:() => launch("tel://${a.no_telp}"),
+                                                  child: Icon(FontAwesomeIcons.phoneSquare, size: 50, color: Colors.red,)
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    }
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -509,7 +605,45 @@ class _CustomerState extends State<Customer>  {
                               ),
                               color: Colors.red,
                               child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11),),
-                              onPressed: (){},
+                              onPressed: (){
+                                showDialog(
+                                    context: context,
+                                    builder: (context){
+                                      return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                        title: Align(
+                                            alignment: Alignment.center,
+                                            child: Text("Hubungi Via")
+                                        ),
+                                        content: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 8, left: 20, bottom: 8),
+                                              child: InkWell(
+                                                  onTap: (){
+                                                    FlutterOpenWhatsapp.sendSingleMessage(a.no_telp,"Hallo Customer Bintang Motor");
+                                                    return Text('Running on: $_platformVersion\n');
+                                                  },
+                                                  child: Icon(FontAwesomeIcons.whatsappSquare, size: 50, color: Colors.red,),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 8, right: 20, bottom: 8),
+                                              child: InkWell(
+                                                  onTap:() => launch("tel://${a.no_telp}"),
+                                                  child: Icon(FontAwesomeIcons.phoneSquare, size: 50, color: Colors.red,)
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    }
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -524,7 +658,6 @@ class _CustomerState extends State<Customer>  {
       ),
     );
   }
-
   Widget Menu(){
     return Container(
       child: TabBar(

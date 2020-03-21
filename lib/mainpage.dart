@@ -12,7 +12,6 @@ import 'package:bintang_motor/mainpage_backend/service.dart';
 import 'package:bintang_motor/navigator_menu.dart';
 import 'package:bintang_motor/pricelist/pricelist.dart';
 import 'package:bintang_motor/statistik/statistik.dart';
-import 'package:bintang_motor/statistik/statistik2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -349,9 +348,6 @@ class _MainPageState extends State<MainPage> {
   Widget _BoxLogo(){
     ScreenScaler scaler = new ScreenScaler()..init(context);
     window.physicalSize;
-//    double height1 = height - padding.top - padding.bottom;
-//    double height2 = height - padding.top;
-//    double height3 = height - padding.top - kToolbarHeight;
     return Container(
       child: Row(
         children: <Widget>[
@@ -375,7 +371,6 @@ class _MainPageState extends State<MainPage> {
           ),
           SizedBox(width: scaler.getWidth(15.0)),
           Container(
-//            margin: EdgeInsets.only(left: queryData.size.width/8),
             child: Column(
               children: <Widget>[
                 new IconButton(
@@ -393,7 +388,6 @@ class _MainPageState extends State<MainPage> {
           ),
           SizedBox(width: scaler.getWidth(15.0)),
           Container(
-//            margin: EdgeInsets.only(left: queryData.size.width/8),
             child: Column(
               children: <Widget>[
                 new IconButton(
