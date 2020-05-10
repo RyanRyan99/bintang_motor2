@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:bintang_motor/customer/customer.dart';
+import 'package:bintang_motor/information/news.dart';
+import 'package:bintang_motor/information/news_backend/news_detail.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -210,11 +212,7 @@ class _NotifikasiState extends State<Notifikasi> {
                               color: Colors.red,
                               child: Text("Access",style: TextStyle(color: Colors.white, fontSize: 11),),
                               onPressed: (){
-                                  if(a.nama == a.nama){
-                                    (nama){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> new Customer(dataopen: nama,)));
-                                    };
-                                  }
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> new Customer()));
                               },
                             ),
                           ),
@@ -283,7 +281,9 @@ class _NotifikasiState extends State<Notifikasi> {
                               ),
                               color: Colors.red,
                               child: Text("Open",style: TextStyle(color: Colors.white, fontSize: 11),),
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => new NewsPage()));
+                              },
                             ),
                           ),
                         ),

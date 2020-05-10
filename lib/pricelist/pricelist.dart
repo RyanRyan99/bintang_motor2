@@ -3,11 +3,11 @@ import '../navigator_menu.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:share/share.dart';
 
-void main(){
-  runApp(new MaterialApp(
-    home: new NavigatorPage(),
-  ));
-}
+//void main(){
+//  runApp(new MaterialApp(
+//    home: new NavigatorPage(null),
+//  ));
+//}
 class PriceList extends StatefulWidget {
   //PDF
   final String path;

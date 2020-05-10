@@ -18,6 +18,14 @@ class _StatistikState extends State<Statistik> {
     }
   }
   int touchedIndex;
+
+  @override
+  void setState(fn) {
+    getData();
+    print(getData());
+    // TODO: implement setState
+    super.setState(fn);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

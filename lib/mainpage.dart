@@ -5,6 +5,7 @@ import 'package:bintang_motor/information/cek_bpkb.dart';
 import 'package:bintang_motor/information/cek_stnk.dart';
 import 'package:bintang_motor/information/daftar_produk.dart';
 import 'package:bintang_motor/information/news.dart';
+import 'package:bintang_motor/login.dart';
 import 'package:bintang_motor/mainpage_backend/albumcellmp.dart';
 import 'package:bintang_motor/mainpage_backend/getdata-mp.dart';
 import 'package:bintang_motor/mainpage_backend/info_detail.dart';
@@ -20,6 +21,7 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main(){
   runApp(new MaterialApp(
@@ -28,9 +30,17 @@ void main(){
 }
 class MainPage extends StatefulWidget {
   @override
+  final String user;
+  MainPage(this.user);
+  @override
   _MainPageState createState() => _MainPageState();
 }
 class _MainPageState extends State<MainPage> {
+
+  final _key = new GlobalKey<FormState>();
+
+
+
   //PDF FILE
   String assetPDFPath = "";
   String urlPDFPath = "";
@@ -44,7 +54,7 @@ class _MainPageState extends State<MainPage> {
         print(assetPDFPath);
       });
     });
-    getFileFromURL("https://bintangmotor.com/pricelist/cabang/Bintang-Motor-Bogor-Februari-2020.pdf").then((f){
+    getFileFromURL("https://bintangmotor.com/pricelist/cabang/Bintang-Motor-Bogor-April-2020.pdf").then((f){
       setState(() {
         urlPDFPath = f.path;
         print(urlPDFPath);
@@ -118,6 +128,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
       body: new Stack(
         children: <Widget>[
           Container(
@@ -187,7 +198,7 @@ class _MainPageState extends State<MainPage> {
                               color: Colors.white,
                           ),
                         ),
-                        new Text("Ryan_Ryan",
+                        new Text("${widget.user }",
                           style: TextStyle(
                               fontSize: 24,
                               color: Colors.white

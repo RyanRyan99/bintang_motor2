@@ -1,7 +1,12 @@
+import 'dart:ffi';
+
 import 'package:bintang_motor/mainpage.dart';
 import 'package:bintang_motor/notification.dart';
 import 'package:bintang_motor/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'login.dart';
 
 void main()=> runApp(MyApp());
 
@@ -18,17 +23,31 @@ class MyApp extends StatelessWidget {
 }
 
 class NavigatorPage extends StatefulWidget {
+  final String user;
+  NavigatorPage({Key key, @required this.user}) : super (key: key);
   @override
   _NavigatorPageState createState() => _NavigatorPageState();
 }
-
 class _NavigatorPageState extends State<NavigatorPage> {
+  getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.getString('user');
+    });
+  }
+  var m = <String>[];
   int _selectedPage = 0;
   final _pageOption = [
-    MainPage(),
+    MainPage(null),
     Notifikasi(),
     Profile(),
   ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+   getData();
+  }
 
   @override
   Widget build(BuildContext context) {

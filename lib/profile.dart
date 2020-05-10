@@ -49,7 +49,7 @@ class _ProfileState extends State<Profile> {
                     child: new Stack(
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(top: 160, left: 20, right: 20),
+                          padding: const EdgeInsets.only(top: 160, left: 5, right: 10),
                           child: Container(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -125,7 +125,7 @@ class _ProfileState extends State<Profile> {
         Padding(
           padding: const EdgeInsets.only(top: 50.0, left: 180),
           child: new Container(
-            child: Text("Bruce Wayne",
+            child: Text("Ryan_Ryan",
               style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold
@@ -176,7 +176,7 @@ class _ProfileState extends State<Profile> {
     return Stack(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 125,left: 80),
+          padding: const EdgeInsets.only(top: 125,left: 90),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.black12,
@@ -194,7 +194,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 175,left: 80),
+          padding: const EdgeInsets.only(top: 175,left: 90),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.black12,
@@ -212,7 +212,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 222,left: 80),
+          padding: const EdgeInsets.only(top: 222,left: 90),
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
@@ -230,7 +230,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 270,left: 80),
+          padding: const EdgeInsets.only(top: 270,left: 90),
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
@@ -248,7 +248,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 318,left: 80),
+          padding: const EdgeInsets.only(top: 318,left: 90),
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
@@ -275,7 +275,7 @@ class _ProfileState extends State<Profile> {
                splashColor: Colors.white,
                color: Colors.red,
                onPressed: (){},
-               child: Text("Save", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+               child: Text("Logout", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                shape: RoundedRectangleBorder(
                  borderRadius: new  BorderRadius.circular(20.0),
                ),
@@ -310,12 +310,12 @@ class _ProfileState extends State<Profile> {
           Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new Text("Password :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+            child: new Text("Badgenumber :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
           ),
           Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new Text("Confirm :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+            child: new Text("Position :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
           )
         ],
       ),

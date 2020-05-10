@@ -12,122 +12,93 @@ class _NewsDetailState extends State<NewsDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new Stack(
-        children: <Widget>[
-          new Container(
-            height: 350,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(widget.curAlbum.images),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.bottomRight,
-                  colors: [
-                    Colors.black54.withOpacity(.8),
-                    Colors.black12.withOpacity(.1),
-                  ]
-                )
-              ),
-              child: Container(
-                padding: EdgeInsets.only(right: 10, left: 10, bottom: 80),
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(widget.curAlbum.title,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 18,
+      body: SingleChildScrollView(
+        child: Container(
+          child: new Stack(
+            children: <Widget>[
+              Container(
+                height: 410,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(widget.curAlbum.images),
+                      fit: BoxFit.cover,
+                    )
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.bottomLeft,
+                        colors: [
+                          Colors.black38.withOpacity(.8),
+                          Colors.black38.withOpacity(.1),
+                        ]
+                    ),
+                  ),
+                  child: Container(
+                    padding: EdgeInsets.only(left: 20, bottom: 20),
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(widget.curAlbum.title,
+                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 24),),
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 280),
-            child: Container(
-              margin: EdgeInsets.all(10),
-              height: 600,
-              width: double.infinity,
-              child: new Stack(
-                children: <Widget>[
-                  Positioned(
-                    left: 30,
-                    right: 25,
-                    top: 10,
-                    child: Container(
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            child: Icon(Icons.bookmark, color: Colors.black54,),
-                          ),
-                          SizedBox(
-                            width: 80,
-                            child: Text(widget.curAlbum.category),
-                          ),
-                          Container(
-                            child: Icon(Icons.date_range, color: Colors.black54,),
-                          ),
-                          SizedBox(
-                            width: 80,
-                            child: Text(widget.curAlbum.date),
-                          ),
-                          InkWell(
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                  child: Icon(Icons.share, color: Colors.black54,),
-                                ),
-                                SizedBox(
-                                  width: 70,
-                                  child: Text("Share Post"),
-                                )
-                              ],
-                            ),
-                            onTap: (){print("C");},
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 55, left: 8, right: 8),
-                    child: Container(
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: SingleChildScrollView(
+              Padding(
+                padding: const EdgeInsets.only(top: 410),
+                child: Container(
+                  margin: EdgeInsets.only(top: 4),
+                  width: double.infinity,
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15, left: 10),
                           child: Container(
-                            child: Text(widget.curAlbum.content, textAlign: TextAlign.justify),
+                            child: Text(widget.curAlbum.category, style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
                           ),
                         ),
-                      ),
+                        Container(
+                          child: Row(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10, top: 5),
+                                child: Text("Date :", style: TextStyle(fontSize: 16, color: Colors.black54),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10, top: 5),
+                                child: Container(
+                                  child: Text(widget.curAlbum.date, style: TextStyle(fontSize: 16, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Divider(),
+                        SizedBox(height: 10,),
+                        Container(
+                          margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
+                          child: Text(
+                            widget.curAlbum.content, textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
                     ),
-                  )
-                ],
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10),),
-                color: Colors.white,
-                boxShadow: <BoxShadow>[
-                  new BoxShadow(blurRadius: 8.0)
-                ]
-              ),
-            ),
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(color: Colors.black54, blurRadius: 5),
+                      ]
+                  ),
+                ),
+              )
+            ],
           ),
-          SizedBox(
-            child: Center(
-              child: Container(
-                height: 1,
-                color: Colors.black54,
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
