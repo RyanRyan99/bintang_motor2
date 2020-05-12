@@ -1,12 +1,9 @@
-import 'dart:ffi';
-
 import 'package:bintang_motor/mainpage.dart';
 import 'package:bintang_motor/notification.dart';
 import 'package:bintang_motor/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'login.dart';
 
 void main()=> runApp(MyApp());
 

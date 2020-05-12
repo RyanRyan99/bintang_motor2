@@ -1,8 +1,4 @@
 import 'package:bintang_motor/login.dart';
-import 'package:bintang_motor/login2.dart';
-import 'package:bintang_motor/mainpage.dart';
-import 'package:bintang_motor/navigator_menu.dart';
-import 'package:bintang_motor/statistik/chart.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
