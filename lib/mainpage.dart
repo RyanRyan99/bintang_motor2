@@ -31,8 +31,8 @@ void main(){
 class MainPage extends StatefulWidget {
   @override
   final String user;
-  final String badgenumber;
-  MainPage({Key key ,@required this.user, @required this.badgenumber}) : super(key:key);
+  final String name;
+  MainPage({Key key ,@required this.user, @required this.name,}) : super(key:key);
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -199,7 +199,7 @@ class _MainPageState extends State<MainPage> {
                               color: Colors.white,
                           ),
                         ),
-                        new Text("${widget.badgenumber}",
+                        new Text("${widget.name}",
                           style: TextStyle(
                               fontSize: 24,
                               color: Colors.white
@@ -232,7 +232,7 @@ class _MainPageState extends State<MainPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        new Text("1.250",
+                        new Text("900",
                           style: TextStyle(
                               color: Colors.yellow,
                               fontSize: 12.0,

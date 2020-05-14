@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
   final VoidCallback signOut;
-  Profile({Key key, @required this.signOut});
+  final String name;
+  Profile({Key key, @required this.signOut, @required this.name});
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -132,7 +133,7 @@ class _ProfileState extends State<Profile> {
         Padding(
           padding: const EdgeInsets.only(top: 50.0, left: 180),
           child: new Container(
-            child: Text("Ryan_Ryan",
+            child: Text("${widget.name}",
               style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold
