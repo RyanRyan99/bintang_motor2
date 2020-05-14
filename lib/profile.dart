@@ -2,11 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
+  final VoidCallback signOut;
+  Profile({Key key, @required this.signOut});
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  SignOut(){
+    setState(() {
+      widget.signOut();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -274,7 +281,9 @@ class _ProfileState extends State<Profile> {
              child: RaisedButton(
                splashColor: Colors.white,
                color: Colors.red,
-               onPressed: (){},
+               onPressed: (){
+                 SignOut();
+               },
                child: Text("Logout", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                shape: RoundedRectangleBorder(
                  borderRadius: new  BorderRadius.circular(20.0),

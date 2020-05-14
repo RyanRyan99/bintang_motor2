@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bintang_motor/mainpage.dart';
 import 'package:bintang_motor/navigator_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,15 +43,22 @@ class _LoginScreenState extends State<LoginScreen> {
       print(pesan);
     }
     else{
-      print(pesan);
+      showDialog(
+        context: context,
+        child: AlertDialog(
+          backgroundColor: Colors.white70,
+          title: Text("Invalid", style: TextStyle(color: Colors.red)),
+          content: Text("Badgenumber Tidak Ditemukan", style: TextStyle(color: Colors.red)),
+        )
+      );
     }
   }
-  savePref(int value, String username, String name, String id) async {
+  savePref(int value, String usernameApi, String name, String id) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       preferences.setInt("value", value);
       preferences.setString("name", name);
-      preferences.setString("badgenumber", username);
+      preferences.setString("badgenumber", usernameApi);
       preferences.setString("id", id);
       preferences.commit();
     });
@@ -75,9 +83,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    super.initState();
     getPref();
     signOut();
+    super.initState();
   }
 
   @override
@@ -89,70 +97,76 @@ class _LoginScreenState extends State<LoginScreen> {
         key: _key,
         child: Column(
           children: <Widget>[
-            Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'ID Number :',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Baloo2',
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFCFD8DC),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    height: 60.0,
-                    child: TextFormField(
-                      cursorColor: Colors.red,
-                      keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        WhitelistingTextInputFormatter.digitsOnly,
-                        LengthLimitingTextInputFormatter(4),
-                      ],
+            Padding(
+              padding: const EdgeInsets.only(top: 200),
+              child: Container(
+                margin: EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'ID Number :',
                       style: TextStyle(
-                          letterSpacing: 3,
-                          color: Colors.red,
-                          fontFamily: 'Baloo2',
-                          fontWeight: FontWeight.bold
+                        color: Colors.red,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Baloo2',
                       ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(top: 14.0),
-                        prefixIcon: Icon(
-                          Icons.perm_identity,
-                          color: Colors.red,
-                          size: 35,
-                        ),
-                        hintText: 'Masukan ID Anda',
-                        hintStyle: TextStyle(
-                          fontSize: 18,
-                          letterSpacing: 3,
-                          color: Colors.red,
-                          fontFamily: 'Baloo2',
-                        ),
-                      ),
-                      // ignore: missing_return
-                      validator: (e) {
-                        if (e.isEmpty) {
-                          return "ID Kosong";
-                        }
-                      },
-                      onSaved: (e) => badgenumber = e,
                     ),
-                  ),
-                ],
+                    SizedBox(height: 10.0),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFCFD8DC),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      height: 60.0,
+                      child: TextFormField(
+                        cursorColor: Colors.red,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          WhitelistingTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(4),
+                        ],
+                        style: TextStyle(
+                            letterSpacing: 3,
+                            color: Colors.red,
+                            fontFamily: 'Baloo2',
+                            fontWeight: FontWeight.bold
+                        ),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.only(top: 14.0),
+                          prefixIcon: Icon(
+                            Icons.perm_identity,
+                            color: Colors.red,
+                            size: 35,
+                          ),
+                          hintText: 'Masukan ID Anda',
+                          hintStyle: TextStyle(
+                            fontSize: 18,
+                            letterSpacing: 3,
+                            color: Colors.red,
+                            fontFamily: 'Baloo2',
+                          ),
+                        ),
+                        // ignore: missing_return
+                        validator: (e) {
+                          if (e.isEmpty) {
+                            return "ID Kosong";
+                          }
+                        },
+                        onSaved: (e) => badgenumber = e,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             RaisedButton(
-              child: Text("Login"),
+              color: Colors.red,
+              splashColor: Colors.white,
+              child: Text("Login", style: TextStyle(color: Colors.white)),
               onPressed: (){
                 check();
               },
@@ -163,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
         break;
       case LoginStatus.signIn:
-        return NavigatorPage();
+        return NavigatorPage(badgenumber: badgenumber, signOut: signOut,);
         break;
     }
   }

@@ -20,30 +20,33 @@ class MyApp extends StatelessWidget {
 }
 
 class NavigatorPage extends StatefulWidget {
+  final VoidCallback signOut;
   final String user;
-  NavigatorPage({Key key, @required this.user}) : super (key: key);
+  final String badgenumber;
+  NavigatorPage({Key key, @required this.user, @required this.badgenumber, @required this.signOut}) : super (key: key);
   @override
   _NavigatorPageState createState() => _NavigatorPageState();
 }
 class _NavigatorPageState extends State<NavigatorPage> {
-  getData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  SignOut(){
     setState(() {
-      prefs.getString('user');
+      widget.signOut();
     });
   }
-  var m = <String>[];
+  @override
   int _selectedPage = 0;
-  final _pageOption = [
-    MainPage(null),
-    Notifikasi(),
-    Profile(),
-  ];
+  String userID;
+  var page;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-   getData();
+    userID = widget.user;
+    final _pageOption = [
+      MainPage(user: widget.user, badgenumber: widget.badgenumber,),
+      Notifikasi(),
+      Profile(signOut: SignOut),
+    ];
+    page = _pageOption;
   }
 
   @override
@@ -56,7 +59,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
               child: Container(
                 color: Colors.white70,
                 child: Scaffold(
-                  body: _pageOption[_selectedPage],
+                  body: page[_selectedPage],
                 ),
               ),
               decoration: BoxDecoration(
@@ -66,60 +69,57 @@ class _NavigatorPageState extends State<NavigatorPage> {
                 )
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Theme(
-                data: Theme.of(context).copyWith(canvasColor: Colors.white70),
-                child: BottomNavigationBar(
-                  iconSize: 20,
-                  showSelectedLabels: true,
-                  selectedLabelStyle: TextStyle(color: Colors.red),
-                  unselectedLabelStyle: TextStyle(color: Colors.black38, fontWeight: FontWeight.bold),
-                  unselectedIconTheme: IconThemeData(color: Colors.white70),
-                  type: BottomNavigationBarType.fixed,
-                  selectedItemColor: Colors.red,
-                  currentIndex: _selectedPage,
-                  onTap: (int index){
-                    setState(() {
-                      _selectedPage = index;
-                    });
-                  },
-                  items: [
-                    BottomNavigationBarItem(
+            Theme(
+              data: Theme.of(context).copyWith(canvasColor: Colors.white70),
+               child: BottomNavigationBar(
+                iconSize: 20,
+                showSelectedLabels: true,
+                selectedLabelStyle: TextStyle(color: Colors.red),
+                unselectedLabelStyle: TextStyle(color: Colors.black38, fontWeight: FontWeight.bold),
+                unselectedIconTheme: IconThemeData(color: Colors.white70),
+                type: BottomNavigationBarType.fixed,
+                selectedItemColor: Colors.red,
+                currentIndex: _selectedPage,
+                onTap: (int index){
+                  setState(() {
+                    _selectedPage = index;
+                  });
+                },
+                items: [
+                  BottomNavigationBarItem(
+                    icon: Container(
+                      width: 30, height: 30,
+                      child: Icon(Icons.home,size: 25),
+                      decoration: BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
+                    title: Text("Home")
+                  ),
+                  BottomNavigationBarItem(
                       icon: Container(
                         width: 30, height: 30,
-                        child: Icon(Icons.home,size: 25),
+                          child: Icon(Icons.error_outline,size: 25),
                         decoration: BoxDecoration(
                           color: Colors.black12,
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                       ),
-                      title: Text("Home")
-                    ),
-                    BottomNavigationBarItem(
-                        icon: Container(
-                          width: 30, height: 30,
-                            child: Icon(Icons.error_outline,size: 25),
-                          decoration: BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
+                      title: Text("Notifikasi")
+                  ),
+                  BottomNavigationBarItem(
+                      icon: Container(
+                        width: 30, height: 30,
+                          child: Icon(Icons.group,size: 25),
+                        decoration: BoxDecoration(
+                          color: Colors.black12,
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
-                        title: Text("Notifikasi")
-                    ),
-                    BottomNavigationBarItem(
-                        icon: Container(
-                          width: 30, height: 30,
-                            child: Icon(Icons.group,size: 25),
-                          decoration: BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                        title: Text("Profile")
-                    ),
-                  ],
-                ),
+                      ),
+                      title: Text("Profile")
+                  ),
+                ],
               ),
             )
           ],
