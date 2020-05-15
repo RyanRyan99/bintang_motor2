@@ -15,7 +15,7 @@ class LoginPage extends StatefulWidget {
 enum LoginStatus {notSignIn, signIn}
 class _LoginPageState extends State<LoginPage> {
   LoginStatus _loginStatus = LoginStatus.notSignIn;
-  String badgenumber, name;
+  String badgenumber, name, points, picture, lokasi;
   final _key = new GlobalKey<FormState>();
   check(){
     final form = _key.currentState;
@@ -26,20 +26,26 @@ class _LoginPageState extends State<LoginPage> {
   }
   login() async {
     final response = await http.post("https://bintang-niagajaya.000webhostapp.com/api_login.php",
-        body: {"badgenumber": badgenumber, "name": name});
+        body: {"badgenumber": badgenumber, "name": name,});
     final data = jsonDecode(response.body);
     int value = data['value'];
     String pesan = data["message"];
     String usernameApi = data["badgenumber"];
     String nameAPI = data["name"];
-    String point = data["point"];
+    String point = data['point'];
+    String image = data['image'];
+    String location = data['lokasi'];
     String id = data["id"];
     if(value == 1){
       setState(() {
         _loginStatus = LoginStatus.signIn;
-        savePref(value, usernameApi, nameAPI, point, id);
+        savePref(value, usernameApi, nameAPI, point, image, location, id);
+        points = point;
+        picture = image;
+        lokasi = location;
       });
       print(pesan);
+      print(location);
     }
     else{
       showDialog(
@@ -53,13 +59,14 @@ class _LoginPageState extends State<LoginPage> {
       );
     }
   }
-  savePref(int value, String usernameApi, String point, String name, String id) async {
+  savePref(int value, String usernameApi, String point, String name, String image, String lokasi,  String id) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       preferences.setInt("value", value);
       preferences.setString("name", name);
       preferences.setString("badgenumber", usernameApi);
       preferences.setString("point", point);
+      preferences.setString("image", image);
       preferences.setString("id", id);
       preferences.commit();
     });
@@ -69,7 +76,9 @@ class _LoginPageState extends State<LoginPage> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       preferences.getInt("value");
+      preferences.getString("point");
       _loginStatus = value == 1 ? LoginStatus.signIn : LoginStatus.notSignIn;
+
     });
   }
   signOut() async {
@@ -245,7 +254,7 @@ class _LoginPageState extends State<LoginPage> {
         );
         break;
       case LoginStatus.signIn:
-        return NavigatorPage(badgenumber: badgenumber, signOut: signOut, name: name,);
+        return NavigatorPage(badgenumber: badgenumber, signOut: signOut, name: name, point: points, image: picture, location: lokasi,);
         break;
     }
   }

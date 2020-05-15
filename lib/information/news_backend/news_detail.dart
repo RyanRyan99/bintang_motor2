@@ -40,7 +40,7 @@ class _NewsDetailState extends State<NewsDetail> {
                     child: Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(widget.curAlbum.title,
-                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 24),),
+                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 24, fontFamily: "Baloo2"),),
                     ),
                   ),
                 ),
@@ -57,7 +57,7 @@ class _NewsDetailState extends State<NewsDetail> {
                         Padding(
                           padding: const EdgeInsets.only(top: 15, left: 10),
                           child: Container(
-                            child: Text(widget.curAlbum.category, style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+                            child: Text(widget.curAlbum.category, style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, fontFamily: "Baloo2")),
                           ),
                         ),
                         Container(
@@ -65,12 +65,12 @@ class _NewsDetailState extends State<NewsDetail> {
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.only(left: 10, top: 5),
-                                child: Text("Date :", style: TextStyle(fontSize: 16, color: Colors.black54),),
+                                child: Text("Date :", style: TextStyle(fontSize: 16, color: Colors.black54, fontFamily: "Baloo2"),),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 10, top: 5),
                                 child: Container(
-                                  child: Text(widget.curAlbum.date, style: TextStyle(fontSize: 16, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                  child: Text(widget.curAlbum.date, style: TextStyle(fontSize: 16, color: Colors.black54, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),),
                                 ),
                               )
                             ],
@@ -82,7 +82,7 @@ class _NewsDetailState extends State<NewsDetail> {
                         Container(
                           margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
                           child: Text(
-                            widget.curAlbum.content, textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),
+                            widget.curAlbum.content, textAlign: TextAlign.justify, style: TextStyle(fontSize: 16, fontFamily: "Baloo2"),
                           ),
                         )
                       ],

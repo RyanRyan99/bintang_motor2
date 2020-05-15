@@ -112,7 +112,8 @@ class _CheckStnkState extends State<CheckStnk> {
                             child: Text("Masukan No.Mesin:",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.red
+                                  color: Colors.red,
+                                  fontFamily: "Baloo2",
                               ),
                             ),
                           ),
@@ -254,7 +255,8 @@ class _CheckStnkState extends State<CheckStnk> {
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white
+                  color: Colors.white,
+                  fontFamily: "Baloo2"
               ),
             ),
           ),
@@ -270,7 +272,7 @@ class _CheckStnkState extends State<CheckStnk> {
           child: new Text("Data Pemilik Kendaraan",
             style: TextStyle(
                 fontSize: 24.0,
-                fontWeight: FontWeight.bold
+                fontWeight: FontWeight.bold,
             ),
           ),
         ),

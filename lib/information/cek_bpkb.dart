@@ -112,7 +112,8 @@ class _CheckBpkbState extends State<CheckBpkb> {
                             child: Text("Masukan No.Polisi:",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.red
+                                  color: Colors.red,
+                                  fontFamily: "Baloo2"
                               ),
                             ),
                           ),
@@ -254,7 +255,8 @@ class _CheckBpkbState extends State<CheckBpkb> {
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white
+                  color: Colors.white,
+                  fontFamily: "Baloo2"
               ),
             ),
           ),

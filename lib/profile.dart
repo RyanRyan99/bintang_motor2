@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 class Profile extends StatefulWidget {
   final VoidCallback signOut;
   final String name;
-  Profile({Key key, @required this.signOut, @required this.name});
+  final String image;
+  final String location;
+  Profile({Key key, @required this.signOut, @required this.name, @required this.image, @required this.location});
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -125,7 +127,7 @@ class _ProfileState extends State<Profile> {
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage("assets/profile.jpg"),
+                  image: NetworkImage("${widget.image}"),
                   fit: BoxFit.cover,
                 )
             ),
@@ -152,7 +154,7 @@ class _ProfileState extends State<Profile> {
         Padding(
           padding: const EdgeInsets.only(top: 85, left: 205),
           child: Container(
-            child: Text("Cibinong",
+            child: Text("${widget.location}",
               style: TextStyle(
                 color: Colors.black38,
                 fontSize: 18.0,fontWeight: FontWeight.bold, fontFamily: "Baloo2"

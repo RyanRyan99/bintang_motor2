@@ -13,6 +13,7 @@ import 'package:bintang_motor/mainpage_backend/service.dart';
 import 'package:bintang_motor/navigator_menu.dart';
 import 'package:bintang_motor/pricelist/pricelist.dart';
 import 'package:bintang_motor/statistik/statistik.dart';
+import 'package:bintang_motor/statistik/statistik2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -32,7 +33,9 @@ class MainPage extends StatefulWidget {
   @override
   final String user;
   final String name;
-  MainPage({Key key ,@required this.user, @required this.name,}) : super(key:key);
+  final String point;
+  final String image;
+  MainPage({Key key ,@required this.user, @required this.name, @required this.point, @required this.image,}) : super(key:key);
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -171,7 +174,7 @@ class _MainPageState extends State<MainPage> {
                  alignment: Alignment.topRight,
                  child: Container(
                  padding: EdgeInsets.only(top: 40, right: 40),
-                   child: _IconBadge(Icons.notifications, "5", Colors.black)
+                   child: _IconBadge(Icons.notifications, "", Colors.orange[500])
                  ),
                ),
                 Padding(
@@ -181,7 +184,7 @@ class _MainPageState extends State<MainPage> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: AssetImage("assets/profile.jpg"),
+                        image: NetworkImage("${widget.image}"),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -235,7 +238,7 @@ class _MainPageState extends State<MainPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        new Text("900",
+                        new Text("${widget.point}",
                           style: TextStyle(
                               color: Colors.yellow,
                               fontSize: 12.0,
@@ -394,7 +397,7 @@ class _MainPageState extends State<MainPage> {
                   icon: Icon(Icons.remove_red_eye,color: Colors.red, size: 30,),
                   onPressed: (){
                     Navigator.of(context).push(new MaterialPageRoute(
-                        builder: (BuildContext context) => new Statistik()
+                        builder: (BuildContext context) => new PieCharts()
                     )
                     );
                   },

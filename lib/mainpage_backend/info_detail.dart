@@ -41,7 +41,7 @@ class _InfoPromoDetailState extends State<InfoPromoDetail> {
                     child: Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(widget.curAlbum.title,
-                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 28),),
+                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 28, fontFamily: "Baloo2"),),
                     ),
                   ),
                 ),
@@ -58,7 +58,7 @@ class _InfoPromoDetailState extends State<InfoPromoDetail> {
                          Padding(
                           padding: const EdgeInsets.only(top: 15, left: 10),
                           child: Container(
-                            child: Text(widget.curAlbum.category, style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+                            child: Text(widget.curAlbum.category, style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, fontFamily: "Baloo2")),
                           ),
                         ),
                         Container(
@@ -71,7 +71,7 @@ class _InfoPromoDetailState extends State<InfoPromoDetail> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 10, top: 5),
                                 child: Container(
-                                  child: Text(widget.curAlbum.date, style: TextStyle(fontSize: 16, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                  child: Text(widget.curAlbum.date, style: TextStyle(fontSize: 16, color: Colors.black54, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),),
                                 ),
                               )
                             ],
@@ -81,20 +81,20 @@ class _InfoPromoDetailState extends State<InfoPromoDetail> {
                         Padding(
                           padding: const EdgeInsets.only(left: 10, top: 5, right: 10),
                           child: Container(
-                            child: Text(widget.curAlbum.promo, textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),),
+                            child: Text(widget.curAlbum.promo, textAlign: TextAlign.justify, style: TextStyle(fontSize: 16, fontFamily: "Baloo2"),),
                           ),
                         ),
                         Divider(),
                         Container(
                           margin: EdgeInsets.only(left: 10, right: 10),
-                          child: Text("Persyaratan", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+                          child: Text("Persyaratan", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),),
                         ),
                         Divider(),
                         SizedBox(height: 10,),
                         Container(
                           margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
                           child: Text(
-                            widget.curAlbum.syarat, textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),
+                            widget.curAlbum.syarat, textAlign: TextAlign.justify, style: TextStyle(fontSize: 16, fontFamily: "Baloo2"),
                           ),
                         )
                       ],
