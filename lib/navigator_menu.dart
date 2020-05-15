@@ -99,7 +99,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                       ),
-                      title: Text("Home")
+                      title: Text("Home", style: TextStyle(fontFamily: "Baloo2"),)
                     ),
                     BottomNavigationBarItem(
                         icon: Container(
@@ -110,7 +110,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                         ),
-                        title: Text("Notifikasi")
+                        title: Text("Notifikasi", style: TextStyle(fontFamily: "Baloo2"),)
                     ),
                     BottomNavigationBarItem(
                         icon: Container(
@@ -121,7 +121,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                         ),
-                        title: Text("Profile")
+                        title: Text("Profile", style: TextStyle(fontFamily: "Baloo2"),)
                     ),
                   ],
                 ),

@@ -17,6 +17,9 @@ environment:
   sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
+  pie_chart:
+  connectivity:
+  simple_animations:
   fluttertoast:
   shared_preferences:
   flutter_open_whatsapp:
@@ -74,10 +77,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Baloo2
+      fonts:
+        - asset: assets/Baloo2-Medium.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

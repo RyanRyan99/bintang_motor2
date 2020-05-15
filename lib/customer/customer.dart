@@ -129,13 +129,14 @@ class _CustomerState extends State<Customer>  {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 105, left: 20),
+                  padding: const EdgeInsets.only(top: 100, left: 20),
                   child: Container(
                     child: Text("Data Customer",
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white
+                          color: Colors.white,
+                          fontFamily: "Baloo2"
                       ),
                     ),
                   ),
@@ -167,7 +168,7 @@ class _CustomerState extends State<Customer>  {
                           child: Row(
                             children: <Widget>[
                               Icon(Icons.filter_list),
-                              Text("Filter", style: TextStyle(color: Colors.white),)
+                              Text("Filter", style: TextStyle(color: Colors.white, fontFamily: "Baloo2"),)
                             ],
                           ),
                           onPressed: (){},
@@ -191,7 +192,7 @@ class _CustomerState extends State<Customer>  {
                          child: Row(
                            children: <Widget>[
                              Icon(Icons.sort,),
-                             Text("Urutan", style: TextStyle(color: Colors.white),)
+                             Text("Urutan", style: TextStyle(color: Colors.white, fontFamily: "Baloo2"),)
                            ],
                          ),
                          onPressed: (){},
@@ -319,9 +320,9 @@ class _CustomerState extends State<Customer>  {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                                        new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
-                                        new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
+                                        new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,fontFamily: "Baloo2"),),
+                                        new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold,fontFamily: "Baloo2"),),
+                                        new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold,fontFamily: "Baloo2"),)
                                       ],
                                     ),
                                   ),
@@ -344,7 +345,7 @@ class _CustomerState extends State<Customer>  {
                                   borderRadius: BorderRadius.circular(10)
                               ),
                               color: Colors.red,
-                              child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11),),
+                              child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11, fontFamily: "Baloo2"),),
                               onPressed: (){
                                 showDialog(
                                     context: context,
@@ -355,7 +356,7 @@ class _CustomerState extends State<Customer>  {
                                         ),
                                         title: Align(
                                           alignment: Alignment.center,
-                                            child: Text("Hubungi Via")
+                                            child: Text("Hubungi Via", style: TextStyle(fontFamily: "Baloo2"),)
                                         ),
                                         content: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -449,9 +450,9 @@ class _CustomerState extends State<Customer>  {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                                        new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
-                                        new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
+                                        new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),),
+                                        new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),),
+                                        new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),)
                                       ],
                                     ),
                                   ),
@@ -474,7 +475,7 @@ class _CustomerState extends State<Customer>  {
                                   borderRadius: BorderRadius.circular(10)
                               ),
                               color: Colors.red,
-                              child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11),),
+                              child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11, fontFamily: "Baloo2"),),
                               onPressed: (){
                                 showDialog(
                                     context: context,
@@ -485,7 +486,7 @@ class _CustomerState extends State<Customer>  {
                                         ),
                                         title: Align(
                                             alignment: Alignment.center,
-                                            child: Text("Hubungi Via")
+                                            child: Text("Hubungi Via", style: TextStyle(fontFamily: "Baloo2"),)
                                         ),
                                         content: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -579,9 +580,9 @@ class _CustomerState extends State<Customer>  {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                                        new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
-                                        new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
+                                        new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),),
+                                        new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),),
+                                        new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),)
                                       ],
                                     ),
                                   ),
@@ -604,7 +605,7 @@ class _CustomerState extends State<Customer>  {
                                   borderRadius: BorderRadius.circular(10)
                               ),
                               color: Colors.red,
-                              child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11),),
+                              child: Text("Follow Up",style: TextStyle(color: Colors.white, fontSize: 11, fontFamily: "Baloo2"),),
                               onPressed: (){
                                 showDialog(
                                     context: context,
@@ -615,7 +616,7 @@ class _CustomerState extends State<Customer>  {
                                         ),
                                         title: Align(
                                             alignment: Alignment.center,
-                                            child: Text("Hubungi Via")
+                                            child: Text("Hubungi Via", style: TextStyle(fontFamily: "Baloo2"),)
                                         ),
                                         content: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -661,6 +662,7 @@ class _CustomerState extends State<Customer>  {
   Widget Menu(){
     return Container(
       child: TabBar(
+        labelStyle: TextStyle(fontFamily: "Baloo2"),
         labelColor: Colors.red,
         indicatorColor: Colors.red,
         tabs: <Widget>[

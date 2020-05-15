@@ -158,8 +158,8 @@ class _MainPageState extends State<MainPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20, left: 30),
                   child: Container(
-                    width: 60,
-                    height: 60,
+                    width: 80,
+                    height: 80,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage("assets/Logo.png")
@@ -197,12 +197,14 @@ class _MainPageState extends State<MainPage> {
                           style: TextStyle(
                               fontSize: 14,
                               color: Colors.white,
+                              fontFamily: "Baloo2"
                           ),
                         ),
                         new Text("${widget.name}",
                           style: TextStyle(
                               fontSize: 24,
-                              color: Colors.white
+                              color: Colors.white,
+                              fontFamily: "Baloo2"
                           ),
                         ),
                       ],
@@ -219,7 +221,8 @@ class _MainPageState extends State<MainPage> {
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 12.0
+                              fontSize: 12.0,
+                              fontFamily: "Baloo2"
                           ),
                         ),
                       ],
@@ -237,6 +240,7 @@ class _MainPageState extends State<MainPage> {
                               color: Colors.yellow,
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
+                              fontFamily: "Baloo2"
                           ),
                         ),
                       ],
@@ -291,7 +295,8 @@ class _MainPageState extends State<MainPage> {
                                child: Text(
                                  "Info & Promo",
                                  style: TextStyle(
-                                   fontWeight: FontWeight.bold
+                                   fontWeight: FontWeight.bold,
+                                   fontFamily: "Baloo2"
                                  ),
                                )
                            ),
@@ -377,7 +382,7 @@ class _MainPageState extends State<MainPage> {
                     );
                   },
                 ),
-                new Text("Customer", style: TextStyle(fontSize: 11, color: Colors.red),)
+                new Text("Customer", style: TextStyle(fontSize: 11, color: Colors.red, fontFamily: "Baloo2"),)
               ],
             ),
           ),
@@ -394,7 +399,7 @@ class _MainPageState extends State<MainPage> {
                     );
                   },
                 ),
-                new Text("Statistik", style: TextStyle(fontSize: 11, color: Colors.red),)
+                new Text("Statistik", style: TextStyle(fontSize: 11, color: Colors.red, fontFamily: "Baloo2"),)
               ],
             ),
           ),
@@ -413,7 +418,7 @@ class _MainPageState extends State<MainPage> {
                     }
                   },
                 ),
-                new Text("Price List", style: TextStyle(fontSize: 11,color: Colors.red),)
+                new Text("Price List", style: TextStyle(fontSize: 11,color: Colors.red, fontFamily: "Baloo2"),)
               ],
             ),
           ),
@@ -442,7 +447,7 @@ class _MainPageState extends State<MainPage> {
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.library_books, size: 50, color: Colors.white,),
-                        new Text("STNK",style: TextStyle(color: Colors.white),),
+                        new Text("STNK",style: TextStyle(color: Colors.white, fontFamily: "Baloo2"),),
                       ],
                     ),
                   ),
@@ -466,7 +471,7 @@ class _MainPageState extends State<MainPage> {
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.collections_bookmark, size: 50, color: Colors.white,),
-                        new Text("BPKB",style: TextStyle(color: Colors.white),),
+                        new Text("BPKB",style: TextStyle(color: Colors.white, fontFamily: "Baloo2"),),
                       ],
                     ),
                   ),
@@ -490,7 +495,7 @@ class _MainPageState extends State<MainPage> {
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.motorcycle, size: 50, color: Colors.white,),
-                        new Text("PRODUK",style: TextStyle(color: Colors.white),),
+                        new Text("PRODUK",style: TextStyle(color: Colors.white, fontFamily: "Baloo2"),),
                       ],
                     ),
                   ),
@@ -514,7 +519,7 @@ class _MainPageState extends State<MainPage> {
                     child: Column(
                       children: <Widget>[
                         new Icon(Icons.list, size: 50, color: Colors.white,),
-                        new Text("NEWS",style: TextStyle(color: Colors.white),),
+                        new Text("NEWS",style: TextStyle(color: Colors.white, fontFamily: "Baloo2"),),
                       ],
                     ),
                   ),

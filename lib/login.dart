@@ -1,23 +1,22 @@
 import 'dart:convert';
-
-import 'package:bintang_motor/mainpage.dart';
-import 'package:bintang_motor/navigator_menu.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simple_animations/simple_animations.dart';
 
-class LoginScreen extends StatefulWidget {
+import 'navigator_menu.dart';
+
+class LoginPage extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginPageState createState() => _LoginPageState();
 }
-
 enum LoginStatus {notSignIn, signIn}
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginPageState extends State<LoginPage> {
   LoginStatus _loginStatus = LoginStatus.notSignIn;
   String badgenumber, name;
   final _key = new GlobalKey<FormState>();
-  bool _scureText = true;
   check(){
     final form = _key.currentState;
     if(form.validate()){
@@ -25,10 +24,9 @@ class _LoginScreenState extends State<LoginScreen> {
       login();
     }
   }
-
   login() async {
     final response = await http.post("https://bintang-niagajaya.000webhostapp.com/api_login.php",
-    body: {"badgenumber": badgenumber, "name": name});
+        body: {"badgenumber": badgenumber, "name": name});
     final data = jsonDecode(response.body);
     int value = data['value'];
     String pesan = data["message"];
@@ -45,12 +43,13 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     else{
       showDialog(
-        context: context,
-        child: AlertDialog(
-          backgroundColor: Colors.white70,
-          title: Text("Invalid", style: TextStyle(color: Colors.red)),
-          content: Text("Badgenumber Tidak Ditemukan", style: TextStyle(color: Colors.red)),
-        )
+          context: context,
+          child: AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            backgroundColor: Colors.white,
+            title: Center(child: Text("Invalid", style: TextStyle(color: Colors.red, fontFamily: "Baloo2"))),
+            content: Text("Username / Badgenumber Tidak Ditemukan, Coba Lagi !!!", style: TextStyle(color: Colors.red, fontFamily: "Baloo2")),
+          )
       );
     }
   }
@@ -73,7 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
       _loginStatus = value == 1 ? LoginStatus.signIn : LoginStatus.notSignIn;
     });
   }
-
   signOut() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
@@ -85,162 +83,166 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
+
     getPref();
-    signOut();
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
-    switch (_loginStatus){
+    switch (_loginStatus) {
       case LoginStatus.notSignIn:
         return Scaffold(
-      body: SingleChildScrollView(
-        child: Form(
-          key: _key,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 180),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'ID Number :',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Baloo2',
-                        ),
-                      ),
-                      SizedBox(height: 10.0),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFCFD8DC),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        height: 60.0,
-                        child: TextFormField(
-                          cursorColor: Colors.red,
-                          style: TextStyle(
-                              letterSpacing: 3,
-                              color: Colors.red,
-                              fontFamily: 'Baloo2',
-                              fontWeight: FontWeight.bold
-                          ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.only(top: 14.0),
-                            prefixIcon: Icon(
-                              Icons.perm_identity,
-                              color: Colors.red,
-                              size: 35,
-                            ),
-                            hintText: 'Masukan Nama Anda',
-                            hintStyle: TextStyle(
-                              fontSize: 18,
-                              letterSpacing: 3,
-                              color: Colors.red,
-                              fontFamily: 'Baloo2',
-                            ),
-                          ),
-                          // ignore: missing_return
-                          validator: (e) {
-                            if (e.isEmpty) {
-                              return "ID Kosong";
-                            }
-                          },
-                          onSaved: (e) => name = e,
-                        ),
-                      ),
-                    ],
+          body: Form(
+            key: _key,
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      colors: [
+                        Colors.red[300],
+                        Colors.red[800],
+                        Colors.red[400]
+                      ]
+                  )
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: 80.0),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        AnimationScreen(1, Text(
+                          "Sales Point", style: TextStyle(color: Colors
+                            .white, fontSize: 35.0, fontFamily: "Baloo2"),)),
+                        SizedBox(height: 10.0),
+                        AnimationScreen(1.3, Text(
+                          "Selamat Datang", style: TextStyle(color: Colors
+                            .white, fontSize: 18.0, fontFamily: "Baloo2"),))
+                      ],
+                    ),
                   ),
-                ),
-
-                Container(
-                  margin: EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'ID Number :',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Baloo2',
+                  SizedBox(height: 20.0),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(60),
+                            topRight: Radius.circular(60)),
+                      ),
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.all(30),
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(height: 60.0),
+                              AnimationScreen(1.4, Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    boxShadow: [BoxShadow(
+                                        color: Color.fromRGBO(
+                                            255, 125, 125, .3),
+                                        blurRadius: 20,
+                                        offset: Offset(0, 10)
+                                    )
+                                    ]
+                                ),
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                          border: Border(bottom: BorderSide(
+                                              color: Colors.grey[200]))
+                                      ),
+                                      child: TextFormField(
+                                        style: TextStyle(fontFamily: "Baloo2"),
+                                        cursorColor: Colors.red,
+                                        decoration: InputDecoration(
+                                            hintText: "Masukan Nama Anda",
+                                            hintStyle: TextStyle(
+                                                color: Colors.grey,
+                                                fontFamily: "Baloo2"),
+                                            border: InputBorder.none
+                                        ),
+                                        // ignore: missing_return
+                                        validator: (e) {
+                                          if (e.isEmpty) {
+                                            return "Nama Tidak Boleh Kosong";
+                                          }
+                                        },
+                                        onSaved: (e) => name = e,
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                          border: Border(bottom: BorderSide(
+                                              color: Colors.grey[200]))
+                                      ),
+                                      child: TextFormField(
+                                        style: TextStyle(fontFamily: "Baloo2",
+                                            letterSpacing: 3),
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: <TextInputFormatter>[
+                                          WhitelistingTextInputFormatter
+                                              .digitsOnly,
+                                          LengthLimitingTextInputFormatter(4),
+                                        ],
+                                        cursorColor: Colors.red,
+                                        decoration: InputDecoration(
+                                          hintText: "Masukan ID Anda",
+                                          hintStyle: TextStyle(
+                                              color: Colors.grey,
+                                              fontFamily: "Baloo2"),
+                                          border: InputBorder.none,
+                                        ),
+                                        // ignore: missing_return
+                                        validator: (e) {
+                                          if (e.isEmpty) {
+                                            return "ID Tidak Boleh Kosong";
+                                          }
+                                        },
+                                        onSaved: (e) => badgenumber = e,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )),
+                              SizedBox(height: 40.0),
+                              AnimationScreen(1.6, Container(
+                                height: 50,
+                                width: 200,
+                                child: RaisedButton(
+                                  child: Text("Login", style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontFamily: "Baloo2"),),
+                                  color: Colors.red,
+                                  splashColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30)),
+                                  onPressed: () {
+                                    check();
+                                  },
+                                ),
+                              ))
+                            ],
+                          ),
                         ),
                       ),
-                      SizedBox(height: 10.0),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFCFD8DC),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        height: 60.0,
-                        child: TextFormField(
-                          cursorColor: Colors.red,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: <TextInputFormatter>[
-                            WhitelistingTextInputFormatter.digitsOnly,
-                            LengthLimitingTextInputFormatter(4),
-                          ],
-                          style: TextStyle(
-                              letterSpacing: 3,
-                              color: Colors.red,
-                              fontFamily: 'Baloo2',
-                              fontWeight: FontWeight.bold
-                          ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.only(top: 14.0),
-                            prefixIcon: Icon(
-                              Icons.perm_identity,
-                              color: Colors.red,
-                              size: 35,
-                            ),
-                            hintText: 'Masukan ID Anda',
-                            hintStyle: TextStyle(
-                              fontSize: 18,
-                              letterSpacing: 3,
-                              color: Colors.red,
-                              fontFamily: 'Baloo2',
-                            ),
-                          ),
-                          // ignore: missing_return
-                          validator: (e) {
-                            if (e.isEmpty) {
-                              return "ID Kosong";
-                            }
-                          },
-                          onSaved: (e) => badgenumber = e,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-
-
-                RaisedButton(
-                  color: Colors.red,
-                  splashColor: Colors.white,
-                  child: Text("Login", style: TextStyle(color: Colors.white)),
-                  onPressed: (){
-                    check();
-                  },
-                )
-              ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-      ),
-      );
+        );
         break;
       case LoginStatus.signIn:
         return NavigatorPage(badgenumber: badgenumber, signOut: signOut, name: name,);
@@ -248,3 +250,30 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 }
+
+class AnimationScreen extends StatelessWidget {
+  final double delay;
+  final Widget child;
+  AnimationScreen(this.delay, this.child);
+  @override
+  Widget build(BuildContext context) {
+    final tween = MultiTrackTween([
+      Track("opacity").add(Duration(milliseconds: 500), Tween(begin: 0.0, end: 1.0)),
+      Track("translateY").add(Duration(milliseconds: 500), Tween(begin: -30.0, end: 0.0), curve: Curves.easeOut)
+    ]);
+    return ControlledAnimation(
+      delay: Duration(milliseconds: (500 * delay).round()),
+      duration: tween.duration,
+      tween: tween,
+      child: child,
+      builderWithChild: (context, child, animation) => Opacity(
+        opacity: animation["opacity"],
+        child: Transform.translate(
+          offset: Offset(0, animation["translateY"]),
+          child: child,
+        ),
+      ),
+    );
+  }
+}
+

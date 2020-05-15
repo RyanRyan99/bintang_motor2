@@ -115,13 +115,14 @@ class _NotifikasiState extends State<Notifikasi> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 105, left: 20),
+          padding: const EdgeInsets.only(top: 100, left: 20),
           child: Container(
             child: Text("Notifikasi",
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white
+                  color: Colors.white,
+                  fontFamily: "Baloo2"
               ),
             ),
           ),
@@ -185,9 +186,9 @@ class _NotifikasiState extends State<Notifikasi> {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                                        new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
-                                        new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
+                                        new Text(a.nama, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),),
+                                        new Text(a.produk_pembelian,style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),),
+                                        new Text(a.pembayaran,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),)
                                       ],
                                     ),
                                   ),
@@ -210,7 +211,7 @@ class _NotifikasiState extends State<Notifikasi> {
                                   borderRadius: BorderRadius.circular(10)
                               ),
                               color: Colors.red,
-                              child: Text("Access",style: TextStyle(color: Colors.white, fontSize: 11),),
+                              child: Text("Access",style: TextStyle(color: Colors.white, fontSize: 11, fontFamily: "Baloo2"),),
                               onPressed: (){
                                 Navigator.push(context, MaterialPageRoute(builder: (context)=> new Customer()));
                               },
@@ -255,9 +256,9 @@ class _NotifikasiState extends State<Notifikasi> {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        new Text(a.title, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                                        new Text(a.content, overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold),),
-                                        new Text(a.category,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold),)
+                                        new Text(a.title, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),),
+                                        new Text(a.content, overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.black38,fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),),
+                                        new Text(a.category,style: TextStyle(color: Colors.red,fontSize: 14, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),)
                                       ],
                                     ),
                                   ),
@@ -280,7 +281,7 @@ class _NotifikasiState extends State<Notifikasi> {
                                   borderRadius: BorderRadius.circular(10)
                               ),
                               color: Colors.red,
-                              child: Text("Open",style: TextStyle(color: Colors.white, fontSize: 11),),
+                              child: Text("Open",style: TextStyle(color: Colors.white, fontSize: 11, fontFamily: "Baloo2"),),
                               onPressed: (){
                                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => new NewsPage()));
                               },

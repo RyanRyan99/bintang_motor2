@@ -104,7 +104,8 @@ class _ProfileState extends State<Profile> {
               style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white
+                  color: Colors.white,
+                  fontFamily: "Baloo2"
               ),
             ),
           ),
@@ -136,24 +137,25 @@ class _ProfileState extends State<Profile> {
             child: Text("${widget.name}",
               style: TextStyle(
                   fontSize: 24.0,
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Baloo2"
               ),
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 75, left: 175),
+          padding: const EdgeInsets.only(top: 80, left: 175),
           child: Container(
             child: Icon(Icons.location_on, size: 30, color: Colors.black38,),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 80, left: 205),
+          padding: const EdgeInsets.only(top: 85, left: 205),
           child: Container(
             child: Text("Cibinong",
               style: TextStyle(
                 color: Colors.black38,
-                fontSize: 18.0,fontWeight: FontWeight.bold,
+                fontSize: 18.0,fontWeight: FontWeight.bold, fontFamily: "Baloo2"
               ),
             ),
           ),
@@ -184,7 +186,7 @@ class _ProfileState extends State<Profile> {
     return Stack(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 125,left: 90),
+          padding: const EdgeInsets.only(top: 130,left: 90),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.black12,
@@ -202,7 +204,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 175,left: 90),
+          padding: const EdgeInsets.only(top: 185,left: 90),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.black12,
@@ -220,7 +222,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 222,left: 90),
+          padding: const EdgeInsets.only(top: 237,left: 90),
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
@@ -238,7 +240,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 270,left: 90),
+          padding: const EdgeInsets.only(top: 290,left: 90),
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
@@ -256,7 +258,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 318,left: 90),
+          padding: const EdgeInsets.only(top: 345,left: 90),
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
@@ -274,18 +276,17 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 400, right: 30),
+          padding: const EdgeInsets.only(top: 420, right: 30),
           child: Align(
            alignment: Alignment.bottomRight,
            child: Container(
-             height: 30,
              child: RaisedButton(
                splashColor: Colors.white,
                color: Colors.red,
                onPressed: (){
                  SignOut();
                },
-               child: Text("Logout", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+               child: Text("Logout", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontFamily: "Baloo2"),),
                shape: RoundedRectangleBorder(
                  borderRadius: new  BorderRadius.circular(20.0),
                ),
@@ -305,27 +306,27 @@ class _ProfileState extends State<Profile> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new Text("Nama :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+            child: new Text("Nama :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, fontFamily: "Baloo2"),),
           ),
           Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new Text("No Telp :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+            child: new Text("No Telp :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, fontFamily: "Baloo2"),),
           ),
           Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new Text("Email :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+            child: new Text("Email :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, fontFamily: "Baloo2"),),
           ),
           Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new Text("Badgenumber :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+            child: new Text("Badgenumber :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, fontFamily: "Baloo2"),),
           ),
           Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new Text("Position :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
+            child: new Text("Position :",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, fontFamily: "Baloo2"),),
           )
         ],
       ),
