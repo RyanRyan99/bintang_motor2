@@ -20,7 +20,7 @@ class _CheckBpkbState extends State<CheckBpkb> {
       loading = true;
     });
     _list.clear();
-    final response = await http.get("https://bintang-niagajaya.000webhostapp.com/api_bpkb.php");
+    final response = await http.get("http://36.67.190.179:15032/sales_point/api_bpkb.php");
     if(response.statusCode == 200){
       final data = jsonDecode(response.body);
       setState(() {

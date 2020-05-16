@@ -1,4 +1,5 @@
 import 'package:bintang_motor/login.dart';
+import 'package:bintang_motor/statistik/statistik2.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: PieCharts(),
     );
   }
 }

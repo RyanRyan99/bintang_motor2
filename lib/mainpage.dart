@@ -43,8 +43,6 @@ class _MainPageState extends State<MainPage> {
 
   final _key = new GlobalKey<FormState>();
 
-
-
   //PDF FILE
   String assetPDFPath = "";
   String urlPDFPath = "";

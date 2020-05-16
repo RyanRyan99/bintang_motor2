@@ -12,7 +12,7 @@ class _PieChartsState extends State<PieCharts> {
 
   List<StatistikData> _statictik = List<StatistikData>();
   Future<List<StatistikData>> fatch() async {
-    var url = 'https://bintang-niagajaya.000webhostapp.com/api_statistik.php';
+    var url = 'http://36.67.190.179:15032/sales_point/api_statistik.php';
     var response = await http.get(url);
     var stats = List<StatistikData>();
     if(response.statusCode == 200){
@@ -26,28 +26,29 @@ class _PieChartsState extends State<PieCharts> {
 
   bool toggle = false;
   Map<String, double> dataMap = new Map();
+  List<String> data = new List();
   List<Color> colorList = [
     Colors.red,
     Colors.grey[400],
     Colors.red[200],
   ];
 
-  var deal;
+  var deall;
  @override
   void initState() {
     super.initState();
     fatch().then((value){
       setState(() {
         _statictik.addAll(value);
-        print(_statictik[0].deal);
-        print(_statictik[0].noDeal);
-        print(_statictik[0].dataOpen);
-        deal = _statictik[0].deal;
+//        print(_statictik[0].deal);
+//        print(_statictik[0].noDeal);
+//        print(_statictik[0].dataOpen);
+      deall = _statictik[0].deal;
       });
     });
-    dataMap.putIfAbsent("Deal", () => deal as double);
-    dataMap.putIfAbsent("No Deal", () => 31.2500);
-    dataMap.putIfAbsent("Data Open", () => 31.2500);
+    dataMap.putIfAbsent("Deal", () => deall);
+    dataMap.putIfAbsent("No Deal", () => deall);
+    dataMap.putIfAbsent("Data Open", () => deall);
     setState(() {
       toggle = !toggle;
 
@@ -131,9 +132,9 @@ class _PieChartsState extends State<PieCharts> {
 }
 
 class StatistikData {
-  String dataOpen;
-  String deal;
-  String noDeal;
+  double dataOpen;
+  double deal;
+  double noDeal;
 
   StatistikData({
     this.dataOpen,

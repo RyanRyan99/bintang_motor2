@@ -19,7 +19,7 @@ class Customer extends StatefulWidget {
 class _CustomerState extends State<Customer>  {
   List<CardCustomer> _list = List<CardCustomer>();
   Future<List<CardCustomer>> getData() async {
-    var url = "https://bintang-niagajaya.000webhostapp.com/api_customer_dataopen.php";
+    var url = "http://36.67.190.179:15032/sales_point/api_customer_dataopen.php";
     var response = await http.get(url);
     var list = List<CardCustomer>();
     if(response.statusCode == 200){
@@ -32,7 +32,7 @@ class _CustomerState extends State<Customer>  {
   }
   List<CardCustomer> _list2 = List<CardCustomer>();
   Future<List<CardCustomer>> getDataDeal() async {
-    var url = "https://bintang-niagajaya.000webhostapp.com/api_customer_deal.php";
+    var url = "http://36.67.190.179:15032/sales_point/api_customer_deal.php";
     var response = await http.get(url);
     var list = List<CardCustomer>();
     if(response.statusCode == 200){
@@ -45,7 +45,7 @@ class _CustomerState extends State<Customer>  {
   }
   List<CardCustomer> _list3 = List<CardCustomer>();
   Future<List<CardCustomer>> getDataNoDeal() async {
-    var url = "https://bintang-niagajaya.000webhostapp.com/api_customer_nodeal.php";
+    var url = "http://36.67.190.179:15032/sales_point/api_customer_nodeal.php";
     var response = await http.get(url);
     var list = List<CardCustomer>();
     if(response.statusCode == 200){
@@ -69,6 +69,14 @@ class _CustomerState extends State<Customer>  {
       _platformVersion = platformVersion;
     });
   }
+  Filter() async {
+    setState(() {
+      _list.sort((a, b){
+        return a.id.compareTo(b.id.toLowerCase());
+      });
+    });
+  }
+
   @override
   void initState() {
     getData().then((value){
@@ -171,7 +179,9 @@ class _CustomerState extends State<Customer>  {
                               Text("Filter", style: TextStyle(color: Colors.white, fontFamily: "Baloo2"),)
                             ],
                           ),
-                          onPressed: (){},
+                          onPressed: (){
+                            Filter();
+                          },
                         ),
                         ),
                      ),

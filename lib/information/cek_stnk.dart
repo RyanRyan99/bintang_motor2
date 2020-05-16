@@ -20,7 +20,7 @@ class _CheckStnkState extends State<CheckStnk> {
       loading = true;
     });
     _list.clear();
-    final response = await http.get("https://bintang-niagajaya.000webhostapp.com/api_stnk.php");
+    final response = await http.get("http://36.67.190.179:15032/sales_point/api_stnk.php");
     if(response.statusCode == 200){
       final data = jsonDecode(response.body);
       setState(() {
