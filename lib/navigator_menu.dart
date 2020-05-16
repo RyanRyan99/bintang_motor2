@@ -27,9 +27,13 @@ class NavigatorPage extends StatefulWidget {
   final String point;
   final String image;
   final String location;
+  final String posisi;
+  final String email;
+  final String telpon;
   NavigatorPage({Key key, @required this.user,
     @required this.badgenumber, @required this.signOut,
-    @required this.name, @required this.point, @required this.image, @required this.location}) : super (key: key);
+    @required this.name, @required this.point, @required this.image,
+    @required this.location, @required this.posisi, @required this.email, @required this.telpon}) : super (key: key);
   @override
   _NavigatorPageState createState() => _NavigatorPageState();
 }
@@ -50,7 +54,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
     final _pageOption = [
       MainPage(user: widget.user, name: widget.name, point: widget.point, image: widget.image,),
       Notifikasi(),
-      Profile(signOut: SignOut, name: widget.name, location: widget.location, image: widget.image,),
+      Profile(signOut: SignOut, name: widget.name, location: widget.location, image: widget.image, badgenumber: widget.badgenumber, posisi: widget.posisi, email: widget.email, telpon: widget.telpon,),
     ];
     page = _pageOption;
   }

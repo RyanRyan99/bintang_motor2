@@ -1,3 +1,4 @@
+import 'package:bintang_motor/statistik/statistik2.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:http/http.dart' as http;
@@ -8,23 +9,25 @@ class Statistik extends StatefulWidget {
   _StatistikState createState() => _StatistikState();
 }
 class _StatistikState extends State<Statistik> {
-  Future<DataService> getData() async {
-    final response = await http.get("https://bintang-niagajaya.000webhostapp.com/api_statistik.php");
+  List<StatistikData> _statictik = List<StatistikData>();
+  Future<List<StatistikData>> fatch() async {
+    var url = 'https://bintang-niagajaya.000webhostapp.com/api_statistik.php';
+    var response = await http.get(url);
+    var stats = List<StatistikData>();
     if(response.statusCode == 200){
-      return DataService.fromJson(json.decode(response.body));
+      var statJson = json.decode(response.body);
+      for(var statssJson in statJson){
+        stats.add(StatistikData.fromJson(statssJson));
+      }
     }
-    else{
-      throw Exception('Error');
-    }
+    return stats;
   }
-  int touchedIndex;
 
+  int touchedIndex;
+  double Deal;
   @override
-  void setState(fn) {
-    getData();
-    print(getData());
-    // TODO: implement setState
-    super.setState(fn);
+  void initState() {
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {
@@ -181,7 +184,7 @@ class _StatistikState extends State<Statistik> {
           return PieChartSectionData(
             color: Colors.red,
             value: 60,
-            title: '60%',
+            title: '${Deal}%',
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.white),

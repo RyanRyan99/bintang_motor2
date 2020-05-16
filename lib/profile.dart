@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
   final VoidCallback signOut;
+  final String badgenumber;
   final String name;
   final String image;
   final String location;
-  Profile({Key key, @required this.signOut, @required this.name, @required this.image, @required this.location});
+  final String posisi;
+  final String email;
+  final String telpon;
+  Profile({Key key, @required this.badgenumber, @required this.signOut,
+    @required this.name, @required this.image, @required this.location, @required this.posisi, @required this.email, @required this.telpon});
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -191,15 +196,21 @@ class _ProfileState extends State<Profile> {
           padding: const EdgeInsets.only(top: 130,left: 90),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.black12,
               borderRadius: BorderRadius.circular(5.0),
+                color: Colors.white,
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
+                ]
             ),
             height: 40,
             margin: EdgeInsets.all(30),
-            child: TextField(
-              style: TextStyle(height: 2.0),
+            child: TextFormField(
+              enabled: false,
+              controller: TextEditingController()..text = '${widget.name}',
+              style: TextStyle(fontFamily: "Baloo2", fontSize: 20),
               cursorColor: Colors.red,
               decoration: InputDecoration(
+                contentPadding: const EdgeInsets.only(left: 10, bottom: 15),
                 border: InputBorder.none
               ),
             ),
@@ -209,15 +220,21 @@ class _ProfileState extends State<Profile> {
           padding: const EdgeInsets.only(top: 185,left: 90),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.black12,
               borderRadius: BorderRadius.circular(5.0),
+                color: Colors.white,
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
+                ]
             ),
             height: 40,
             margin: EdgeInsets.all(30),
-            child: TextField(
-              style: TextStyle(height: 2.0),
+            child: TextFormField(
+              enabled: false,
+              controller: TextEditingController()..text = '${widget.telpon}',
+              style: TextStyle(fontFamily: "Baloo2", fontSize: 20),
               cursorColor: Colors.red,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(left: 10, bottom: 15),
                 border: InputBorder.none
               ),
             ),
@@ -228,14 +245,20 @@ class _ProfileState extends State<Profile> {
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
-                color: Colors.black12
+                color: Colors.white,
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
+                ]
             ),
             height: 40,
             margin: EdgeInsets.all(30),
-            child: TextField(
-              style: TextStyle(height: 2.0),
+            child: TextFormField(
+              enabled: false,
+              controller: TextEditingController()..text = '${widget.email}',
+              style:  TextStyle(fontFamily: "Baloo2", fontSize: 20),
               cursorColor: Colors.red,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(left: 10, bottom: 15),
                 border: InputBorder.none
               ),
             ),
@@ -246,14 +269,20 @@ class _ProfileState extends State<Profile> {
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
-                color: Colors.black12
+                color: Colors.white,
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
+                ]
             ),
             height: 40,
             margin: EdgeInsets.all(30),
-            child: TextField(
-              style: TextStyle(height: 2.0),
+            child: TextFormField(
+              enabled: false,
+              controller: TextEditingController()..text = "${widget.badgenumber}",
+              style: TextStyle(fontFamily: "Baloo2", fontSize: 20),
               cursorColor: Colors.red,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(left: 10, bottom: 15),
                 border: InputBorder.none
               ),
             ),
@@ -264,14 +293,20 @@ class _ProfileState extends State<Profile> {
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
-                color: Colors.black12
+                color: Colors.white,
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(spreadRadius: 0.5,blurRadius: 2.0, color: Colors.black38)
+                ]
             ),
             height: 40,
             margin: EdgeInsets.all(30),
-            child: TextField(
-              style: TextStyle(height: 2.0),
+            child: TextFormField(
+              enabled: false,
+              controller: TextEditingController()..text = '${widget.posisi}',
+              style: TextStyle(fontFamily: "Baloo2", fontSize: 20),
               cursorColor: Colors.red,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(left: 10, bottom: 15),
                 border: InputBorder.none
               ),
             ),

@@ -15,7 +15,7 @@ class LoginPage extends StatefulWidget {
 enum LoginStatus {notSignIn, signIn}
 class _LoginPageState extends State<LoginPage> {
   LoginStatus _loginStatus = LoginStatus.notSignIn;
-  String badgenumber, name, points, picture, lokasi;
+  String badgenumber, name, points, picture, lokasi, posisi, emails, telpons;
   final _key = new GlobalKey<FormState>();
   check(){
     final form = _key.currentState;
@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
   login() async {
-    final response = await http.post("https://bintang-niagajaya.000webhostapp.com/api_login.php",
+    final response = await http.post("http://36.67.190.179:15032/sales_point/api_login.php",
         body: {"badgenumber": badgenumber, "name": name,});
     final data = jsonDecode(response.body);
     int value = data['value'];
@@ -35,17 +35,24 @@ class _LoginPageState extends State<LoginPage> {
     String point = data['point'];
     String image = data['image'];
     String location = data['lokasi'];
+    String jabatan = data['posisi'];
+    String email = data['email'];
+    String telpon = data['no_telp'];
     String id = data["id"];
     if(value == 1){
       setState(() {
         _loginStatus = LoginStatus.signIn;
-        savePref(value, usernameApi, nameAPI, point, image, location, id);
+        savePref(value, usernameApi, nameAPI, point, image, location, jabatan, email, telpon, id);
         points = point;
         picture = image;
         lokasi = location;
+        posisi = jabatan;
+        emails = email;
+        telpons = telpon;
       });
       print(pesan);
-      print(location);
+      print(email);
+      print(telpon);
     }
     else{
       showDialog(
@@ -59,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
       );
     }
   }
-  savePref(int value, String usernameApi, String point, String name, String image, String lokasi,  String id) async {
+  savePref(int value, String usernameApi, String point, String name, String image, String lokasi, String posisi, String email, String telpon, String id) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       preferences.setInt("value", value);
@@ -67,6 +74,9 @@ class _LoginPageState extends State<LoginPage> {
       preferences.setString("badgenumber", usernameApi);
       preferences.setString("point", point);
       preferences.setString("image", image);
+      preferences.setString("posisi", posisi);
+      preferences.setString("email", email);
+      preferences.setString("no_telp", telpon);
       preferences.setString("id", id);
       preferences.commit();
     });
@@ -254,7 +264,7 @@ class _LoginPageState extends State<LoginPage> {
         );
         break;
       case LoginStatus.signIn:
-        return NavigatorPage(badgenumber: badgenumber, signOut: signOut, name: name, point: points, image: picture, location: lokasi,);
+        return NavigatorPage(badgenumber: badgenumber, signOut: signOut, name: name, point: points, image: picture, location: lokasi, posisi: posisi, email: emails, telpon: telpons,);
         break;
     }
   }

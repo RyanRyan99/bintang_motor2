@@ -10,30 +10,47 @@ class PieCharts extends StatefulWidget {
 
 class _PieChartsState extends State<PieCharts> {
 
-  Future<StatistikData> getData() async {
-    final response = await http.get("https://bintang-niagajaya.000webhostapp.com/api_statistik.php");
+  List<StatistikData> _statictik = List<StatistikData>();
+  Future<List<StatistikData>> fatch() async {
+    var url = 'https://bintang-niagajaya.000webhostapp.com/api_statistik.php';
+    var response = await http.get(url);
+    var stats = List<StatistikData>();
     if(response.statusCode == 200){
-      return StatistikData.fromJson(json.decode(response.body));
+      var statJson = json.decode(response.body);
+      for(var statssJson in statJson){
+        stats.add(StatistikData.fromJson(statssJson));
+      }
     }
-    else{
-      throw Exception('Error');
-    }
+    return stats;
   }
+
   bool toggle = false;
-  Map<String, double> dataMap = Map();
+  Map<String, double> dataMap = new Map();
   List<Color> colorList = [
     Colors.red,
     Colors.grey[400],
     Colors.red[200],
   ];
+
+  var deal;
+ @override
   void initState() {
     super.initState();
-    dataMap.putIfAbsent("Deal", () =>  27);
-    dataMap.putIfAbsent("No Deal", () => 33.8);
-    dataMap.putIfAbsent("Data Open", () => 30);
+    fatch().then((value){
+      setState(() {
+        _statictik.addAll(value);
+        print(_statictik[0].deal);
+        print(_statictik[0].noDeal);
+        print(_statictik[0].dataOpen);
+        deal = _statictik[0].deal;
+      });
+    });
+    dataMap.putIfAbsent("Deal", () => deal as double);
+    dataMap.putIfAbsent("No Deal", () => 31.2500);
+    dataMap.putIfAbsent("Data Open", () => 31.2500);
     setState(() {
       toggle = !toggle;
-      getData();
+
     });
   }
   @override
@@ -84,7 +101,7 @@ class _PieChartsState extends State<PieCharts> {
               child: toggle
                   ? PieChart(
                 dataMap: dataMap,
-                animationDuration: Duration(milliseconds: 800),
+                animationDuration: Duration(milliseconds: 1000),
                 chartLegendSpacing: 32.0,
                 chartRadius: MediaQuery.of(context).size.width / 1.7,
                 showChartValuesInPercentage: true,
@@ -95,7 +112,7 @@ class _PieChartsState extends State<PieCharts> {
                 showLegends: true,
                 legendPosition: LegendPosition.bottom,
                 legendStyle: TextStyle(fontSize: 18),
-                decimalPlaces: 1,
+                decimalPlaces: 2,
                 showChartValueLabel: true,
                 initialAngle: 0,
                 chartValueStyle: defaultChartValueStyle.copyWith(
@@ -113,14 +130,10 @@ class _PieChartsState extends State<PieCharts> {
   }
 }
 
-List<StatistikData> statistikDataFromJson(String str) => List<StatistikData>.from(json.decode(str).map((x) => StatistikData.fromJson(x)));
-
-String statistikDataToJson(List<StatistikData> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
 class StatistikData {
-  int dataOpen;
-  int deal;
-  double noDeal;
+  String dataOpen;
+  String deal;
+  String noDeal;
 
   StatistikData({
     this.dataOpen,
@@ -131,7 +144,7 @@ class StatistikData {
   factory StatistikData.fromJson(Map<String, dynamic> json) => StatistikData(
     dataOpen: json["Data Open"],
     deal: json["Deal"],
-    noDeal: json["No Deal"].toDouble(),
+    noDeal: json["No Deal"],
   );
 
   Map<String, dynamic> toJson() => {
