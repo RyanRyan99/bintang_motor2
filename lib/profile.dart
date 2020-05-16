@@ -207,7 +207,7 @@ class _ProfileState extends State<Profile> {
             child: TextFormField(
               enabled: false,
               controller: TextEditingController()..text = '${widget.name}',
-              style: TextStyle(fontFamily: "Baloo2", fontSize: 20),
+              style: TextStyle(fontFamily: "Baloo2", fontSize: 18),
               cursorColor: Colors.red,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.only(left: 10, bottom: 15),
@@ -231,7 +231,7 @@ class _ProfileState extends State<Profile> {
             child: TextFormField(
               enabled: false,
               controller: TextEditingController()..text = '${widget.telpon}',
-              style: TextStyle(fontFamily: "Baloo2", fontSize: 20),
+              style: TextStyle(fontFamily: "Baloo2", fontSize: 18),
               cursorColor: Colors.red,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(left: 10, bottom: 15),
@@ -253,9 +253,9 @@ class _ProfileState extends State<Profile> {
             height: 40,
             margin: EdgeInsets.all(30),
             child: TextFormField(
-              enabled: false,
+              enabled: true,
               controller: TextEditingController()..text = '${widget.email}',
-              style:  TextStyle(fontFamily: "Baloo2", fontSize: 20),
+              style:  TextStyle(fontFamily: "Baloo2", fontSize: 18),
               cursorColor: Colors.red,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(left: 10, bottom: 15),
@@ -279,7 +279,7 @@ class _ProfileState extends State<Profile> {
             child: TextFormField(
               enabled: false,
               controller: TextEditingController()..text = "${widget.badgenumber}",
-              style: TextStyle(fontFamily: "Baloo2", fontSize: 20),
+              style: TextStyle(fontFamily: "Baloo2", fontSize: 18),
               cursorColor: Colors.red,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(left: 10, bottom: 15),
@@ -303,7 +303,7 @@ class _ProfileState extends State<Profile> {
             child: TextFormField(
               enabled: false,
               controller: TextEditingController()..text = '${widget.posisi}',
-              style: TextStyle(fontFamily: "Baloo2", fontSize: 20),
+              style: TextStyle(fontFamily: "Baloo2", fontSize: 18),
               cursorColor: Colors.red,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(left: 10, bottom: 15),
